@@ -1,17 +1,32 @@
+import Component from '../../core/Component';
 import '../../style/MyPage.css';
 
-export default function MyPage({ $target }) {
-  const $myPage = document.createElement('div');
-  $myPage.className = 'MyPage';
-  $target.appendChild($myPage);
+export default class MyPage extends Component {
+  setup() {
+    this.state = {
+      userName: 'user',
+      picture: '',
+      totalWinScore: 1,
+      totalLoseScore: 0,
+      matchHistories: [
+        {
+          userName: 'op',
+          winner: 'user',
+          scoreDate: '2024-01-29',
+        },
+      ],
+      friends: [
+        {
+          userName: 'friend1',
+          picture: '',
+        },
+      ],
+    };
+  }
 
-  this.setState = (newState) => {
-    this.state = newState;
-    this.render();
-  };
-
-  this.render = () => {
-    $myPage.innerHTML = `
+  template() {
+    console.log('MyPage template');
+    return `
       <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
       <div class="MyPage_container">
         <div class="MyPage_profile_container">
@@ -23,7 +38,5 @@ export default function MyPage({ $target }) {
         </div>
       </div>
     `;
-  };
-
-  this.render();
+  }
 }
