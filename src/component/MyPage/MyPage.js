@@ -1,4 +1,6 @@
-import Component from '../../core/Component';
+import Component from '../../core/Component.js';
+import TableHistory from './TableHistory.js';
+import TableFriend from './TableFriend.js';
 import '../../style/MyPage.css';
 
 export default class MyPage extends Component {
@@ -38,5 +40,21 @@ export default class MyPage extends Component {
         </div>
       </div>
     `;
+  }
+
+  mounted() {
+    const { TableMaker } = this;
+    const $historyTable = this.$target.querySelector('.MyPage_info__history');
+    const $friendTable = this.$target.querySelector(
+      '.MyPage_info__friend_list',
+    );
+
+    new TableHistory($historyTable, this.state.userName, '경기 기록', {
+      matchHistories: this.state.matchHistories,
+    });
+
+    new TableFriend($friendTable, '친구 목록', {
+      friends: this.state.friends,
+    });
   }
 }
