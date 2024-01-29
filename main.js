@@ -1,5 +1,3 @@
-// import Login from './src/component/Login/Login.js';
-import MyPage from './src/component/MyPage/MyPage.js';
+import Login from './src/component/Login/Login.js';
 
-// document.querySelector('#app').innerHTML = Login();
-document.querySelector('#app').innerHTML = MyPage();
+document.querySelector('#app').innerHTML = Login();
