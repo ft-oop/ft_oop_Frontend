@@ -11,18 +11,22 @@ body {
 }
 
 #back {
-  margin: 10px;
+  padding: 10px;
+
+  display: absolute;
 }
 
 .MyPage_container {
-  width: calc(100% - 560px);
-  height: calc(100% - 180px);
+  width: calc(100% - 400px);
+  height: calc(100% - 150px);
+  /*width: 100%;*/
+  /*height: 100%;*/
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
 
-  margin: 30px 280px 90px 280px;
+  margin: 0px 200px 150px 200px;
 }
 
 .MyPage_profile_container {
