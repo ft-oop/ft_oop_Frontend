@@ -39,7 +39,6 @@ export default class MyPage extends Component {
   }
 
   template() {
-    console.log('MyPage template');
     return `
       <div class="Wrapper">
         <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
@@ -51,6 +50,12 @@ export default class MyPage extends Component {
             <div class="MyPage_info__history"></div>
             <div class="MyPage_info__friend_list"></div>
           </div>
+        </div>
+        <div class="Background">
+          <img id="bubble1" src="/bubble.png" alt="bubble">
+          <img id="bubble2" src="/bubble.png" alt="bubble">
+          <img id="bubble3" src="/bubble.png" alt="bubble">
+          <img id="bubble4" src="/bubble.png" alt="bubble">
         </div>
       </div>
     `;
