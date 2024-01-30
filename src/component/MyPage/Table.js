@@ -30,7 +30,9 @@ export default class Table extends Component {
           ${
             this.n === 1
               ? this.generateHistoryTable()
-              : this.generateUserTable()
+              : this.n === 2
+              ? this.generateUserTable()
+              : this.generateBlockTable()
           }
         </tbody>
       </table>
@@ -61,14 +63,24 @@ export default class Table extends Component {
     return friends
       .map(
         (friend) => `
-      <tr class="Friend_table">
-        <td><img id="friend_avatar" src="/bubble.png" alt="friend picture"></td>
-        <td id="friend_name">${friend.userName}</td>
-        <td><img id="friend_dm" src="/eva--message-circle-fill.svg"></td>
-        <td><img id="friend_delete" src="/eva--close-fill.svg"></td>
+      <tr class="User_table">
+        <td><img id="user_avatar" src="/bubble.png" alt="user picture"></td>
+        <td id="user_name">${friend.userName}</td>
+        <td><img id="user_dm" src="/eva--message-circle-fill.svg"></td>
+        <td><img id="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
       )
       .join('');
+  }
+
+  generateBlockTable() {
+    return `
+      <tr class="Block_table">
+        <td><img id="user_avatar" src="/bubble.png" alt="block picture"></td>
+        <td id="user_name">${this.props.userName}</td>
+        <td><img id="user_delete" src="/eva--close-fill.svg"></td>
+      </tr>
+    `;
   }
 }

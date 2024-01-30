@@ -29,8 +29,11 @@ table tbody {
   padding: 10px 20px 10px 20px;
 }
 
-.Friend_table td {
-  /*padding: 10px 10px 10px 10px;*/
+.User_table td {
+  padding-left: 10px;
+}
+
+.Block_table td {
   padding-left: 10px;
 }
 
@@ -64,13 +67,12 @@ table tr:nth-child(even) {
   height: 28px;
 }
 
-.icon_right:hover {
+.icon_right:hover,
+.icon_left:hover {
   cursor: pointer;
 }
 
 .icon_left {
-  filter: brightness(150%) saturate(50%);
-
   margin-right: 90px;
 }
 
@@ -78,17 +80,17 @@ table tr:nth-child(even) {
   margin-left: 90px;
 }
 
-#friend_avatar {
+#user_avatar {
   width: 50px;
   height: 50px;
 
   border-radius: 50%;
 }
 
-#friend_name {
+#user_name {
   flex-grow: 1;
 }
 
-#friend_delete {
+#user_delete {
   margin-right: 10px;
 }

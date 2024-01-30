@@ -40,6 +40,9 @@ export default class MyPage extends Component {
 
   template() {
     return `
+      <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      </head>
       <div class="Wrapper">
         <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
         <div class="MyPage_container">
@@ -79,5 +82,37 @@ export default class MyPage extends Component {
 
     new Table($historyTable, '경기 기록', 1, this.state);
     new Table($friendTable, '친구 목록', 2, this.state);
+  }
+
+  setEvent() {
+    this.$target.addEventListener('click', this.handleButton.bind(this));
+  }
+
+  handleButton(event) {
+    const button = event.target;
+
+    if (this.$target.querySelector('.User_table')) {
+      if (
+        button.classList.contains('icon_right') ||
+        button.classList.contains('icon_left')
+      ) {
+        const $blockTable = this.$target.querySelector(
+          '.MyPage_info__friend_list',
+        );
+
+        new Table($blockTable, '차단 목록', 3, this.state);
+      }
+    } else {
+      if (
+        button.classList.contains('icon_right') ||
+        button.classList.contains('icon_left')
+      ) {
+        const $userTable = this.$target.querySelector(
+          '.MyPage_info__friend_list',
+        );
+
+        new Table($userTable, '친구 목록', 2, this.state);
+      }
+    }
   }
 }
