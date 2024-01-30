@@ -1,0 +1,61 @@
+.MyPage_info__history {
+  flex-grow: 1;
+  height: 100%;
+
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.MyPage_info__friend_list {
+  width: 400px;
+  height: 100%;
+
+  margin-left: 30px;
+
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.MyPage__table {
+  width: 100%;
+}
+
+table caption {
+  font-size: 1.5em;
+  font-weight: bold;
+
+  padding: 20px;
+  border-radius: 30px 30px 0px 0px;
+  background-color: #e7eff8;
+  border-bottom: 3px solid #abc2ef;
+}
+
+.History_table {
+  text-align: center;
+}
+
+.History_table td {
+  padding: 10px 20px 10px 20px;
+}
+
+.Friend_table td {
+  padding: 10px 20px 10px 20px;
+}
+
+table tr {
+  font-size: 1.2em;
+}
+
+table tr:nth-child(even) {
+  background-color: #eff6ff;
+}
+
+#history_date {
+  width: 20%;
+}
+
+#history_result {
+  width: 20%;
+}
