@@ -20,56 +20,6 @@ export default class MyPage extends Component {
           winner: 'op2',
           scoreDate: '2024-01-30',
         },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
       ],
       friends: [
         {
@@ -81,47 +31,7 @@ export default class MyPage extends Component {
           picture: '',
         },
         {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
+          userName: 'friend3',
           picture: '',
         },
       ],
