@@ -6,6 +6,9 @@ table caption {
   font-size: 1.5em;
   font-weight: bold;
 
+  align-items: center;
+  justify-content: center;
+
   padding: 20px;
   border-radius: 30px 30px 0px 0px;
   background-color: #e7eff8;
@@ -52,4 +55,20 @@ table tr:nth-child(even) {
 
 #history_content {
   flex-grow: 2;
+}
+
+.icon_left,
+.icon_right {
+  width: 28px;
+  height: 28px;
+}
+
+.icon_left {
+  filter: brightness(150%) saturate(50%);
+
+  margin-right: 90px;
+}
+
+.icon_right {
+  margin-left: 90px;
 }

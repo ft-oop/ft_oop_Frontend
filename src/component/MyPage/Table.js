@@ -14,9 +14,18 @@ export default class Table extends Component {
   }
 
   template() {
+    let buttonDisplay = 'inline';
+
+    if (this.n === 1) {
+      buttonDisplay = 'none';
+    }
     return `
       <table class="MyPage__table">
-        <caption>${this.title}</caption>
+        <caption>
+          <img src="/eva--arrow-left-fill.svg" class="icon_left" alt="left-fill" style="display: ${buttonDisplay}"/>
+          ${this.title}
+          <img src="/eva--arrow-right-fill.svg" class="icon_right" alt="left-fill" style="display: ${buttonDisplay}"/>
+        </caption>
         <tbody>
           ${
             this.n === 1
