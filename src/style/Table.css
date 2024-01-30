@@ -12,15 +12,6 @@ table caption {
   border-bottom: 3px solid #abc2ef;
 }
 
-table tbody::-webkit-scrollbar {
-  width: 10px;
-}
-
-table tbody::-webkit-scrollbar-thumb {
-  background-color: #e7eff8;
-  border-radius: 10px;
-}
-
 table tbody {
   display: block;
   height: 530px;

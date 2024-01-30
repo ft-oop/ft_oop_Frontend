@@ -1,15 +1,18 @@
 html,
 body {
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
   align-items: center;
 }
 
-.MyPage {
+.Wrapper {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+
+  overflow: auto;
 }
 
 #app {
@@ -17,27 +20,34 @@ body {
   height: 100vh;
   flex-direction: column;
   align-items: center;
+}
 
-  position: relative;
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e7eff8;
+  border-radius: 10px;
 }
 
 #back {
+  width: 50px;
   padding: 10px;
 }
 
 .MyPage_container {
   width: calc(100% - 400px);
-  height: calc(100% - 150px);
   flex-direction: column;
   align-items: flex-start;
 
-  margin: 0px 200px 150px 200px;
+  margin: 0px 200px 0px 200px;
 }
 
 .MyPage_profile_container {
   width: 100%;
   height: 200px;
-  min-width: 300px;
+  min-width: 500px;
 
   display: flex;
   align-items: center;

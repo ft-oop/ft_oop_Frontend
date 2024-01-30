@@ -131,14 +131,16 @@ export default class MyPage extends Component {
   template() {
     console.log('MyPage template');
     return `
-      <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
-      <div class="MyPage_container">
-        <div class="MyPage_profile_container">
-          <div class="MyPage_profile"></div>
-        </div>
-        <div class="MyPage_info">
-          <div class="MyPage_info__history"></div>
-          <div class="MyPage_info__friend_list"></div>
+      <div class="Wrapper">
+        <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
+        <div class="MyPage_container">
+          <div class="MyPage_profile_container">
+            <div class="MyPage_profile"></div>
+          </div>
+          <div class="MyPage_info">
+            <div class="MyPage_info__history"></div>
+            <div class="MyPage_info__friend_list"></div>
+          </div>
         </div>
       </div>
     `;
