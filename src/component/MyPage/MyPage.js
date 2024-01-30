@@ -57,14 +57,22 @@ export default class MyPage extends Component {
   }
 
   mounted() {
-    const { TableMaker } = this;
+    const $profile = this.$target.querySelector('.MyPage_profile');
     const $historyTable = this.$target.querySelector('.MyPage_info__history');
     const $friendTable = this.$target.querySelector(
       '.MyPage_info__friend_list',
     );
 
-    new Table($historyTable, '경기 기록', 1, this.state);
+    $profile.innerHTML = `
+      <img id="mypage_avatar" src="/bubble.png" alt="profile">
+      <div id="mypage_profile__wrapper">
+        <div id="mypage_name">${this.state.userName}</div>
+        <div id="mypage_winlose">${this.state.totalWinScore}승 ${this.state.totalLoseScore}패</div>
+        </div>
+      <img id="mypage_edit" src="/eva--edit-2-fill.svg" alt="edit">
+    `;
 
+    new Table($historyTable, '경기 기록', 1, this.state);
     new Table($friendTable, '친구 목록', 2, this.state);
   }
 }

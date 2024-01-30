@@ -61,8 +61,44 @@ body {
   height: 100%;
 
   display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: space-between;
+}
 
-  background-color: azure;
+#mypage_avatar {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+}
+
+#mypage_profile__wrapper {
+  flex-grow: 1;
+  height: 100px;
+
+  margin-left: 20px;
+
+  display: flex;
+  vertical-align: middle;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#mypage_name {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+#mypage_winlose {
+  font-size: 1.2em;
+}
+
+#mypage_edit {
+  width: 40px;
+  height: 40px;
+
+  margin: 30px;
 }
 
 .MyPage_info {
