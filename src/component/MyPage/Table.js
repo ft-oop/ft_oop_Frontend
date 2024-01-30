@@ -35,7 +35,9 @@ export default class Table extends Component {
         (history) => `
       <tr class="History_table">
         <td id="history_date">${history.scoreDate}</td>
-        <td>${this.props.userName} vs ${history.userName}</td>
+        <td id="history_content">${this.props.userName} vs ${
+          history.userName
+        }</td>
         <td id="history_result">${
           history.winner === 'user' ? 'Win' : 'Lose'
         }</td>
