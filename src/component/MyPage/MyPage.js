@@ -1,6 +1,5 @@
 import Component from '../../core/Component.js';
-import TableHistory from './TableHistory.js';
-import TableFriend from './TableFriend.js';
+import Table from './Table.js';
 import '../../style/MyPage.css';
 
 export default class MyPage extends Component {
@@ -9,17 +8,30 @@ export default class MyPage extends Component {
       userName: 'user',
       picture: '',
       totalWinScore: 1,
-      totalLoseScore: 0,
+      totalLoseScore: 1,
       matchHistories: [
         {
-          userName: 'op',
+          userName: 'op1',
           winner: 'user',
           scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-30',
         },
       ],
       friends: [
         {
           userName: 'friend1',
+          picture: '',
+        },
+        {
+          userName: 'friend2',
+          picture: '',
+        },
+        {
+          userName: 'friend3',
           picture: '',
         },
       ],
@@ -49,12 +61,8 @@ export default class MyPage extends Component {
       '.MyPage_info__friend_list',
     );
 
-    new TableHistory($historyTable, this.state.userName, '경기 기록', {
-      matchHistories: this.state.matchHistories,
-    });
+    new Table($historyTable, '경기 기록', 1, this.state);
 
-    new TableFriend($friendTable, '친구 목록', {
-      friends: this.state.friends,
-    });
+    new Table($friendTable, '친구 목록', 2, this.state);
   }
 }
