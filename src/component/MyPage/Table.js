@@ -62,7 +62,10 @@ export default class Table extends Component {
       .map(
         (friend) => `
       <tr class="Friend_table">
-        <td>${friend.userName}</td>
+        <td><img id="friend_avatar" src="/bubble.png" alt="friend picture"></td>
+        <td id="friend_name">${friend.userName}</td>
+        <td><img id="friend_dm" src="/eva--message-circle-fill.svg"></td>
+        <td><img id="friend_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
       )

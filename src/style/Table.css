@@ -9,7 +9,7 @@ table caption {
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
+  padding: 25px 0px 25px 0px;
   border-radius: 30px 30px 0px 0px;
   background-color: #e7eff8;
   border-bottom: 3px solid #abc2ef;
@@ -30,15 +30,16 @@ table tbody {
 }
 
 .Friend_table td {
-  width: 400px;
-  padding: 10px 20px 10px 20px;
+  /*padding: 10px 10px 10px 10px;*/
+  padding-left: 10px;
 }
 
 table tr {
-  height: 50px;
+  height: 70px;
   font-size: 1.2em;
 
   display: flex;
+  align-items: center;
 }
 
 table tr:nth-child(even) {
@@ -75,4 +76,19 @@ table tr:nth-child(even) {
 
 .icon_right {
   margin-left: 90px;
+}
+
+#friend_avatar {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+}
+
+#friend_name {
+  flex-grow: 1;
+}
+
+#friend_delete {
+  margin-right: 10px;
 }
