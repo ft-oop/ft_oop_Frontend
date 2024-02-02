@@ -51,7 +51,7 @@ export default class MyPage extends Component {
           </div>
           <div class="MyPage_info">
             <div class="MyPage_info__history"></div>
-            <div class="MyPage_info__friend_list"></div>
+            <div class="MyPage_info__user_list"></div>
           </div>
         </div>
         <div class="Background">
@@ -67,9 +67,7 @@ export default class MyPage extends Component {
   mounted() {
     const $profile = this.$target.querySelector('.MyPage_profile');
     const $historyTable = this.$target.querySelector('.MyPage_info__history');
-    const $friendTable = this.$target.querySelector(
-      '.MyPage_info__friend_list',
-    );
+    const $friendTable = this.$target.querySelector('.MyPage_info__user_list');
 
     $profile.innerHTML = `
       <img id="mypage_avatar" src="/bubble.png" alt="profile">
@@ -91,24 +89,18 @@ export default class MyPage extends Component {
   handleButton(event) {
     const button = event.target;
 
-    if (this.$target.querySelector('.User_table')) {
-      if (
-        button.classList.contains('icon_right') ||
-        button.classList.contains('icon_left')
-      ) {
+    if (this.$target.querySelector('.Friend_table')) {
+      if (button.classList.contains('icon_right')) {
         const $blockTable = this.$target.querySelector(
-          '.MyPage_info__friend_list',
+          '.MyPage_info__user_list',
         );
 
         new Table($blockTable, '차단 목록', 3, this.state);
       }
-    } else {
-      if (
-        button.classList.contains('icon_right') ||
-        button.classList.contains('icon_left')
-      ) {
+    } else if (this.$target.querySelector('.Block_table')) {
+      if (button.classList.contains('icon_left')) {
         const $userTable = this.$target.querySelector(
-          '.MyPage_info__friend_list',
+          '.MyPage_info__user_list',
         );
 
         new Table($userTable, '친구 목록', 2, this.state);

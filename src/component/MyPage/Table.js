@@ -15,23 +15,37 @@ export default class Table extends Component {
 
   template() {
     let buttonDisplay = 'inline';
+    let leftImage = '/arrow-left-disabled.svg';
+    let rightImage = '/arrow-right-enabled.svg';
+    let leftHover = 'this.style.cursor="default"';
+    let rightHover = 'this.style.cursor="pointer"';
 
     if (this.n === 1) {
       buttonDisplay = 'none';
     }
+    if (this.n === 3) {
+      leftImage = '/arrow-left-enabled.svg';
+      rightImage = '/arrow-right-disabled.svg';
+      leftHover = 'this.style.cursor="pointer"';
+      rightHover = 'this.style.cursor="default"';
+    }
     return `
       <table class="MyPage__table">
         <caption>
-          <img src="/eva--arrow-left-fill.svg" class="icon_left" alt="left-fill" style="display: ${buttonDisplay}"/>
+          <img src="${leftImage}" class="icon_left" id="icon_left${
+      this.n
+    }" alt="left-fill"></img>
           ${this.title}
-          <img src="/eva--arrow-right-fill.svg" class="icon_right" alt="left-fill" style="display: ${buttonDisplay}"/>
+          <img src="${rightImage}" class="icon_right" id="icon_right${
+      this.n
+    }" alt="right-fill"></img>
         </caption>
         <tbody>
           ${
             this.n === 1
               ? this.generateHistoryTable()
               : this.n === 2
-              ? this.generateUserTable()
+              ? this.generateFriendTable()
               : this.generateBlockTable()
           }
         </tbody>
@@ -41,6 +55,7 @@ export default class Table extends Component {
 
   generateHistoryTable() {
     const { matchHistories } = this.props;
+
     return matchHistories
       .map(
         (history) => `
@@ -58,12 +73,12 @@ export default class Table extends Component {
       .join('');
   }
 
-  generateUserTable() {
+  generateFriendTable() {
     const { friends } = this.props;
     return friends
       .map(
         (friend) => `
-      <tr class="User_table">
+      <tr class="Friend_table">
         <td><img id="user_avatar" src="/bubble.png" alt="user picture"></td>
         <td id="user_name">${friend.userName}</td>
         <td><img id="user_dm" src="/eva--message-circle-fill.svg"></td>
