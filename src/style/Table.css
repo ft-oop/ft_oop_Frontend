@@ -109,6 +109,13 @@ table tr:nth-child(even) {
   flex-grow: 1;
 }
 
+.user_avatar:hover,
+.user_name:hover,
+.user_dm:hover,
+.user_delete:hover {
+  cursor: pointer;
+}
+
 .user_delete {
   margin-right: 10px;
 }
