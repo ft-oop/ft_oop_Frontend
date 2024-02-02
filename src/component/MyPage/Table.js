@@ -14,15 +14,11 @@ export default class Table extends Component {
   }
 
   template() {
-    let buttonDisplay = 'inline';
     let leftImage = '/arrow-left-disabled.svg';
     let rightImage = '/arrow-right-enabled.svg';
     let leftHover = 'this.style.cursor="default"';
     let rightHover = 'this.style.cursor="pointer"';
 
-    if (this.n === 1) {
-      buttonDisplay = 'none';
-    }
     if (this.n === 3) {
       leftImage = '/arrow-left-enabled.svg';
       rightImage = '/arrow-right-disabled.svg';
