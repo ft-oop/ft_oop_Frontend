@@ -60,11 +60,11 @@ export default class Table extends Component {
       .map(
         (history) => `
       <tr class="History_table">
-        <td id="history_date">${history.scoreDate}</td>
-        <td id="history_content">${this.props.userName} vs ${
+        <td class="history_date">${history.scoreDate}</td>
+        <td class="history_content">${this.props.userName} vs ${
           history.userName
         }</td>
-        <td id="history_result">${
+        <td class="history_result">${
           history.winner === 'user' ? 'Win' : 'Lose'
         }</td>
       </tr>
@@ -79,10 +79,10 @@ export default class Table extends Component {
       .map(
         (friend) => `
       <tr class="Friend_table">
-        <td><img id="user_avatar" src="/bubble.png" alt="user picture"></td>
-        <td id="user_name">${friend.userName}</td>
-        <td><img id="user_dm" src="/eva--message-circle-fill.svg"></td>
-        <td><img id="user_delete" src="/eva--close-fill.svg"></td>
+        <td><img class="user_avatar" src="/bubble.png" alt="user picture"></td>
+        <td class="user_name">${friend.userName}</td>
+        <td><img class="user_dm" src="/eva--message-circle-fill.svg"></td>
+        <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
       )
@@ -92,9 +92,9 @@ export default class Table extends Component {
   generateBlockTable() {
     return `
       <tr class="Block_table">
-        <td><img id="user_avatar" src="/bubble.png" alt="block picture"></td>
-        <td id="user_name">${this.props.userName}</td>
-        <td><img id="user_delete" src="/eva--close-fill.svg"></td>
+        <td><img class="user_avatar" src="/bubble.png" alt="block picture"></td>
+        <td class="user_name">${this.props.userName}</td>
+        <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `;
   }

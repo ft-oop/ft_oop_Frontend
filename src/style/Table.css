@@ -52,15 +52,15 @@ table tr:nth-child(even) {
   background-color: #eff6ff;
 }
 
-#history_date {
+.history_date {
   width: 150px;
 }
 
-#history_result {
+.history_result {
   width: 150px;
 }
 
-#history_content {
+.history_content {
   flex-grow: 2;
 }
 
@@ -98,17 +98,17 @@ table tr:nth-child(even) {
   margin-left: 90px;
 }
 
-#user_avatar {
+.user_avatar {
   width: 50px;
   height: 50px;
 
   border-radius: 50%;
 }
 
-#user_name {
+.user_name {
   flex-grow: 1;
 }
 
-#user_delete {
+.user_delete {
   margin-right: 10px;
 }
