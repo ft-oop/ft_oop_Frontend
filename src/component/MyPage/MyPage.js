@@ -1,6 +1,7 @@
 import Component from '../../core/Component.js';
 import Table from './Table.js';
 import '../../style/MyPage.css';
+import Login from '../Login/Login.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -99,6 +100,28 @@ export default class MyPage extends Component {
   handleButton(event) {
     const button = event.target;
 
+    if (
+      button.classList.contains('icon_right') ||
+      button.classList.contains('icon_left')
+    ) {
+      this.handleTables(button);
+    } else if (button.id === 'mypage_edit') {
+      this.handleEdit(button);
+    } else if (button.id === 'back') {
+      this.$target.innerHTML = Login();
+    } else if (
+      button.classList.contains('user_avatar') ||
+      button.classList.contains('user_name')
+    ) {
+      this.handleUser(button);
+    } else if (button.classList.contains('user_dm')) {
+      this.handleDM(button);
+    } else if (button.classList.contains('user_delete')) {
+      this.handleDelete(button);
+    }
+  }
+
+  handleTables(button) {
     if (this.$target.querySelector('.Friend_table')) {
       if (button.classList.contains('icon_right')) {
         const $blockTable = this.$target.querySelector(
@@ -116,5 +139,21 @@ export default class MyPage extends Component {
         new Table($userTable, '친구 목록', 2, this.state);
       }
     }
+  }
+
+  handleEdit(button) {
+    console.log('edit');
+  }
+
+  handleUser(button) {
+    console.log('user');
+  }
+
+  handleDM(button) {
+    console.log('DM');
+  }
+
+  handleDelete(button) {
+    console.log('delete');
   }
 }

@@ -83,6 +83,10 @@ body {
   padding: 10px;
 }
 
+#back:hover {
+  cursor: pointer;
+}
+
 .MyPage_container {
   width: calc(100% - 400px);
   flex-direction: column;
