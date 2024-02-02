@@ -66,10 +66,12 @@ export default class Table extends Component {
   generateUserTable() {
     let className = 'Friend_table';
     let users = this.props.friends;
+    let display = 'display: inline';
 
     if (this.n === 3) {
       className = 'Block_table';
       users = this.props.blockedUsers;
+      display = 'display: none';
     }
 
     return users
@@ -78,7 +80,7 @@ export default class Table extends Component {
       <tr class="${className}">
         <td><img class="user_avatar" src="/bubble.png" alt="user picture"></td>
         <td class="user_name">${user.userName}</td>
-        <td><img class="user_dm" src="/eva--message-circle-fill.svg"></td>
+        <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
         <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
