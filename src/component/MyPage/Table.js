@@ -16,14 +16,10 @@ export default class Table extends Component {
   template() {
     let leftImage = '/arrow-left-disabled.svg';
     let rightImage = '/arrow-right-enabled.svg';
-    let leftHover = 'this.style.cursor="default"';
-    let rightHover = 'this.style.cursor="pointer"';
 
     if (this.n === 3) {
       leftImage = '/arrow-left-enabled.svg';
       rightImage = '/arrow-right-disabled.svg';
-      leftHover = 'this.style.cursor="pointer"';
-      rightHover = 'this.style.cursor="default"';
     }
     return `
       <table class="MyPage__table">
@@ -40,9 +36,7 @@ export default class Table extends Component {
           ${
             this.n === 1
               ? this.generateHistoryTable()
-              : this.n === 2
-              ? this.generateFriendTable()
-              : this.generateBlockTable()
+              : this.generateUserTable()
           }
         </tbody>
       </table>
@@ -69,29 +63,26 @@ export default class Table extends Component {
       .join('');
   }
 
-  generateFriendTable() {
-    const { friends } = this.props;
-    return friends
+  generateUserTable() {
+    let className = 'Friend_table';
+    let users = this.props.friends;
+
+    if (this.n === 3) {
+      className = 'Block_table';
+      users = this.props.blockedUsers;
+    }
+
+    return users
       .map(
-        (friend) => `
-      <tr class="Friend_table">
+        (user) => `
+      <tr class="${className}">
         <td><img class="user_avatar" src="/bubble.png" alt="user picture"></td>
-        <td class="user_name">${friend.userName}</td>
+        <td class="user_name">${user.userName}</td>
         <td><img class="user_dm" src="/eva--message-circle-fill.svg"></td>
         <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
       )
       .join('');
-  }
-
-  generateBlockTable() {
-    return `
-      <tr class="Block_table">
-        <td><img class="user_avatar" src="/bubble.png" alt="block picture"></td>
-        <td class="user_name">${this.props.userName}</td>
-        <td><img class="user_delete" src="/eva--close-fill.svg"></td>
-      </tr>
-    `;
   }
 }

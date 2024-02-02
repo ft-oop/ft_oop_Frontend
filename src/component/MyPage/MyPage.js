@@ -35,6 +35,16 @@ export default class MyPage extends Component {
           picture: '',
         },
       ],
+      blockedUsers: [
+        {
+          userName: 'block1',
+          picture: '',
+        },
+        {
+          userName: 'block2',
+          picture: '',
+        },
+      ],
     };
   }
 
@@ -96,8 +106,14 @@ export default class MyPage extends Component {
         );
 
         new Table($blockTable, '차단 목록', 3, this.state);
+
+        const dmIcon = document.querySelectorAll('.user_dm');
+        dmIcon.forEach((icon) => {
+          icon.style.display = 'none';
+        });
       }
     } else if (this.$target.querySelector('.Block_table')) {
+      console.log('block table');
       if (button.classList.contains('icon_left')) {
         const $userTable = this.$target.querySelector(
           '.MyPage_info__user_list',
