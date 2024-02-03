@@ -1,7 +1,7 @@
 import Component from '../../core/Component.js';
-import Table from './Table.js';
 import '../../style/MyPage.css';
-import Login from '../Login/Login.js';
+import Table from './Table.js';
+import Modal from './Modal.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -54,8 +54,8 @@ export default class MyPage extends Component {
       <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       </head>
-      <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
       <div class="Wrapper">
+      <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
         <div class="MyPage_container">
           <div class="MyPage_profile_container">
             <div class="MyPage_profile"></div>
@@ -108,7 +108,7 @@ export default class MyPage extends Component {
     } else if (button.id === 'mypage_edit') {
       this.handleEdit(button);
     } else if (button.id === 'back') {
-      this.$target.innerHTML = Login();
+      console.log('back');
     } else if (
       button.classList.contains('user_avatar') ||
       button.classList.contains('user_name')
@@ -118,6 +118,8 @@ export default class MyPage extends Component {
       this.handleDM(button);
     } else if (button.classList.contains('user_delete')) {
       this.handleDelete(button);
+    } else if (button.classList.contains('Modal_close')) {
+      this.handleModalClose(button);
     }
   }
 
@@ -143,6 +145,13 @@ export default class MyPage extends Component {
 
   handleEdit(button) {
     console.log('edit');
+
+    const modal = document.createElement('div');
+    modal.className = 'Modal_overlay';
+
+    this.$target.appendChild(modal);
+
+    new Modal(modal, 'edit');
   }
 
   handleUser(button) {
@@ -155,5 +164,11 @@ export default class MyPage extends Component {
 
   handleDelete(button) {
     console.log('delete');
+  }
+
+  handleModalClose(button) {
+    console.log('edit modal close');
+
+    button.closest('.Modal_overlay').remove();
   }
 }
