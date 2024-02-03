@@ -9,24 +9,19 @@ body {
 .Wrapper {
   width: 100%;
   height: 100%;
+
   display: flex;
+  align-items: center;
+
   flex-direction: column;
 
   overflow: auto;
 }
 
-.Background {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-
-  z-index: -2;
-}
-
 #bubble1 {
   position: absolute;
   width: 800px;
-  height: 800px;
+  height: auto;
 
   bottom: -30%;
   right: -20%;
@@ -37,28 +32,34 @@ body {
 #bubble2 {
   position: absolute;
   width: 400px;
-  height: 400px;
+  height: auto;
 
   top: 30%;
   left: 87%;
+
+  z-index: -1;
 }
 
 #bubble3 {
   position: absolute;
   width: 300px;
-  height: 300px;
+  height: auto;
 
   top: -18%;
   left: 40%;
+
+  z-index: -1;
 }
 
 #bubble4 {
   position: absolute;
   width: 1000px;
-  height: 1000px;
+  height: auto;
 
   top: 30%;
   left: -20%;
+
+  z-index: -1;
 }
 
 #app {
@@ -89,6 +90,12 @@ body {
 
 .MyPage_container {
   width: calc(100% - 400px);
+
+  min-width: 800px;
+  max-width: 1200px;
+
+  display: flex;
+
   flex-direction: column;
   align-items: flex-start;
 
@@ -98,7 +105,6 @@ body {
 .MyPage_profile_container {
   width: 100%;
   height: 200px;
-  min-width: 500px;
 
   display: flex;
   align-items: center;
@@ -159,6 +165,9 @@ body {
 .MyPage_info {
   width: 100%;
   height: 100% - 100px;
+
+  margin-bottom: 50px;
+
   display: flex;
   align-items: center;
   justify-content: center;

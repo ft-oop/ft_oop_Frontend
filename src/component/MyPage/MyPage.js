@@ -54,8 +54,8 @@ export default class MyPage extends Component {
       <head>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       </head>
+      <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
       <div class="Wrapper">
-        <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
         <div class="MyPage_container">
           <div class="MyPage_profile_container">
             <div class="MyPage_profile"></div>
@@ -65,12 +65,12 @@ export default class MyPage extends Component {
             <div class="MyPage_info__user_list"></div>
           </div>
         </div>
-        <div class="Background">
-          <img id="bubble1" src="/bubble.png" alt="bubble">
-          <img id="bubble2" src="/bubble.png" alt="bubble">
-          <img id="bubble3" src="/bubble.png" alt="bubble">
-          <img id="bubble4" src="/bubble.png" alt="bubble">
         </div>
+      <div id="Background">
+        <img id="bubble1" src="/bubble.png" alt="bubble">
+        <img id="bubble2" src="/bubble.png" alt="bubble">
+        <img id="bubble3" src="/bubble.png" alt="bubble">
+        <img id="bubble4" src="/bubble.png" alt="bubble">
       </div>
     `;
   }
