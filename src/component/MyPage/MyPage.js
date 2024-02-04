@@ -1,7 +1,7 @@
 import Component from '../../core/Component.js';
 import '../../style/MyPage.css';
 import Table from './Table.js';
-import Modal from './Modal.js';
+import Edit from './Edit.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -51,9 +51,6 @@ export default class MyPage extends Component {
 
   template() {
     return `
-      <head>
-        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-      </head>
       <div class="Wrapper">
       <img id="back" src="/eva--arrow-back-fill.svg" alt="back arrow">
         <div class="MyPage_container">
@@ -86,7 +83,7 @@ export default class MyPage extends Component {
         <div id="mypage_name">${this.state.userName}</div>
         <div id="mypage_winlose">${this.state.totalWinScore}승 ${this.state.totalLoseScore}패</div>
         </div>
-      <img id="mypage_edit" src="/eva--edit-2-fill.svg" alt="edit">
+      <img id="mypage_edit" src="/edit.svg" alt="edit">
     `;
 
     new Table($historyTable, '경기 기록', 1, this.state);
@@ -118,7 +115,7 @@ export default class MyPage extends Component {
       this.handleDM(button);
     } else if (button.classList.contains('user_delete')) {
       this.handleDelete(button);
-    } else if (button.classList.contains('Modal_close')) {
+    } else if (button.id === 'edit_close') {
       this.handleModalClose(button);
     }
   }
@@ -151,7 +148,7 @@ export default class MyPage extends Component {
 
     this.$target.appendChild(modal);
 
-    new Modal(modal, 'edit');
+    new Edit(modal, 'edit');
   }
 
   handleUser(button) {
