@@ -79,12 +79,20 @@ export default class Table extends Component {
         (user) => `
       <tr class="${className}">
         <td class="flex">
-          <div class="w-[50px] h-[50px] rounded-full overflow-hidden">
-            <img src="/image2.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+          <div class="w-[50px] h-[50px] relative">
+            ${/* Online: #60D395, Offline: #D3606E */ ''}
+            <div class="w-[10px] h-[10px] rounded-full bg-[#60D395] absolute right-0 bottom-0"></div>
+            ${/* Avatar */ ''}
+            <div class="w-[50px] h-[50px] rounded-full overflow-hidden">
+              <img src="/image2.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+            </div>
           </div>
         </td>
+        ${/* Name */ ''}
         <td class="user_name">${user.userName}</td>
+        ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
+        ${/* Delete */ ''}
         <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
