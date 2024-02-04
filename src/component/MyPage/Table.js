@@ -78,8 +78,8 @@ export default class Table extends Component {
       .map(
         (user) => `
       <tr class="${className}">
-        <td class="flex">
-          <div class="w-[50px] h-[50px] relative">
+        <td class="flex ml-[20px]">
+          <div class="w-[40px] h-[40px] relative">
             ${/* Online: #60D395, Offline: #D3606E */ ''}
             ${
               this.n === 2
@@ -87,7 +87,7 @@ export default class Table extends Component {
                 : ''
             }
             ${/* Avatar */ ''}
-            <div class="w-[50px] h-[50px] rounded-full overflow-hidden">
+            <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
               <img src="/image2.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
             </div>
           </div>

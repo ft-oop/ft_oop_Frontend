@@ -5,7 +5,7 @@ export default class Edit extends Component {
   template() {
     return `
       <div class="w-[500px] h-[300px] flex justify-center
-        px-[30px] bg-white rounded-[30px] flex-col"
+        px-[40px] bg-white rounded-[30px] flex-col"
       >
         <div class="w-full h-48 flex flex-col mb-3">
           ${this.createImageEdit()}

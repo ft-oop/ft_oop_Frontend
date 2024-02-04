@@ -33,11 +33,11 @@ table tbody {
 }
 
 .Friend_table td {
-  padding-left: 10px;
+  padding-right: 20px;
 }
 
 .Block_table td {
-  padding-left: 10px;
+  padding-right: 20px;
 }
 
 table tr {
@@ -107,8 +107,4 @@ table tr:nth-child(even) {
 .user_dm:hover,
 .user_delete:hover {
   cursor: pointer;
-}
-
-.user_delete {
-  margin-right: 10px;
 }
