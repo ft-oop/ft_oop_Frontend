@@ -1,0 +1,110 @@
+.MyPage__table {
+  width: 100%;
+}
+
+table caption {
+  font-size: 1.5em;
+  font-weight: bold;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  padding: 25px 0px 25px 0px;
+  border-radius: 30px 30px 0px 0px;
+  background-color: #e7eff8;
+  border-bottom: 3px solid #abc2ef;
+}
+
+table tbody {
+  display: block;
+  height: 530px;
+  overflow-y: auto;
+}
+
+.History_table {
+  text-align: center;
+}
+
+.History_table td {
+  padding: 10px 20px 10px 20px;
+}
+
+.Friend_table td {
+  padding-right: 20px;
+}
+
+.Block_table td {
+  padding-right: 20px;
+}
+
+table tr {
+  height: 70px;
+  font-size: 1.2em;
+
+  display: flex;
+  align-items: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #eff6ff;
+}
+
+.history_date {
+  width: 150px;
+}
+
+.history_result {
+  width: 150px;
+}
+
+.history_content {
+  flex-grow: 2;
+}
+
+.icon_left {
+  width: 28px;
+  height: 28px;
+}
+
+.icon_left path {
+  fill: #d0d6df;
+}
+
+.icon_right {
+  width: 28px;
+  height: 28px;
+
+  fill: #8090a8;
+}
+
+#icon_left1,
+#icon_right1 {
+  display: none;
+}
+
+.icon_right:hover,
+.icon_left:hover {
+  cursor: pointer;
+}
+
+.icon_left {
+  margin-right: 90px;
+}
+
+.icon_right {
+  margin-left: 90px;
+}
+
+.user_name {
+  flex-grow: 1;
+}
+
+.user_avatar:hover,
+.user_name:hover,
+.user_dm:hover,
+.user_delete:hover {
+  cursor: pointer;
+}
