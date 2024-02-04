@@ -3,7 +3,7 @@ import '../../style/MyPage.css';
 import { $ } from '../../utils/querySelector.js';
 import Table from './Table.js';
 import Edit from './Edit.js';
-import ConfirmAlert from './ConfirmAlert.js';
+import Confirm from './Confirm.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -94,7 +94,6 @@ export default class MyPage extends Component {
 
   setEvent() {
     this.$target.addEventListener('click', this.handleButton.bind(this));
-    this.$target.addEventListener('submit', this.handleForm.bind(this));
   }
 
   handleButton(event) {
@@ -118,7 +117,7 @@ export default class MyPage extends Component {
       this.handleDM(button);
     } else if (button.classList.contains('user_delete')) {
       this.handleDelete(button);
-    } else if (button.id === 'edit_close') {
+    } else if (button.id === 'modal_close') {
       this.handleModalClose(button);
     } else if (button.id === 'avatar_upload_entry') {
       this.handleAvatarUpload(button);
@@ -156,7 +155,7 @@ export default class MyPage extends Component {
 
     this.$target.appendChild(modal);
 
-    new Edit(modal, 'edit');
+    new Edit(modal, this.state.userName);
   }
 
   handleUser(button) {
@@ -169,6 +168,23 @@ export default class MyPage extends Component {
 
   handleDelete(button) {
     console.log('delete');
+
+    const confirm = document.createElement('div');
+    confirm.id = 'Modal_overlay';
+
+    this.$target.appendChild(confirm);
+
+    console.log('button: ', button);
+    const sibling =
+      button.parentNode.previousSibling.previousSibling.previousSibling
+        .previousSibling.textContent;
+    console.log(sibling);
+
+    if (document.querySelector('#Friend_table')) {
+      new Confirm(confirm, 'friend', sibling, this.name);
+    } else {
+      new Confirm(confirm, 'block', sibling, this.name);
+    }
   }
 
   handleModalClose(button) {
@@ -185,9 +201,5 @@ export default class MyPage extends Component {
     $('#avatar_upload').addEventListener('change', (e) => {
       console.log('file name: ', e.target.value);
     });
-  }
-
-  handleForm(event) {
-    event.preventDefault();
   }
 }
