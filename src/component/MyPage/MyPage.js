@@ -4,6 +4,7 @@ import { $ } from '../../utils/querySelector.js';
 import Table from './Table.js';
 import Edit from './Edit.js';
 import Confirm from './Confirm.js';
+import handleButtons from './handleButtons.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -99,107 +100,6 @@ export default class MyPage extends Component {
   handleButton(event) {
     const button = event.target;
 
-    if (
-      button.classList.contains('icon_right') ||
-      button.classList.contains('icon_left')
-    ) {
-      this.handleTables(button);
-    } else if (button.id === 'mypage_edit') {
-      this.handleEdit(button);
-    } else if (button.id === 'back') {
-      console.log('back');
-    } else if (
-      button.classList.contains('user_avatar') ||
-      button.classList.contains('user_name')
-    ) {
-      this.handleUser(button);
-    } else if (button.classList.contains('user_dm')) {
-      this.handleDM(button);
-    } else if (button.classList.contains('user_delete')) {
-      this.handleDelete(button);
-    } else if (button.id === 'modal_close') {
-      this.handleModalClose(button);
-    } else if (button.id === 'avatar_upload_entry') {
-      this.handleAvatarUpload(button);
-    } else if (button.id === 'editSubmit') {
-      console.log('edit submit');
-      this.handleModalClose(button);
-    }
-  }
-
-  handleTables(button) {
-    if (this.$target.querySelector('#Friend_table')) {
-      if (button.classList.contains('icon_right')) {
-        const $blockTable = this.$target.querySelector(
-          '#MyPage_info__user_list',
-        );
-
-        new Table($blockTable, '차단 목록', 3, this.state);
-      }
-    } else if (this.$target.querySelector('#Block_table')) {
-      if (button.classList.contains('icon_left')) {
-        const $userTable = this.$target.querySelector(
-          '#MyPage_info__user_list',
-        );
-
-        new Table($userTable, '친구 목록', 2, this.state);
-      }
-    }
-  }
-
-  handleEdit(button) {
-    console.log('edit');
-
-    const modal = document.createElement('div');
-    modal.id = 'Modal_overlay';
-
-    this.$target.appendChild(modal);
-
-    new Edit(modal, this.state.userName);
-  }
-
-  handleUser(button) {
-    console.log('user');
-  }
-
-  handleDM(button) {
-    console.log('DM');
-  }
-
-  handleDelete(button) {
-    console.log('delete');
-
-    const confirm = document.createElement('div');
-    confirm.id = 'Modal_overlay';
-
-    this.$target.appendChild(confirm);
-
-    console.log('button: ', button);
-    const sibling =
-      button.parentNode.previousSibling.previousSibling.previousSibling
-        .previousSibling.textContent;
-    console.log(sibling);
-
-    if (document.querySelector('#Friend_table')) {
-      new Confirm(confirm, 'friend', sibling, this.name);
-    } else {
-      new Confirm(confirm, 'block', sibling, this.name);
-    }
-  }
-
-  handleModalClose(button) {
-    console.log('edit modal close');
-
-    button.closest('#Modal_overlay').remove();
-  }
-
-  handleAvatarUpload(button) {
-    console.log('avatar upload');
-
-    $('#avatar_upload').click();
-
-    $('#avatar_upload').addEventListener('change', (e) => {
-      console.log('file name: ', e.target.value);
-    });
+    handleButtons(this.$target, this.state, button);
   }
 }
