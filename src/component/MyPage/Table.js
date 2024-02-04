@@ -88,7 +88,7 @@ export default class Table extends Component {
             }
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <img src="/image2.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+              <img src="/image2.jpg" alt="profile" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
