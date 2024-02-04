@@ -77,6 +77,8 @@ export default class MyPage extends Component {
     $wrapper.id = 'MyPage_wrapper';
     this.$target.appendChild($wrapper);
 
+    $wrapper.style.height = '100vh';
+
     $wrapper.innerHTML = `
     <div class="w-full h-full flex flex-col items-start overflow-auto">
       <div class="w-[calc(100% - 400px)] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
