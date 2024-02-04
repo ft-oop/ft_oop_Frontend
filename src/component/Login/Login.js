@@ -1,5 +1,5 @@
-import { $ } from "../../utils/querySelector.js"
-import { BASE_URL} from '../../constant/routeInfo.js';
+import { $ } from '../../utils/querySelector.js';
+import { BASE_URL } from '../../constant/routeInfo.js';
 import { navigate } from '../../utils/navigate.js';
 
 function Login($container) {
@@ -7,8 +7,7 @@ function Login($container) {
 
   this.setState = () => {
     this.render();
-  }
-
+  };
 
   this.render = () => {
     this.$container.innerHTML = `
@@ -44,17 +43,16 @@ function Login($container) {
     </div>
   </div>
     `;
-  }
+  };
   this.init = () => {
     this.render();
     $('#loginBtn').addEventListener('click', (e) => {
-      const targetURL = window.location.href.replace(BASE_URL, "login");
+      const targetURL = window.location.href.replace(BASE_URL, '');
       navigate(targetURL);
     });
-  }
-
+  };
 
   this.init();
 }
 
-export  default Login;
+export default Login;
