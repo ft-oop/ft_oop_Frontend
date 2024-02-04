@@ -1,3 +1,6 @@
-import Login from './src/component/Login/Login.js';
+import App from "./src/app";
+import { $ } from "./src/utils/querySelector";
 
-document.querySelector('#app').innerHTML = Login();
+window.addEventListener("DOMContentLoaded", () => {
+  new App($("#app"));
+});
