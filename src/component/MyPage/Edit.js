@@ -4,17 +4,16 @@ import '../../style/Edit.css';
 export default class Edit extends Component {
   template() {
     return `
-      <div class="w-[500px] h-[300px] flex justify-center
-        px-[40px] bg-white rounded-[30px] flex-col"
-      >
+      <form name="editInfo" class="w-[500px] h-[300px] flex justify-center
+        px-[40px] bg-white rounded-[30px] flex-col">
         <div class="w-full h-[170px] flex flex-col mb-3">
           ${this.createImageEdit()}
-          ${this.createInput()}
+          ${this.createInputNickName()}
         </div>
         <div class="w-full h-[40px] flex flex-row-reverse">
           ${this.createButtons()}
         </div>
-      </div>
+      </form>
     `;
   }
 
@@ -43,18 +42,18 @@ export default class Edit extends Component {
     </div>`;
   }
 
-  createInput() {
+  createInputNickName() {
     return `
       <div class="input-group mb-3">
-        <span class="input-group-text" id="addon-wrapping">닉네임 입력</span>
-        <input type="text" class="form-control" placeholder="NickName" aria-label="NickName" aria-describedby="addon-wrapping">
+        <span class="input-group-text" id="input_nickname">닉네임 입력</span>
+        <input type="text" id="nickname_upload" class="form-control" placeholder="NickName" aria-label="NickName" aria-describedby="input_nickname">
       </div>
     `;
   }
 
   createButtons() {
     return `
-    <button type="button" class="btn btn-primary" style="background-color:#007bff; margin-left:8px; border-radius: 8px; padding-left:30px; padding-right:30px" >확인</button>
+    <button id="editSubmit" type="submit" class="btn btn-primary" style="background-color:#007bff; margin-left:8px; border-radius: 8px; padding-left:30px; padding-right:30px">확인</button>
     <button type="button" id="edit_close" class="btn btn-secondary" style="background-color:#6c757d; border-radius: 8px; padding-left:30px; padding-right:30px">취소</button>
     `;
   }

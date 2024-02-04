@@ -93,6 +93,7 @@ export default class MyPage extends Component {
 
   setEvent() {
     this.$target.addEventListener('click', this.handleButton.bind(this));
+    this.$target.addEventListener('submit', this.handleForm.bind(this));
   }
 
   handleButton(event) {
@@ -120,6 +121,9 @@ export default class MyPage extends Component {
       this.handleModalClose(button);
     } else if (button.id === 'avatar_upload_entry') {
       this.handleAvatarUpload(button);
+    } else if (button.id === 'editSubmit') {
+      console.log('edit submit');
+      this.handleModalClose(button);
     }
   }
 
@@ -180,5 +184,9 @@ export default class MyPage extends Component {
     $('#avatar_upload').addEventListener('change', (e) => {
       console.log('file name: ', e.target.value);
     });
+  }
+
+  handleForm(event) {
+    event.preventDefault();
   }
 }
