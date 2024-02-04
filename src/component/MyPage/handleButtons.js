@@ -29,7 +29,7 @@ export default function handleButtons($target, state, button) {
     console.log('edit submit');
     handleModalClose($target, button);
   } else if (button.id === 'confirm_ok') {
-    handleConfirm($target, state, button);
+    handleConfirmOK($target, state, button);
   }
 }
 
@@ -81,9 +81,9 @@ function handleDelete($target, state, button) {
       .previousSibling.textContent;
 
   if (document.querySelector('#Friend_table')) {
-    new Confirm(confirm, 'friend', sibling, state.userName);
+    new Confirm(confirm, 'friend', state.userName, sibling);
   } else {
-    new Confirm(confirm, 'block', sibling, state.userName);
+    new Confirm(confirm, 'block', state.userName, sibling);
   }
 }
 
@@ -103,11 +103,17 @@ function handleAvatarUpload($target, button) {
   });
 }
 
-function handleConfirm($target, state, button) {
+function handleConfirmOK($target, state, button) {
+  const modal = button.closest('#Modal_overlay');
+
   if (document.querySelector('#Friend_table')) {
     console.log('delete friend');
+
+    new Confirm(modal, 'friend', state.userName);
   } else {
     console.log('delete block');
+
+    new Confirm(modal, 'delete', state.userName);
   }
 
   //const final = button.closest('#Modal_overlay');
