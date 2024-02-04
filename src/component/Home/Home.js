@@ -2,6 +2,7 @@ import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector';
 import Logo from '../../core/Logo';
 import Category from './Category';
+import { navigate } from '../../utils/navigate.js';
 
 export default class Home extends Component {
   mounted() {
@@ -22,11 +23,16 @@ export default class Home extends Component {
     $info.id = 'info';
     $info.className = '';
     $info.innerHTML = `
-    <div class='absolute flex top-10 right-6 text-3xl font-bold items-start gap-2'>
+    <div id='info' class='absolute flex top-10 right-6 text-3xl font-bold items-start gap-2 cursor-pointer'>
       <img alt='avator' src='image1.jpg' class='w-10 h-10 rounded-full shadow-md' />
       <span class='underline decoration-indigo-500 decoration-solid underline-offset-3 decoration-2 font-semibold text-2xl'>yongmipa</span>님
     </div>
     `;
+
+    this.addEvent('click', '#info', (e) => {
+      const targetURL = '/mypage';
+      navigate(targetURL);
+    });
 
     $('#app').appendChild($info);
     new Logo();
