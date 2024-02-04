@@ -176,5 +176,9 @@ export default class MyPage extends Component {
     console.log('avatar upload');
 
     $('#avatar_upload').click();
+
+    $('#avatar_upload').addEventListener('change', (e) => {
+      console.log('file name: ', e.target.value);
+    });
   }
 }

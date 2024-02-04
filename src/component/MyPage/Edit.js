@@ -31,9 +31,8 @@ export default class Edit extends Component {
         ${/* Edit Icon */ ''}
         <div class="absolute w-full h-full bg-white opacity-70">
         <input type="file" id="avatar_upload" name="avatar_upload" style="display:none"
-        />
-          <img id="avatar_upload_entry" src="/edit.svg" alt="edit icon" class="w-full p-[28px] cursor-pointer"
-          onclick=>
+        accept="image/*"/>
+          <img id="avatar_upload_entry" src="/edit.svg" alt="edit icon" class="w-full p-[28px] cursor-pointer">
         </div>
       </div>
       ${/* Text */ ''}
@@ -58,9 +57,5 @@ export default class Edit extends Component {
     <button type="button" class="btn btn-primary" style="background-color:#007bff; margin-left:8px; border-radius: 8px; padding-left:30px; padding-right:30px" >확인</button>
     <button type="button" id="edit_close" class="btn btn-secondary" style="background-color:#6c757d; border-radius: 8px; padding-left:30px; padding-right:30px">취소</button>
     `;
-  }
-
-  uploadAvatar(e) {
-    console.log('file name: ', e.value);
   }
 }
