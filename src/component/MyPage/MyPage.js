@@ -3,6 +3,7 @@ import '../../style/MyPage.css';
 import { $ } from '../../utils/querySelector.js';
 import Table from './Table.js';
 import Edit from './Edit.js';
+import ConfirmAlert from './ConfirmAlert.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -53,9 +54,9 @@ export default class MyPage extends Component {
   mounted() {
     this.appendInfoWrapper();
 
-    const $profile = this.$target.querySelector('.MyPage_profile');
-    const $historyTable = this.$target.querySelector('.MyPage_info__history');
-    const $friendTable = this.$target.querySelector('.MyPage_info__user_list');
+    const $profile = this.$target.querySelector('#MyPage_profile');
+    const $historyTable = this.$target.querySelector('#MyPage_info__history');
+    const $friendTable = this.$target.querySelector('#MyPage_info__user_list');
 
     $profile.innerHTML = `
       <div class="w-[100px] h-[100px] rounded-full overflow-hidden">
@@ -74,18 +75,18 @@ export default class MyPage extends Component {
 
   appendInfoWrapper() {
     const $wrapper = document.createElement('div');
-    $wrapper.className = 'MyPage_wrapper';
+    $wrapper.id = 'MyPage_wrapper';
     this.$target.appendChild($wrapper);
 
     $wrapper.innerHTML = `
     <div class="w-full h-full flex flex-col items-start overflow-auto">
       <div class="w-[calc(100% - 400px)] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
-        <div class="MyPage_profile_container">
-          <div class="MyPage_profile"></div>
+        <div id="MyPage_profile_container">
+          <div id="MyPage_profile"></div>
         </div>
-        <div class="MyPage_info">
-          <div class="MyPage_info__history"></div>
-          <div class="MyPage_info__user_list"></div>
+        <div id="MyPage_info">
+          <div id="MyPage_info__history"></div>
+          <div id="MyPage_info__user_list"></div>
         </div>
       </div>
     </div>`;
@@ -128,18 +129,18 @@ export default class MyPage extends Component {
   }
 
   handleTables(button) {
-    if (this.$target.querySelector('.Friend_table')) {
+    if (this.$target.querySelector('#Friend_table')) {
       if (button.classList.contains('icon_right')) {
         const $blockTable = this.$target.querySelector(
-          '.MyPage_info__user_list',
+          '#MyPage_info__user_list',
         );
 
         new Table($blockTable, '차단 목록', 3, this.state);
       }
-    } else if (this.$target.querySelector('.Block_table')) {
+    } else if (this.$target.querySelector('#Block_table')) {
       if (button.classList.contains('icon_left')) {
         const $userTable = this.$target.querySelector(
-          '.MyPage_info__user_list',
+          '#MyPage_info__user_list',
         );
 
         new Table($userTable, '친구 목록', 2, this.state);
@@ -151,7 +152,7 @@ export default class MyPage extends Component {
     console.log('edit');
 
     const modal = document.createElement('div');
-    modal.className = 'Modal_overlay';
+    modal.id = 'Modal_overlay';
 
     this.$target.appendChild(modal);
 
@@ -173,7 +174,7 @@ export default class MyPage extends Component {
   handleModalClose(button) {
     console.log('edit modal close');
 
-    button.closest('.Modal_overlay').remove();
+    button.closest('#Modal_overlay').remove();
   }
 
   handleAvatarUpload(button) {
