@@ -1,5 +1,6 @@
 import Component from '../../core/Component.js';
 import '../../style/MyPage.css';
+import { $ } from '../../utils/querySelector.js';
 import Table from './Table.js';
 import Edit from './Edit.js';
 
@@ -50,6 +51,8 @@ export default class MyPage extends Component {
   }
 
   mounted() {
+    this.appendInfoWrapper();
+
     const $profile = this.$target.querySelector('.MyPage_profile');
     const $historyTable = this.$target.querySelector('.MyPage_info__history');
     const $friendTable = this.$target.querySelector('.MyPage_info__user_list');
@@ -67,6 +70,25 @@ export default class MyPage extends Component {
 
     new Table($historyTable, '경기 기록', 1, this.state);
     new Table($friendTable, '친구 목록', 2, this.state);
+  }
+
+  appendInfoWrapper() {
+    const $wrapper = document.createElement('div');
+    $wrapper.className = 'MyPage_wrapper';
+    this.$target.appendChild($wrapper);
+
+    $wrapper.innerHTML = `
+    <div class="w-full h-full flex flex-col items-start overflow-auto">
+      <div class="w-[calc(100% - 400px)] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
+        <div class="MyPage_profile_container">
+          <div class="MyPage_profile"></div>
+        </div>
+        <div class="MyPage_info">
+          <div class="MyPage_info__history"></div>
+          <div class="MyPage_info__user_list"></div>
+        </div>
+      </div>
+    </div>`;
   }
 
   setEvent() {
@@ -96,6 +118,8 @@ export default class MyPage extends Component {
       this.handleDelete(button);
     } else if (button.id === 'edit_close') {
       this.handleModalClose(button);
+    } else if (button.id === 'avatar_upload_entry') {
+      this.handleAvatarUpload(button);
     }
   }
 
@@ -146,5 +170,11 @@ export default class MyPage extends Component {
     console.log('edit modal close');
 
     button.closest('.Modal_overlay').remove();
+  }
+
+  handleAvatarUpload(button) {
+    console.log('avatar upload');
+
+    $('#avatar_upload').click();
   }
 }

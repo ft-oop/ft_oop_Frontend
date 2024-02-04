@@ -7,7 +7,7 @@ export default class Edit extends Component {
       <div class="w-[500px] h-[300px] flex justify-center
         px-[40px] bg-white rounded-[30px] flex-col"
       >
-        <div class="w-full h-48 flex flex-col mb-3">
+        <div class="w-full h-[170px] flex flex-col mb-3">
           ${this.createImageEdit()}
           ${this.createInput()}
         </div>
@@ -30,8 +30,10 @@ export default class Edit extends Component {
         </div>
         ${/* Edit Icon */ ''}
         <div class="absolute w-full h-full bg-white opacity-70">
-        <img src="/edit.svg" alt="edit icon"
-          class="w-full h-full absolute rounded-full p-[26px] cursor-pointer">
+        <input type="file" id="avatar_upload" name="avatar_upload" style="display:none"
+        />
+          <img id="avatar_upload_entry" src="/edit.svg" alt="edit icon" class="w-full p-[28px] cursor-pointer"
+          onclick=>
         </div>
       </div>
       ${/* Text */ ''}
@@ -44,23 +46,21 @@ export default class Edit extends Component {
 
   createInput() {
     return `
-      <div class="w-full flex grow bg-blue-50">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="addon-wrapping">닉네임 입력</span>
+        <input type="text" class="form-control" placeholder="NickName" aria-label="NickName" aria-describedby="addon-wrapping">
       </div>
     `;
   }
 
   createButtons() {
     return `
-    <button type="button" class="btn btn-primary"
-      style="background-color:#007bff; margin-left:8px;
-      border-radius: 8px;
-      padding-left:30px; padding-right:30px"
-    >확인</button>
-    <button type="button" id="edit_close" class="btn btn-secondary"
-      style="background-color:#6c757d;
-      border-radius: 8px;
-      padding-left:30px; padding-right:30px"
-    >취소</button>
+    <button type="button" class="btn btn-primary" style="background-color:#007bff; margin-left:8px; border-radius: 8px; padding-left:30px; padding-right:30px" >확인</button>
+    <button type="button" id="edit_close" class="btn btn-secondary" style="background-color:#6c757d; border-radius: 8px; padding-left:30px; padding-right:30px">취소</button>
     `;
+  }
+
+  uploadAvatar(e) {
+    console.log('file name: ', e.value);
   }
 }
