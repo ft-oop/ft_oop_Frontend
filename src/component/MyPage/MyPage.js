@@ -2,8 +2,6 @@ import Component from '../../core/Component.js';
 import '../../style/MyPage.css';
 import { $ } from '../../utils/querySelector.js';
 import Table from './Table.js';
-import Edit from './Edit.js';
-import Confirm from './Confirm.js';
 import handleButtons from './handleButtons.js';
 
 export default class MyPage extends Component {
