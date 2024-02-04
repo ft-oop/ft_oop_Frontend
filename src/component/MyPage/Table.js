@@ -78,7 +78,11 @@ export default class Table extends Component {
       .map(
         (user) => `
       <tr class="${className}">
-        <td><img class="user_avatar" src="/bubble.png" alt="user picture"></td>
+        <td class="flex">
+          <div class="w-[50px] h-[50px] rounded-full overflow-hidden">
+            <img src="/image2.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+          </div>
+        </td>
         <td class="user_name">${user.userName}</td>
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
         <td><img class="user_delete" src="/eva--close-fill.svg"></td>

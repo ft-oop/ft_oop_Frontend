@@ -78,7 +78,9 @@ export default class MyPage extends Component {
     const $friendTable = this.$target.querySelector('.MyPage_info__user_list');
 
     $profile.innerHTML = `
-      <img id="mypage_avatar" src="/bubble.png" alt="profile">
+      <div class="w-[100px] h-[100px] rounded-full overflow-hidden">
+        <img id="mypage_avatar" src="/image1.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+      </div>
       <div id="mypage_profile__wrapper">
         <div id="mypage_name">${this.state.userName}</div>
         <div id="mypage_winlose">${this.state.totalWinScore}승 ${this.state.totalLoseScore}패</div>
