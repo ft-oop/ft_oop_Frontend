@@ -1,6 +1,10 @@
 import Table from './Table.js';
 import Edit from './Edit.js';
 import Confirm from './Confirm.js';
+import { $ } from '../../utils/querySelector.js';
+
+let prevFileName = '';
+let newFileName = '';
 
 export default function handleButtons($target, state, button) {
   if (
@@ -22,12 +26,13 @@ export default function handleButtons($target, state, button) {
   } else if (button.classList.contains('user_delete')) {
     handleDelete($target, state, button);
   } else if (button.id === 'modal_close') {
-    handleModalClose($target, button);
+    handleModalClose($target, button, prevFileName);
   } else if (button.id === 'avatar_upload_entry') {
+    prevFileName = $('#mypage_avatar').getAttribute('src');
     handleAvatarUpload($target, button);
   } else if (button.id === 'editSubmit') {
     console.log('edit submit');
-    handleModalClose($target, button);
+    handleModalSubmmit($target, button);
   } else if (button.id === 'confirm_ok') {
     handleConfirmOK($target, state, button);
   }
@@ -87,9 +92,23 @@ function handleDelete($target, state, button) {
   }
 }
 
-function handleModalClose($target, button) {
+function handleModalClose($target, button, prevFileName) {
   console.log('edit modal close');
 
+  console.log(prevFileName === $('#mypage_avatar').getAttribute('src'));
+
+  if (prevFileName !== $('#mypage_avatar').src) {
+    $('#mypage_avatar').setAttribute('src', prevFileName);
+    $('#edit_modal_avatar').setAttribute('src', prevFileName);
+  }
+
+  button.closest('#Modal_overlay').remove();
+}
+
+function handleModalSubmmit($target, button) {
+  console.log('edit modal submit');
+
+  $('#mypage_avatar').setAttribute('src', newFileName);
   button.closest('#Modal_overlay').remove();
 }
 
@@ -97,10 +116,29 @@ function handleAvatarUpload($target, button) {
   console.log('avatar upload');
 
   $('#avatar_upload').click();
+  $('#avatar_upload').addEventListener('change', uploadImage.bind(this));
+}
 
-  $('#avatar_upload').addEventListener('change', (e) => {
-    console.log('file name: ', e.target.value);
-  });
+function uploadImage(e) {
+  let canceled = false;
+  const maxSize = 1024 * 1024;
+
+  const file = e.target.files[0];
+
+  if (file.size > maxSize) {
+    alert('1MB 이하의 파일만 업로드 가능합니다.');
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.readAsDataURL(file);
+
+  reader.onload = (e) => {
+    newFileName = e.target.result;
+
+    $('#edit_modal_avatar').setAttribute('src', e.target.result);
+  };
 }
 
 function handleConfirmOK($target, state, button) {

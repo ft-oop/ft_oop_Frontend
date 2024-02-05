@@ -25,7 +25,7 @@ export default class Edit extends Component {
       <div class="relative w-[100px] h-[100px]">
         <div class="absolute w-full h-full rounded-full overflow-hidden">
           <div class="flex w-full h-full justify-center items-center bg-blue-200">
-            <img src="/image1.jpg" alt="user avatar" class="w-[100%] h-[100%] object-cover"/>
+            <img src="/image1.jpg" id="edit_modal_avatar" alt="user avatar" class="w-[100%] h-[100%] object-cover"/>
           </div>
         </div>
         ${/* Edit Icon */ ''}
@@ -38,7 +38,7 @@ export default class Edit extends Component {
       ${/* Text */ ''}
       <div class="h-full flex grow flex-col justify-center ml-[20px]">
         <div class="text-2xl font-semibold">이미지 편집</div>
-        <div class="text-lg mt-[8px]">최대 용량 5MB</div>
+        <div class="text-lg mt-[8px]">최대 용량 1MB</div>
       </div>
     </div>`;
   }
