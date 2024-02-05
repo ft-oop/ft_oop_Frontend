@@ -139,14 +139,14 @@ body {
   font-size: 1.2em;
 }
 
-#mypage_edit {
+#edit_modal_open {
   width: 40px;
   height: 40px;
 
   margin: 30px;
 }
 
-#mypage_edit:hover {
+#edit_modal_open:hover {
   cursor: pointer;
 }
 

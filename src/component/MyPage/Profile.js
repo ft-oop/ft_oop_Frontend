@@ -1,0 +1,48 @@
+import Component from '../../core/Component';
+import { $ } from '../../utils/querySelector';
+import '../../style/MyPage.css';
+
+export default class Profile extends Component {
+  constructor($target, props, icon1, icon2) {
+    super($target, props);
+    this.$target = $target;
+    this.props = props;
+    this.icon1 = icon1;
+    this.icon2 = icon2;
+    this.iconID1 = '';
+    this.iconID2 = '';
+    this.setup();
+    this.setEvent();
+    this.render();
+  }
+
+  setIconID() {
+    if (this.icon2 === '/edit.svg') {
+      this.iconID2 = 'edit_modal_open';
+    }
+  }
+
+  template() {
+    this.setIconID();
+
+    return `
+      <div class="w-[100px] h-[100px] rounded-full overflow-hidden">
+        <img id="mypage_avatar" src="/image1.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+      </div>
+      <div id="mypage_profile__wrapper">
+        <div id="mypage_name">${this.props.userName}</div>
+        <div id="mypage_winlose">${this.props.totalWinScore}승 ${
+      this.props.totalLoseScore
+    }패</div>
+      </div>
+      ${this.icon1 !== '' ? this.createIcon1() : ''}
+      <img id="${this.iconID2}" src="${this.icon2}" alt="edit">
+    `;
+  }
+
+  createIcon1() {
+    return `
+      <img id="${this.iconID1}" src="${this.icon1}" alt="edit">
+    `;
+  }
+}

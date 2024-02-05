@@ -13,7 +13,7 @@ export default function handleButtons($target, state, button) {
     button.classList.contains('icon_left')
   ) {
     handleTables($target, state, button);
-  } else if (button.id === 'mypage_edit') {
+  } else if (button.id === 'edit_modal_open') {
     handleEdit($target, state, button);
   } else if (button.id === 'back') {
     console.log('back');
@@ -37,7 +37,7 @@ export default function handleButtons($target, state, button) {
   } else if (button.id === 'confirm_ok') {
     handleConfirmOK($target, state, button);
   } else if (button.id === 'confirm_close') {
-    console.log('confirm close');
+    console.log('modal close');
     button.closest('#Modal_overlay').remove();
   }
 }
@@ -60,7 +60,6 @@ function handleTables($target, state, button) {
 
 function handleEdit($target, state, button) {
   console.log('edit');
-  console.log('prev: ', prevFileName);
 
   const modal = document.createElement('div');
   modal.id = 'Modal_overlay';
@@ -128,14 +127,14 @@ function handleEditModalClose($target, button, prevFileName) {
 function handleModalSubmmit($target, button) {
   console.log('edit modal submit');
 
-  console.log(
-    'prev: ',
-    prevFileName,
-    ' current: ',
-    $('#mypage_avatar').getAttribute('src'),
-    ' new: ',
-    newFileName,
-  );
+  // console.log(
+  //   'prev: ',
+  //   prevFileName,
+  //   ' current: ',
+  //   $('#mypage_avatar').getAttribute('src'),
+  //   ' new: ',
+  //   newFileName,
+  // );
 
   if (newFileName !== '') {
     $('#mypage_avatar').setAttribute('src', newFileName);
