@@ -1,9 +1,10 @@
 import Table from './Table.js';
 import Edit from './Edit.js';
 import Confirm from './Confirm.js';
+import UserInfo from './UserInfo.js';
 import { $ } from '../../utils/querySelector.js';
 
-let prevFileName = '';
+let prevFileName = '/image1.jpg';
 let newFileName = '';
 
 export default function handleButtons($target, state, button) {
@@ -25,12 +26,12 @@ export default function handleButtons($target, state, button) {
     handleDM($target, button);
   } else if (button.classList.contains('user_delete')) {
     handleDelete($target, state, button);
-  } else if (button.id === 'modal_close') {
-    handleModalClose($target, button, prevFileName);
+  } else if (button.id === 'edit_modal_close') {
+    handleEditModalClose($target, button, prevFileName);
   } else if (button.id === 'avatar_upload_entry') {
     prevFileName = $('#mypage_avatar').getAttribute('src');
     handleAvatarUpload($target, button);
-  } else if (button.id === 'editSubmit') {
+  } else if (button.id === 'edit_submit') {
     console.log('edit submit');
     handleModalSubmmit($target, button);
   } else if (button.id === 'confirm_ok') {
@@ -70,7 +71,21 @@ function handleEdit($target, state, button) {
 }
 
 function handleUser($target, button) {
-  console.log('user');
+  console.log('user info');
+
+  const userInfo = document.createElement('div');
+  userInfo.id = 'Modal_overlay';
+  $target.appendChild(userInfo);
+
+  let userName = '';
+
+  if (button.id.includes('avatar')) {
+    userName = button.id.slice(12);
+  } else {
+    userName = button.textContent;
+  }
+
+  new UserInfo(userInfo, userName);
 }
 
 function handleDM($target, button) {
@@ -96,14 +111,15 @@ function handleDelete($target, state, button) {
   }
 }
 
-function handleModalClose($target, button, prevFileName) {
+function handleEditModalClose($target, button, prevFileName) {
   console.log('edit modal close');
-
-  console.log(prevFileName === $('#mypage_avatar').getAttribute('src'));
 
   if (prevFileName !== $('#mypage_avatar').src) {
     $('#mypage_avatar').setAttribute('src', prevFileName);
     $('#edit_modal_avatar').setAttribute('src', prevFileName);
+  }
+  if (prevFileName !== newFileName) {
+    newFileName = '';
   }
 
   button.closest('#Modal_overlay').remove();
@@ -111,6 +127,15 @@ function handleModalClose($target, button, prevFileName) {
 
 function handleModalSubmmit($target, button) {
   console.log('edit modal submit');
+
+  console.log(
+    'prev: ',
+    prevFileName,
+    ' current: ',
+    $('#mypage_avatar').getAttribute('src'),
+    ' new: ',
+    newFileName,
+  );
 
   if (newFileName !== '') {
     $('#mypage_avatar').setAttribute('src', newFileName);
@@ -159,6 +184,4 @@ function handleConfirmOK($target, state, button) {
 
     new Confirm(modal, 'delete', state.userName);
   }
-
-  //const final = button.closest('#Modal_overlay');
 }
