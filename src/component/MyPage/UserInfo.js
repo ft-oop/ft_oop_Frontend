@@ -4,14 +4,14 @@ import Profile from './Profile';
 import Table from './Table';
 
 export default class UserInfo extends Component {
-  // constructor($target, props) {
-  //   super($target, props);
-  //   this.$target = $target;
-  //   this.props = props;
-  //   this.setup();
-  //   this.setEvent();
-  //   this.render();
-  // }
+  constructor($target, props) {
+    super($target, props);
+    this.$target = $target;
+    this.props = props;
+    this.setup();
+    this.setEvent();
+    this.render();
+  }
 
   setup() {
     this.state = {
@@ -54,17 +54,20 @@ export default class UserInfo extends Component {
 
     information.appendChild(profile);
 
-    new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
-
+    if ($('#Friend_table')) {
+      new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
+    } else {
+      new Profile(profile, this.state, '', '/block.svg');
+    }
     // tables
-    const historyTable = document.createElement('div');
-    historyTable.id = 'user_info_history';
+    const userHistoryTable = document.createElement('div');
+    userHistoryTable.id = 'user_info_history';
 
-    this.setUserHistoryTable(historyTable);
+    this.setUserHistoryTable(userHistoryTable);
 
-    information.appendChild(historyTable);
+    information.appendChild(userHistoryTable);
 
-    new Table(historyTable, '경기 기록', 1, this.state);
+    new Table(userHistoryTable, '경기 기록', 1, this.state);
   }
 
   setUserInfoContainer(info) {

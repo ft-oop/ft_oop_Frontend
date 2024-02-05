@@ -8,7 +8,6 @@ export default class Table extends Component {
     this.props = props;
     this.title = title;
     this.n = n;
-    console.log(this.n);
     this.setup();
     this.setEvent();
     this.render();
@@ -72,6 +71,7 @@ export default class Table extends Component {
     let idName = 'Friend_table';
     let users = this.props.friends;
     let display = 'display: inline';
+    let type = 'friend';
 
     // console.log('Friend Table');
 
@@ -79,6 +79,7 @@ export default class Table extends Component {
       idName = 'Block_table';
       users = this.props.blockedUsers;
       display = 'display: none';
+      type = 'block';
     }
 
     return users
@@ -95,14 +96,14 @@ export default class Table extends Component {
             }
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <img src="/image2.jpg" alt="profile" id="user_avatar_${
-                user.userName
-              }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
+              <img src="/image2.jpg" alt="profile" id="${type}_avatar_${
+          user.userName
+        }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
-        <td id="user_name_${user.userName}" class="user_name">${
+        <td id="${type}_name_${user.userName}" class="user_name">${
           user.userName
         }</td>
         ${/* DM */ ''}

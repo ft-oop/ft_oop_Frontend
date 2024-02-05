@@ -84,7 +84,7 @@ function handleUser($target, button) {
     userName = button.textContent;
   }
 
-  new UserInfo(userInfo, userName);
+  new UserInfo(userInfo, userName, button);
 }
 
 function handleDM($target, button) {
