@@ -81,7 +81,7 @@ export default class MyPage extends Component {
 
     $wrapper.innerHTML = `
     <div class="w-full h-full flex flex-col items-start overflow-auto">
-      <div class="w-[calc(100% - 400px)] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
+      <div class="w-[calc(100% - 400px)] px-[100px] pb-[50px] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
         <div id="MyPage_profile_container">
           <div id="MyPage_profile"></div>
         </div>

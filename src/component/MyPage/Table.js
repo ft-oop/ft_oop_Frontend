@@ -88,12 +88,16 @@ export default class Table extends Component {
             }
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <img src="/image2.jpg" alt="profile" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
+              <img src="/image2.jpg" alt="profile" id="user_avatar_${
+                user.userName
+              }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
-        <td class="user_name">${user.userName}</td>
+        <td id="user_name_${user.userName}" class="user_name">${
+          user.userName
+        }</td>
         ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
         ${/* Delete */ ''}
