@@ -26,7 +26,7 @@ export default class Edit extends Component {
       ${/* Image */ ''}
       <div class="relative w-[100px] h-[100px]">
         <div class="absolute w-full h-full rounded-full overflow-hidden">
-          <div class="flex w-full h-full justify-center items-center bg-blue-200">
+          <div class="flex w-full h-full justify-center items-center">
             <img src="${fileName}" id="edit_modal_avatar" alt="user avatar" class="w-[100%] h-[100%] object-cover"/>
           </div>
         </div>

@@ -35,6 +35,9 @@ export default function handleButtons($target, state, button) {
     handleModalSubmmit($target, button);
   } else if (button.id === 'confirm_ok') {
     handleConfirmOK($target, state, button);
+  } else if (button.id === 'confirm_close') {
+    console.log('confirm close');
+    button.closest('#Modal_overlay').remove();
   }
 }
 
@@ -56,6 +59,7 @@ function handleTables($target, state, button) {
 
 function handleEdit($target, state, button) {
   console.log('edit');
+  console.log('prev: ', prevFileName);
 
   const modal = document.createElement('div');
   modal.id = 'Modal_overlay';
@@ -108,7 +112,10 @@ function handleModalClose($target, button, prevFileName) {
 function handleModalSubmmit($target, button) {
   console.log('edit modal submit');
 
-  $('#mypage_avatar').setAttribute('src', newFileName);
+  if (newFileName !== '') {
+    $('#mypage_avatar').setAttribute('src', newFileName);
+    prevFileName = newFileName;
+  }
   button.closest('#Modal_overlay').remove();
 }
 
@@ -120,7 +127,6 @@ function handleAvatarUpload($target, button) {
 }
 
 function uploadImage(e) {
-  let canceled = false;
   const maxSize = 1024 * 1024;
 
   const file = e.target.files[0];
@@ -145,11 +151,11 @@ function handleConfirmOK($target, state, button) {
   const modal = button.closest('#Modal_overlay');
 
   if (document.querySelector('#Friend_table')) {
-    console.log('delete friend');
+    console.log('confirm_ok: delete friend');
 
     new Confirm(modal, 'friend', state.userName);
   } else {
-    console.log('delete block');
+    console.log('confirm_ok: delete block');
 
     new Confirm(modal, 'delete', state.userName);
   }
