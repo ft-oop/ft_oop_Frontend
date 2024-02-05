@@ -8,6 +8,7 @@ export default class Table extends Component {
     this.props = props;
     this.title = title;
     this.n = n;
+    console.log(this.n);
     this.setup();
     this.setEvent();
     this.render();
@@ -16,6 +17,8 @@ export default class Table extends Component {
   template() {
     let leftImage = '/arrow-left-disabled.svg';
     let rightImage = '/arrow-right-enabled.svg';
+
+    if (this.n === 1) console.log('111111111111');
 
     if (this.n === 3) {
       leftImage = '/arrow-left-enabled.svg';
@@ -46,6 +49,8 @@ export default class Table extends Component {
   generateHistoryTable() {
     const { matchHistories } = this.props;
 
+    // console.log('History Table');
+
     return matchHistories
       .map(
         (history) => `
@@ -67,6 +72,8 @@ export default class Table extends Component {
     let idName = 'Friend_table';
     let users = this.props.friends;
     let display = 'display: inline';
+
+    // console.log('Friend Table');
 
     if (this.n === 3) {
       idName = 'Block_table';
