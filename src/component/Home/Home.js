@@ -3,6 +3,7 @@ import { $ } from '../../utils/querySelector';
 import Logo from '../../core/Logo';
 import Category from './Category';
 import { navigate } from '../../utils/navigate.js';
+import MakeRoom from '../MakeRoom/MakeRoom.js';
 
 export default class Home extends Component {
   mounted() {
@@ -17,7 +18,6 @@ export default class Home extends Component {
     <div id='make-room'></div>
     <div id='random-match'></div>
     `;
-
     $('#app').appendChild($category);
 
     $info.id = 'info';
@@ -29,6 +29,7 @@ export default class Home extends Component {
     </div>
     `;
 
+    // 마이페이지 버튼 클릭 시 이벤트
     this.addEvent('click', '#info', (e) => {
       const targetURL = '/mypage';
       navigate(targetURL);
@@ -39,5 +40,14 @@ export default class Home extends Component {
     new Category($('#room-list'), { title: '방 목록', emoji: '🗒️' });
     new Category($('#make-room'), { title: '방 만들기', emoji: '🏡' });
     new Category($('#random-match'), { title: '랜덤 매칭', emoji: '🤝' });
+
+    // 랜덤 매칭 버튼 클릭 시 이벤트
+    this.addEvent('click', '#make-room', (e) => {
+      const makeRoomModal = document.createElement('div');
+      makeRoomModal.id = 'Modal_overlay';
+
+      $('#app').appendChild(makeRoomModal);
+      new MakeRoom(makeRoomModal);
+    });
   }
 }
