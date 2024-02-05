@@ -1,7 +1,8 @@
 import Component from '../../core/Component.js';
 import '../../style/MyPage.css';
+import { $ } from '../../utils/querySelector.js';
 import Table from './Table.js';
-import Edit from './Edit.js';
+import handleButtons from './handleButtons.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -50,9 +51,11 @@ export default class MyPage extends Component {
   }
 
   mounted() {
-    const $profile = this.$target.querySelector('.MyPage_profile');
-    const $historyTable = this.$target.querySelector('.MyPage_info__history');
-    const $friendTable = this.$target.querySelector('.MyPage_info__user_list');
+    this.appendInfoWrapper();
+
+    const $profile = this.$target.querySelector('#MyPage_profile');
+    const $historyTable = this.$target.querySelector('#MyPage_info__history');
+    const $friendTable = this.$target.querySelector('#MyPage_info__user_list');
 
     $profile.innerHTML = `
       <div class="w-[100px] h-[100px] rounded-full overflow-hidden">
@@ -69,6 +72,27 @@ export default class MyPage extends Component {
     new Table($friendTable, '친구 목록', 2, this.state);
   }
 
+  appendInfoWrapper() {
+    const $wrapper = document.createElement('div');
+    $wrapper.id = 'MyPage_wrapper';
+    this.$target.appendChild($wrapper);
+
+    $wrapper.style.height = '100vh';
+
+    $wrapper.innerHTML = `
+    <div class="w-full h-full flex flex-col items-start overflow-auto">
+      <div class="w-[calc(100% - 400px)] px-[100px] pb-[50px] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
+        <div id="MyPage_profile_container">
+          <div id="MyPage_profile"></div>
+        </div>
+        <div id="MyPage_info">
+          <div id="MyPage_info__history"></div>
+          <div id="MyPage_info__user_list"></div>
+        </div>
+      </div>
+    </div>`;
+  }
+
   setEvent() {
     this.$target.addEventListener('click', this.handleButton.bind(this));
   }
@@ -76,75 +100,6 @@ export default class MyPage extends Component {
   handleButton(event) {
     const button = event.target;
 
-    if (
-      button.classList.contains('icon_right') ||
-      button.classList.contains('icon_left')
-    ) {
-      this.handleTables(button);
-    } else if (button.id === 'mypage_edit') {
-      this.handleEdit(button);
-    } else if (button.id === 'back') {
-      console.log('back');
-    } else if (
-      button.classList.contains('user_avatar') ||
-      button.classList.contains('user_name')
-    ) {
-      this.handleUser(button);
-    } else if (button.classList.contains('user_dm')) {
-      this.handleDM(button);
-    } else if (button.classList.contains('user_delete')) {
-      this.handleDelete(button);
-    } else if (button.id === 'edit_close') {
-      this.handleModalClose(button);
-    }
-  }
-
-  handleTables(button) {
-    if (this.$target.querySelector('.Friend_table')) {
-      if (button.classList.contains('icon_right')) {
-        const $blockTable = this.$target.querySelector(
-          '.MyPage_info__user_list',
-        );
-
-        new Table($blockTable, '차단 목록', 3, this.state);
-      }
-    } else if (this.$target.querySelector('.Block_table')) {
-      if (button.classList.contains('icon_left')) {
-        const $userTable = this.$target.querySelector(
-          '.MyPage_info__user_list',
-        );
-
-        new Table($userTable, '친구 목록', 2, this.state);
-      }
-    }
-  }
-
-  handleEdit(button) {
-    console.log('edit');
-
-    const modal = document.createElement('div');
-    modal.className = 'Modal_overlay';
-
-    this.$target.appendChild(modal);
-
-    new Edit(modal, 'edit');
-  }
-
-  handleUser(button) {
-    console.log('user');
-  }
-
-  handleDM(button) {
-    console.log('DM');
-  }
-
-  handleDelete(button) {
-    console.log('delete');
-  }
-
-  handleModalClose(button) {
-    console.log('edit modal close');
-
-    button.closest('.Modal_overlay').remove();
+    handleButtons(this.$target, this.state, button);
   }
 }

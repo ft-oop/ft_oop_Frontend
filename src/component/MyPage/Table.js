@@ -22,7 +22,7 @@ export default class Table extends Component {
       rightImage = '/arrow-right-disabled.svg';
     }
     return `
-      <table class="MyPage__table">
+      <table id="MyPage__table">
         <caption>
           <img src="${leftImage}" class="icon_left" id="icon_left${
       this.n
@@ -49,7 +49,7 @@ export default class Table extends Component {
     return matchHistories
       .map(
         (history) => `
-      <tr class="History_table">
+      <tr id="History_table">
         <td class="history_date">${history.scoreDate}</td>
         <td class="history_content">${this.props.userName} vs ${
           history.userName
@@ -64,12 +64,12 @@ export default class Table extends Component {
   }
 
   generateUserTable() {
-    let className = 'Friend_table';
+    let idName = 'Friend_table';
     let users = this.props.friends;
     let display = 'display: inline';
 
     if (this.n === 3) {
-      className = 'Block_table';
+      idName = 'Block_table';
       users = this.props.blockedUsers;
       display = 'display: none';
     }
@@ -77,7 +77,7 @@ export default class Table extends Component {
     return users
       .map(
         (user) => `
-      <tr class="${className}">
+      <tr id="${idName}">
         <td class="flex ml-[20px]">
           <div class="w-[40px] h-[40px] relative">
             ${/* Online: #60D395, Offline: #D3606E */ ''}
@@ -88,12 +88,16 @@ export default class Table extends Component {
             }
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <img src="/image2.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
+              <img src="/image2.jpg" alt="profile" id="user_avatar_${
+                user.userName
+              }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
-        <td class="user_name">${user.userName}</td>
+        <td id="user_name_${user.userName}" class="user_name">${
+          user.userName
+        }</td>
         ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
         ${/* Delete */ ''}

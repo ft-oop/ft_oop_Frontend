@@ -1,4 +1,4 @@
-.MyPage__table {
+#MyPage__table {
   width: 100%;
 }
 
@@ -24,25 +24,28 @@ table tbody {
   overflow-y: auto;
 }
 
-.History_table {
+#History_table {
   text-align: center;
 }
 
-.History_table td {
+#History_table td {
   padding: 10px 20px 10px 20px;
 }
 
-.Friend_table td {
-  padding-right: 20px;
+#Friend_table td {
+  padding-right: 10px;
 }
 
-.Block_table td {
-  padding-right: 20px;
+#Block_table td {
+  padding-right: 10px;
 }
 
 table tr {
+  width: 100%;
   height: 70px;
   font-size: 1.2em;
+
+  padding-right: 10px;
 
   display: flex;
   align-items: center;
@@ -100,6 +103,8 @@ table tr:nth-child(even) {
 
 .user_name {
   flex-grow: 1;
+
+  padding-left: 10px;
 }
 
 .user_avatar:hover,
