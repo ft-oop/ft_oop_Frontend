@@ -1,5 +1,6 @@
 import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector.js';
+import { setModalWrapper } from '../../utils/setModalWrapper.js';
 
 export default class Confirm extends Component {
   constructor($target, stat, props, targetUser = '') {
@@ -8,23 +9,10 @@ export default class Confirm extends Component {
     this.props = props;
     this.targetUser = targetUser;
     this.stat = stat;
-    this.setWrapper();
+    setModalWrapper(this.$target);
     this.setup();
     this.setEvent();
     this.render();
-  }
-
-  setWrapper() {
-    this.$target.style.position = 'absolute';
-    this.$target.style.top = '0';
-    this.$target.style.left = '0';
-    this.$target.style.width = '100%';
-    this.$target.style.height = '100%';
-    this.$target.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-    this.$target.style.display = 'flex';
-    this.$target.style.justifyContent = 'center';
-    this.$target.style.alignItems = 'center';
-    this.$target.style['backdrop-filter'] = 'blur(1.5px)';
   }
 
   template() {
