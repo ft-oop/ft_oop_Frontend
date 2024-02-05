@@ -31,7 +31,7 @@ export default function handleButtons($target, state, button) {
   } else if (button.id === 'avatar_upload_entry') {
     prevFileName = $('#mypage_avatar').getAttribute('src');
     handleAvatarUpload($target, button);
-  } else if (button.id === 'edit_submit') {
+  } else if (button.id === 'edit_submit') { 
     console.log('edit submit');
     handleModalSubmmit($target, button);
   } else if (button.id === 'confirm_ok') {
@@ -84,7 +84,7 @@ function handleUser($target, button) {
     userName = button.textContent;
   }
 
-  new UserInfo(userInfo, userName);
+  new UserInfo(userInfo, userName, );
 }
 
 function handleDM($target, button) {
