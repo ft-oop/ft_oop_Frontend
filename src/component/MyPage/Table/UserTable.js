@@ -1,7 +1,8 @@
-import Component from '../../core/Component.js';
-import '../../style/Table.css';
+import Component from '../../../core/Component.js';
+import '../../../style/Table.css';
+import { tableNumbers } from '../../../constant/tableNumbers.js';
 
-export default class Table extends Component {
+export default class UserTable extends Component {
   constructor($target, title, n, props) {
     super($target, props);
     this.$target = $target;
@@ -17,7 +18,7 @@ export default class Table extends Component {
     let leftImage = '/arrow-left-disabled.svg';
     let rightImage = '/arrow-right-enabled.svg';
 
-    if (this.n === 3) {
+    if (this.n === tableNumbers.BLOCK) {
       leftImage = '/arrow-left-enabled.svg';
       rightImage = '/arrow-right-disabled.svg';
     }
@@ -34,34 +35,10 @@ export default class Table extends Component {
     }" alt="right-fill"></img>
         </caption>
         <tbody>
-          ${
-            this.n === 1
-              ? this.generateHistoryTable()
-              : this.generateUserTable()
-          }
+          ${this.generateUserTable()}
         </tbody>
       </table>
     `;
-  }
-
-  generateHistoryTable() {
-    const { matchHistories } = this.props;
-
-    return matchHistories
-      .map(
-        (history) => `
-      <tr class="History_table">
-        <td class="history_date">${history.scoreDate}</td>
-        <td class="history_content">${this.props.userName} vs ${
-          history.userName
-        }</td>
-        <td class="history_result">${
-          history.winner === this.props.userName ? 'Win' : 'Lose'
-        }</td>
-      </tr>
-    `,
-      )
-      .join('');
   }
 
   generateUserTable() {
@@ -72,7 +49,7 @@ export default class Table extends Component {
 
     // console.log('Friend Table');
 
-    if (this.n === 3) {
+    if (this.n === tableNumbers.BLOCK) {
       idName = 'Block_table';
       users = this.props.blockedUsers;
       display = 'display: none';
@@ -87,12 +64,13 @@ export default class Table extends Component {
           <div class="w-[40px] h-[40px] relative">
             ${/* Online: #60D395, Offline: #D3606E */ ''}
             ${
-              this.n === 2
+              this.n === tableNumbers.FRIEND
                 ? `<div class="w-[10px] h-[10px] rounded-full bg-[#60D395] absolute right-0 bottom-0"></div>`
                 : ''
             }
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
+            ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}  
               <img src="/image2.jpg" alt="profile" id="${type}_avatar_${
           user.userName
         }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">

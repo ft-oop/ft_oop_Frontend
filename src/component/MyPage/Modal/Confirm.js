@@ -1,6 +1,6 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector.js';
-import { setModalWrapper } from '../../utils/setModalWrapper.js';
+import Component from '../../../core/Component.js';
+import { $ } from '../../../utils/querySelector.js';
+import { setModalWrapper } from '../../../utils/setModalWrapper.js';
 
 export default class Confirm extends Component {
   constructor($target, stat, props, targetUser = '') {

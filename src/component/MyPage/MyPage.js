@@ -1,8 +1,9 @@
 import Component from '../../core/Component.js';
 import '../../style/MyPage.css';
-import { $ } from '../../utils/querySelector.js';
 import Profile from './Profile.js';
-import Table from './Table.js';
+import HistoryTable from './Table/HistoryTable.js';
+import UserTable from './Table/UserTable.js';
+import { tableNumbers } from '../../constant/tableNumbers.js';
 import handleButtons from './handleButtons.js';
 
 export default class MyPage extends Component {
@@ -59,8 +60,8 @@ export default class MyPage extends Component {
     const $friendTable = this.$target.querySelector('#MyPage_info__user_list');
 
     new Profile($profile, this.state, '', '/edit.svg');
-    new Table($historyTable, '경기 기록', 1, this.state);
-    new Table($friendTable, '친구 목록', 2, this.state);
+    new HistoryTable($historyTable, this.state);
+    new UserTable($friendTable, '친구 목록', tableNumbers.FRIEND, this.state);
   }
 
   appendInfoWrapper() {
