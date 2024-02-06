@@ -1,7 +1,7 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
-import Profile from './Profile';
-import Table from './Table';
+import Component from '../../../core/Component';
+import { $ } from '../../../utils/querySelector';
+import Profile from '../Profile';
+import Table from '../Table/Table';
 
 export default class UserInfo extends Component {
   constructor($target, props) {

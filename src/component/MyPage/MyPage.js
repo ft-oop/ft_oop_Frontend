@@ -2,7 +2,7 @@ import Component from '../../core/Component.js';
 import '../../style/MyPage.css';
 import { $ } from '../../utils/querySelector.js';
 import Profile from './Profile.js';
-import Table from './Table.js';
+import Table from './Table/Table.js';
 import handleButtons from './handleButtons.js';
 
 export default class MyPage extends Component {

@@ -1,7 +1,7 @@
-import Table from './Table.js';
-import Edit from './Edit.js';
-import Confirm from './Confirm.js';
-import UserInfo from './UserInfo.js';
+import Table from './Table/Table.js';
+import Edit from './Modal/Edit.js';
+import Confirm from './Modal/Confirm.js';
+import UserInfo from './Modal/UserInfo.js';
 import { $ } from '../../utils/querySelector.js';
 
 let prevFileName = '/image1.jpg';

@@ -1,5 +1,5 @@
-import Component from '../../core/Component.js';
-import '../../style/Table.css';
+import Component from '../../../core/Component.js';
+import '../../../style/Table.css';
 
 export default class Table extends Component {
   constructor($target, title, n, props) {
