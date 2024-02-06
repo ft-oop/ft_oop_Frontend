@@ -84,7 +84,6 @@ export default class UserInfo extends Component {
     info.style.width = '100%';
     info.style.height = '100%';
 
-    info.style.display = 'flex';
     info.style.flexDirection = 'column';
     info.style.justifyContent = 'center';
     info.style.alignItems = 'center';
@@ -107,9 +106,10 @@ export default class UserInfo extends Component {
     table.style.width = '100%';
     table.style.height = '500px';
 
+    table.style.display = 'flex';
     table.style.overflow = 'hidden';
 
     table.style.borderRadius = '30px';
-    table.style.boxShadow = '5px 5px 10px 0px rgba(0, 0, 0, 0.2);';
+    table.style.boxShadow = '5px 5px 10px 0px rgba(0, 0, 0, 0.2)';
   }
 }
