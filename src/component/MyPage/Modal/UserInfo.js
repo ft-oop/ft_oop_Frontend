@@ -63,7 +63,7 @@ export default class UserInfo extends Component {
 
     if ($('#Friend_table')) {
       new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
-    } else {
+    } else if ($('#Block_table')) {
       new Profile(profile, this.state, '', '/block.svg');
     }
     // tables

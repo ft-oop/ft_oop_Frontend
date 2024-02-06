@@ -92,7 +92,7 @@ function handleTables($target, state, button) {
     if (button.classList.contains('icon_left')) {
       const $userTable = $target.querySelector('#MyPage_info__user_list');
 
-      new Table($userTable, '친구 목록', 2, state);
+      new UserTable($userTable, '친구 목록', tableNumbers.FRIEND, state);
     }
   }
 }
