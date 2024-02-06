@@ -36,6 +36,7 @@ export default class Profile extends Component {
     this.setIconID();
 
     return `
+    ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}
       <div class="w-[100px] h-[100px] rounded-full overflow-hidden">
         <img id="mypage_avatar" src="/image1.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
       </div>
