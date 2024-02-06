@@ -21,8 +21,9 @@ export default class Table extends Component {
       leftImage = '/arrow-left-enabled.svg';
       rightImage = '/arrow-right-disabled.svg';
     }
+
     return `
-      <table id="MyPage__table">
+      <table class="MyPage__table">
         <caption>
           <img src="${leftImage}" class="icon_left" id="icon_left${
       this.n
@@ -49,13 +50,13 @@ export default class Table extends Component {
     return matchHistories
       .map(
         (history) => `
-      <tr id="History_table">
+      <tr class="History_table">
         <td class="history_date">${history.scoreDate}</td>
         <td class="history_content">${this.props.userName} vs ${
           history.userName
         }</td>
         <td class="history_result">${
-          history.winner === 'user' ? 'Win' : 'Lose'
+          history.winner === this.props.userName ? 'Win' : 'Lose'
         }</td>
       </tr>
     `,
@@ -67,11 +68,15 @@ export default class Table extends Component {
     let idName = 'Friend_table';
     let users = this.props.friends;
     let display = 'display: inline';
+    let type = 'friend';
+
+    // console.log('Friend Table');
 
     if (this.n === 3) {
       idName = 'Block_table';
       users = this.props.blockedUsers;
       display = 'display: none';
+      type = 'block';
     }
 
     return users
@@ -88,14 +93,14 @@ export default class Table extends Component {
             }
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
-              <img src="/image2.jpg" alt="profile" id="user_avatar_${
-                user.userName
-              }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
+              <img src="/image2.jpg" alt="profile" id="${type}_avatar_${
+          user.userName
+        }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
-        <td id="user_name_${user.userName}" class="user_name">${
+        <td id="${type}_name_${user.userName}" class="user_name">${
           user.userName
         }</td>
         ${/* DM */ ''}

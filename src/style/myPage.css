@@ -72,8 +72,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -139,14 +139,14 @@ body {
   font-size: 1.2em;
 }
 
-#mypage_edit {
+#edit_modal_open {
   width: 40px;
   height: 40px;
 
   margin: 30px;
 }
 
-#mypage_edit:hover {
+#edit_modal_open:hover {
   cursor: pointer;
 }
 
