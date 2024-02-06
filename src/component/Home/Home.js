@@ -59,5 +59,11 @@ export default class Home extends Component {
       $('#app').appendChild(randomMatchModal);
       new RandomMatch(randomMatchModal);
     });
+
+    // 방 목록 클릭 시 이벤트
+    this.addEvent('click', '#room-list', (e) => {
+      const targetURL = '/room-list';
+      navigate(targetURL);
+    });
   }
 }
