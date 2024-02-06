@@ -1,8 +1,9 @@
-import Table from './Table/Table.js';
 import Edit from './Modal/Edit.js';
 import Confirm from './Modal/Confirm.js';
 import UserInfo from './Modal/UserInfo.js';
 import { $ } from '../../utils/querySelector.js';
+import UserTable from './Table/UserTable.js';
+import { tableNumbers } from '../../constant/tableNumbers.js';
 
 let prevFileName = '/image1.jpg';
 let newFileName = '';
@@ -85,7 +86,7 @@ function handleTables($target, state, button) {
     if (button.classList.contains('icon_right')) {
       const $blockTable = $target.querySelector('#MyPage_info__user_list');
 
-      new Table($blockTable, '차단 목록', 3, state);
+      new UserTable($blockTable, '차단 목록', tableNumbers.BLOCK, state);
     }
   } else if ($target.querySelector('#Block_table')) {
     if (button.classList.contains('icon_left')) {

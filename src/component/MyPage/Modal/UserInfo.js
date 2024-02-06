@@ -1,7 +1,7 @@
 import Component from '../../../core/Component';
 import { $ } from '../../../utils/querySelector';
 import Profile from '../Profile';
-import Table from '../Table/Table';
+import HistoryTable from '../Table/HistoryTable';
 
 export default class UserInfo extends Component {
   constructor($target, props) {
@@ -74,7 +74,7 @@ export default class UserInfo extends Component {
 
     information.appendChild(userHistoryTable);
 
-    new Table(userHistoryTable, '경기 기록', 1, this.state);
+    new HistoryTable(userHistoryTable, this.state);
 
     const tbody = this.$target.querySelector('tbody');
     tbody.style.height = '410px';
