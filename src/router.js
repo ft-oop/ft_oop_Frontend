@@ -1,5 +1,5 @@
-import { routes } from "./constant/routeInfo";
-import NotFound from "./component/notfound";
+import { routes } from './constant/routeInfo';
+import NotFound from './component/notfound';
 
 function Router($container) {
   this.$container = $container;
@@ -15,17 +15,19 @@ function Router($container) {
   };
 
   const init = () => {
-    window.addEventListener("historychange", ({ detail }) => {
+    window.addEventListener('historychange', ({ detail }) => {
       const { to, isReplace } = detail;
 
-      if (isReplace || to === location.pathname)
-        history.replaceState(null, "", to);
-      else history.pushState(null, "", to);
+      if (isReplace || to === location.pathname) {
+        history.replaceState(null, '', to);
+      } else {
+        history.pushState(null, '', to);
+      }
 
       route();
     });
 
-    window.addEventListener("popstate", () => {
+    window.addEventListener('popstate', () => {
       route();
     });
   };
