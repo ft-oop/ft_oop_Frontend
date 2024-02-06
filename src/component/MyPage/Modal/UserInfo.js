@@ -25,18 +25,16 @@ export default class UserInfo extends Component {
       totalLoseScore: 4,
       matchHistories: [
         {
-          userName: 'op1',
+          userName: 'op3',
           winner: this.props,
           scoreDate: '2024-01-29',
         },
         {
-          userName: 'op2',
+          userName: 'op4',
           winner: 'op2',
           scoreDate: '2024-01-29',
         },
       ],
-      friends: [],
-      blockedUsers: [],
     };
   }
 

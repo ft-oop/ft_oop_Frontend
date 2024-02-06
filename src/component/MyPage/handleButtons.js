@@ -77,6 +77,7 @@ export default function handleButtons($target, state, button) {
     // 확인 모달 닫기
   } else if (button.id === 'confirm_close') {
     console.log('modal close');
+
     button.closest('#Modal_overlay').remove();
   }
 }
@@ -170,7 +171,7 @@ function handleUser($target, button) {
   let userName = '';
 
   if (button.id.includes('avatar')) {
-    userName = button.id.slice(12);
+    userName = button.id.slice(14);
   } else {
     userName = button.textContent;
   }
@@ -185,6 +186,13 @@ function handleUser($target, button) {
 
 function handleDeleteFriendofoUserModal($target, state, button) {
   console.log('delete friend');
+
+  const modalOrigin = button.closest('#Modal_overlay');
+
+  const sibling =
+    button.previousSibling.previousSibling.children[0].textContent;
+
+  new UserInfo(modalOrigin, sibling, '/add_friend.svg', '/block.svg');
 }
 
 function handleDM($target, button) {
