@@ -4,10 +4,14 @@ import Profile from '../Profile';
 import HistoryTable from '../Table/HistoryTable';
 
 export default class UserInfo extends Component {
-  constructor($target, props) {
+  constructor($target, props, icon1, icon2) {
     super($target, props);
     this.$target = $target;
     this.props = props;
+    this.icon1 = icon1;
+    this.icon2 = icon2;
+    this.iconID1 = '';
+    this.iconID2 = '';
     this.setup();
     this.setEvent();
     this.render();
@@ -61,11 +65,13 @@ export default class UserInfo extends Component {
 
     information.appendChild(profile);
 
-    if ($('#Friend_table')) {
-      new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
-    } else if ($('#Block_table')) {
-      new Profile(profile, this.state, '', '/block.svg');
-    }
+    // if ($('#Friend_table')) {
+    //   new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
+    // } else if ($('#Block_table')) {
+    //   new Profile(profile, this.state, '', '/block.svg');
+    // }
+    new Profile(profile, this.state, this.icon1, this.icon2);
+
     // tables
     const userHistoryTable = document.createElement('div');
     userHistoryTable.id = 'user_info_history';

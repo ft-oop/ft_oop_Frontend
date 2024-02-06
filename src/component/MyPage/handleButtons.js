@@ -50,7 +50,7 @@ export default function handleButtons($target, state, button) {
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
-    console.log('delete friend');
+    handleDeleteFriendofoUserModal($target, state, button);
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
@@ -108,80 +108,6 @@ function handleEdit($target, state, button) {
   new Edit(modal, state.userName);
 }
 
-function handleUser($target, button) {
-  console.log('user info');
-
-  const userInfo = document.createElement('div');
-  userInfo.id = 'Modal_overlay';
-  $target.appendChild(userInfo);
-
-  let userName = '';
-
-  if (button.id.includes('avatar')) {
-    userName = button.id.slice(12);
-  } else {
-    userName = button.textContent;
-  }
-
-  new UserInfo(userInfo, userName, button);
-}
-
-function handleDM($target, button) {
-  console.log('DM');
-}
-
-function handleDelete($target, state, button) {
-  console.log('delete');
-
-  const confirm = document.createElement('div');
-  confirm.id = 'Modal_overlay';
-
-  $target.appendChild(confirm);
-
-  const sibling =
-    button.parentNode.previousSibling.previousSibling.previousSibling
-      .previousSibling.textContent;
-
-  if (document.querySelector('#Friend_table')) {
-    new Confirm(confirm, 'friend', state.userName, sibling);
-  } else {
-    new Confirm(confirm, 'block', state.userName, sibling);
-  }
-}
-
-function handleEditModalClose($target, button, prevFileName) {
-  console.log('edit modal close');
-
-  if (prevFileName !== $('#mypage_avatar').src) {
-    $('#mypage_avatar').setAttribute('src', prevFileName);
-    $('#edit_modal_avatar').setAttribute('src', prevFileName);
-  }
-  if (prevFileName !== newFileName) {
-    newFileName = '';
-  }
-
-  button.closest('#Modal_overlay').remove();
-}
-
-function handleModalSubmmit($target, button) {
-  console.log('edit modal submit');
-
-  // console.log(
-  //   'prev: ',
-  //   prevFileName,
-  //   ' current: ',
-  //   $('#mypage_avatar').getAttribute('src'),
-  //   ' new: ',
-  //   newFileName,
-  // );
-
-  if (newFileName !== '') {
-    $('#mypage_avatar').setAttribute('src', newFileName);
-    prevFileName = newFileName;
-  }
-  button.closest('#Modal_overlay').remove();
-}
-
 function handleAvatarUpload($target, button) {
   console.log('avatar upload');
 
@@ -208,6 +134,80 @@ function uploadImage(e) {
 
     $('#edit_modal_avatar').setAttribute('src', e.target.result);
   };
+}
+
+function handleModalSubmmit($target, button) {
+  console.log('edit modal submit');
+
+  if (newFileName !== '') {
+    $('#mypage_avatar').setAttribute('src', newFileName);
+    prevFileName = newFileName;
+  }
+  button.closest('#Modal_overlay').remove();
+}
+
+function handleEditModalClose($target, button, prevFileName) {
+  console.log('edit modal close');
+
+  if (prevFileName !== $('#mypage_avatar').src) {
+    $('#mypage_avatar').setAttribute('src', prevFileName);
+    $('#edit_modal_avatar').setAttribute('src', prevFileName);
+  }
+  if (prevFileName !== newFileName) {
+    newFileName = '';
+  }
+
+  button.closest('#Modal_overlay').remove();
+}
+
+function handleUser($target, button) {
+  console.log('user info');
+
+  const userInfo = document.createElement('div');
+  userInfo.id = 'Modal_overlay';
+  $target.appendChild(userInfo);
+
+  let userName = '';
+
+  if (button.id.includes('avatar')) {
+    userName = button.id.slice(12);
+  } else {
+    userName = button.textContent;
+  }
+
+  if (document.querySelector('#Friend_table')) {
+    new UserInfo(userInfo, userName, '/delete_friend.svg', '/block.svg');
+  }
+  if (document.querySelector('#Block_table')) {
+    new UserInfo(userInfo, userName, '', '/unblock.svg');
+  }
+}
+
+function handleDeleteFriendofoUserModal($target, state, button) {
+  console.log('delete friend');
+}
+
+function handleDM($target, button) {
+  console.log('DM');
+}
+
+function handleDelete($target, state, button) {
+  console.log('delete');
+
+  const confirm = document.createElement('div');
+  confirm.id = 'Modal_overlay';
+
+  $target.appendChild(confirm);
+
+  const sibling =
+    button.parentNode.previousSibling.previousSibling.previousSibling
+      .previousSibling.textContent;
+
+  if (document.querySelector('#Friend_table')) {
+    new Confirm(confirm, 'friend', state.userName, sibling);
+  } else {
+    new Confirm(confirm, 'block', state.userName, sibling);
+  }
 }
 
 function handleConfirmOK($target, state, button) {
