@@ -41,14 +41,14 @@ export default class Confirm extends Component {
     let buttonID = 'confirm_ok';
 
     if (this.targetUser === '') {
-      buttonID = 'confirm_close';
+      buttonID = 'modal_close';
     }
 
     return `<button id="${buttonID}" type="submit" class="btn btn-primary" style="background-color:#007bff; margin-left:8px; border-radius: 8px; padding-left:30px; padding-right:30px">확인</button>
     ${
       this.targetUser === ''
         ? ''
-        : '<button type="button" id="confirm_close" class="btn btn-secondary" style="background-color:#6c757d; border-radius: 8px; padding-left:30px; padding-right:30px">취소</button>'
+        : '<button type="button" id="modal_close" class="btn btn-secondary" style="background-color:#6c757d; border-radius: 8px; padding-left:30px; padding-right:30px">취소</button>'
     }
     `;
   }
