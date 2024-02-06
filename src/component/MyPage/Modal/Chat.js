@@ -25,4 +25,12 @@ export default class Chat extends Component {
       </div>
     `;
   }
+
+  setEvent() {
+    this.$target.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.id === 'chat_input') {
+        console.log('chat send');
+      }
+    });
+  }
 }
