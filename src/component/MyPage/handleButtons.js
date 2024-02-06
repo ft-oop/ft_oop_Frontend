@@ -50,15 +50,15 @@ export default function handleButtons($target, state, button) {
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
-    handleDeleteFriendOfoUserModal($target, state, button);
+    handleDeleteFriendOfUserModal($target, state, button);
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
-    console.log('block user');
+    handleBlockUsefOfUserModal($target, state, button);
 
     // 차단 해제
   } else if (button.id === 'icon_unblock') {
-    console.log('unblock user');
+    handleUnblockUsefOfUserModal($target, state, button);
 
     /*** 테이블 내 아이콘 핸들링 ***/
     // DM
@@ -193,8 +193,26 @@ function handleAddFriendOfUserModal($target, state, button) {
   new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
 }
 
-function handleDeleteFriendOfoUserModal($target, state, button) {
+function handleDeleteFriendOfUserModal($target, state, button) {
   console.log('delete friend');
+
+  const modalOrigin = button.closest('#Modal_overlay');
+  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+
+  new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
+}
+
+function handleBlockUsefOfUserModal($target, state, button) {
+  console.log('block user');
+
+  const modalOrigin = button.closest('#Modal_overlay');
+  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+
+  new UserInfo(modalOrigin, userName, '', '/unblock.svg');
+}
+
+function handleUnblockUsefOfUserModal($target, state, button) {
+  console.log('unblock user');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
