@@ -4,6 +4,7 @@ import Logo from '../../core/Logo';
 import Category from './Category';
 import { navigate } from '../../utils/navigate.js';
 import MakeRoom from '../MakeRoom/MakeRoom.js';
+import RandomMatch from '../RandomMatch/RandomMatch.js';
 
 export default class Home extends Component {
   mounted() {
@@ -41,13 +42,22 @@ export default class Home extends Component {
     new Category($('#make-room'), { title: '방 만들기', emoji: '🏡' });
     new Category($('#random-match'), { title: '랜덤 매칭', emoji: '🤝' });
 
-    // 랜덤 매칭 버튼 클릭 시 이벤트
+    // 방만들기 버튼 클릭 시 이벤트
     this.addEvent('click', '#make-room', (e) => {
       const makeRoomModal = document.createElement('div');
       makeRoomModal.id = 'Modal_overlay';
 
       $('#app').appendChild(makeRoomModal);
       new MakeRoom(makeRoomModal);
+    });
+
+    // 랜덤매칭 버튼 클릭 시 이벤트
+    this.addEvent('click', '#random-match', (e) => {
+      const randomMatchModal = document.createElement('div');
+      randomMatchModal.id = 'Modal_overlay';
+
+      $('#app').appendChild(randomMatchModal);
+      new RandomMatch(randomMatchModal);
     });
   }
 }
