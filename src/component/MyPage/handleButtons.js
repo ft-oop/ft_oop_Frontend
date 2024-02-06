@@ -46,11 +46,11 @@ export default function handleButtons($target, state, button) {
     // 아이콘 클릭 이벤트 발생 시 상황에 맞는 모달 새로 넣어야 함..
     // 친구 추가
   } else if (button.id === 'icon_add_friend') {
-    console.log('add friend');
+    handleAddFriendOfUserModal($target, state, button);
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
-    handleDeleteFriendofoUserModal($target, state, button);
+    handleDeleteFriendOfoUserModal($target, state, button);
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
@@ -184,15 +184,22 @@ function handleUser($target, button) {
   }
 }
 
-function handleDeleteFriendofoUserModal($target, state, button) {
+function handleAddFriendOfUserModal($target, state, button) {
+  console.log('add friend');
+
+  const modalOrigin = button.closest('#Modal_overlay');
+  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+
+  new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
+}
+
+function handleDeleteFriendOfoUserModal($target, state, button) {
   console.log('delete friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
+  const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  const sibling =
-    button.previousSibling.previousSibling.children[0].textContent;
-
-  new UserInfo(modalOrigin, sibling, '/add_friend.svg', '/block.svg');
+  new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
 }
 
 function handleDM($target, button) {
