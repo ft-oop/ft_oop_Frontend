@@ -17,14 +17,13 @@ export default class Table extends Component {
     let leftImage = '/arrow-left-disabled.svg';
     let rightImage = '/arrow-right-enabled.svg';
 
-    if (this.n === 1) console.log('111111111111');
-
     if (this.n === 3) {
       leftImage = '/arrow-left-enabled.svg';
       rightImage = '/arrow-right-disabled.svg';
     }
+
     return `
-      <table id="MyPage__table">
+      <table class="MyPage__table">
         <caption>
           <img src="${leftImage}" class="icon_left" id="icon_left${
       this.n
@@ -53,7 +52,7 @@ export default class Table extends Component {
     return matchHistories
       .map(
         (history) => `
-      <tr id="History_table">
+      <tr class="History_table">
         <td class="history_date">${history.scoreDate}</td>
         <td class="history_content">${this.props.userName} vs ${
           history.userName

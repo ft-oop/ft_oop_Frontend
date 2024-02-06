@@ -71,14 +71,14 @@ export default class MyPage extends Component {
     $wrapper.style.height = '100vh';
 
     $wrapper.innerHTML = `
-    <div class="w-full h-full flex flex-col items-start overflow-auto">
-      <div class="w-[calc(100% - 400px)] px-[100px] pb-[50px] min-w-[800px] max-w-[1200px] flex flex-col items-start m-auto">
-        <div id="MyPage_profile_container">
-          <div id="MyPage_profile"></div>
-        </div>
-        <div id="MyPage_info">
-          <div id="MyPage_info__history"></div>
-          <div id="MyPage_info__user_list"></div>
+    <div class="w-full h-full flex flex-col overflow-auto">
+      <div class="w-[calc(100% - 400px)] h-[870px] px-[100px] pb-[50px] min-w-[800px] max-w-[1200px] flex flex-col  m-auto">
+          <div id="MyPage_profile_container">
+            <div id="MyPage_profile"></div>
+          </div>
+          <div id="MyPage_info">
+            <div id="MyPage_info__history"></div>
+            <div id="MyPage_info__user_list"></div>
         </div>
       </div>
     </div>`;

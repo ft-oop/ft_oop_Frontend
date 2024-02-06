@@ -25,7 +25,44 @@ export default class UserInfo extends Component {
           winner: 'friend1',
           scoreDate: '2024-01-29',
         },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
       ],
+      friends: [],
+      blockedUsers: [],
     };
   }
 
@@ -68,6 +105,9 @@ export default class UserInfo extends Component {
     information.appendChild(userHistoryTable);
 
     new Table(userHistoryTable, '경기 기록', 1, this.state);
+
+    const tbody = this.$target.querySelector('tbody');
+    tbody.style.height = '410px';
   }
 
   setUserInfoContainer(info) {
@@ -95,8 +135,11 @@ export default class UserInfo extends Component {
 
   setUserHistoryTable(table) {
     table.style.width = '100%';
-    table.style.height = 'calc(100% - 200px)';
+    table.style.height = '500px';
 
-    table.style['background-color'] = 'beige';
+    table.style.overflow = 'hidden';
+
+    table.style['border-radius'] = '30px';
+    table.style['box-shadow'] = '5px 5px 10px 0px rgba(0, 0, 0, 0.2);';
   }
 }
