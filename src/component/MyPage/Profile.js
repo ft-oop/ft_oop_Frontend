@@ -48,13 +48,13 @@ export default class Profile extends Component {
       ${this.icon1 !== '' ? this.createIcon1() : ''}
       <img id="${this.iconID2}" src="${
       this.icon2
-    }" class="w-[40px] h-[40px] mx-[20px]" alt="edit">
+    }" class="w-[40px] h-[40px] mx-[20px] cursor-pointer" alt="edit">
     `;
   }
 
   createIcon1() {
     return `
-      <img id="${this.iconID1}" src="${this.icon1}" class="w-[40px] h-[40px] ml-[20px]" alt="edit">
+      <img id="${this.iconID1}" src="${this.icon1}" class="w-[40px] h-[40px] ml-[20px] cursor-pointer" alt="edit">
     `;
   }
 }

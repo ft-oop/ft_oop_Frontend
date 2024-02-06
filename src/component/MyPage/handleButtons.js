@@ -8,34 +8,72 @@ let prevFileName = '/image1.jpg';
 let newFileName = '';
 
 export default function handleButtons($target, state, button) {
+  /*** 친구, 차단 목록 테이블 전환 ***/
   if (
     button.classList.contains('icon_right') ||
     button.classList.contains('icon_left')
   ) {
     handleTables($target, state, button);
+
+    /*** 사용자 정보 편짐 모달 ***/
+    // 편집 모달 열기
   } else if (button.id === 'edit_modal_open') {
     handleEdit($target, state, button);
-  } else if (button.id === 'back') {
-    console.log('back');
+
+    // 이미지 편집 아이콘 클릭
+  } else if (button.id === 'avatar_upload_entry') {
+    prevFileName = $('#mypage_avatar').getAttribute('src');
+    handleAvatarUpload($target, button);
+
+    // 제출
+  } else if (button.id === 'edit_submit') {
+    console.log('edit submit');
+    handleModalSubmmit($target, button);
+
+    // 편집 닫기
+  } else if (button.id === 'edit_modal_close') {
+    handleEditModalClose($target, button, prevFileName);
+
+    /*** 친구, 차단 목록 사용자 정보 모달 ***/
+    // 사용자 정보 열기
   } else if (
     button.classList.contains('user_avatar') ||
     button.classList.contains('user_name')
   ) {
     handleUser($target, button);
+
+    // 아이콘 클릭 이벤트 발생 시 상황에 맞는 모달 새로 넣어야 함..
+    // 친구 추가
+  } else if (button.id === 'icon_add_friend') {
+    console.log('add friend');
+
+    // 친구 삭제
+  } else if (button.id === 'icon_delete_friend') {
+    console.log('delete friend');
+
+    // 사용자 차단
+  } else if (button.id === 'icon_block') {
+    console.log('block user');
+
+    // 차단 해제
+  } else if (button.id === 'icon_unblock') {
+    console.log('unblock user');
+
+    /*** 테이블 내 아이콘 핸들링 ***/
+    // DM
   } else if (button.classList.contains('user_dm')) {
     handleDM($target, button);
+
+    // 삭제
   } else if (button.classList.contains('user_delete')) {
     handleDelete($target, state, button);
-  } else if (button.id === 'edit_modal_close') {
-    handleEditModalClose($target, button, prevFileName);
-  } else if (button.id === 'avatar_upload_entry') {
-    prevFileName = $('#mypage_avatar').getAttribute('src');
-    handleAvatarUpload($target, button);
-  } else if (button.id === 'edit_submit') {
-    console.log('edit submit');
-    handleModalSubmmit($target, button);
+
+    /*** 확인 모달 ***/
+    // 확인 모달 열기
   } else if (button.id === 'confirm_ok') {
     handleConfirmOK($target, state, button);
+
+    // 확인 모달 닫기
   } else if (button.id === 'confirm_close') {
     console.log('modal close');
     button.closest('#Modal_overlay').remove();
