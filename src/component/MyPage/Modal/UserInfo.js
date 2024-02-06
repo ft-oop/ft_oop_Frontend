@@ -42,7 +42,7 @@ export default class UserInfo extends Component {
     return `
       <div class="w-[800px] h-[800px] relative justify-center
         bg-white rounded-[30px] flex-col p-[50px]">
-        <img src="/eva--close-fill.svg" alt="icon close" id="confirm_close"
+        <img src="/eva--close-fill.svg" alt="icon close" id="modal_close"
           class="absolute top-[20px] right-[20px] w-[40px] h-[40px] cursor-pointer"
         />
         <div id="user_info_container"

@@ -1,6 +1,7 @@
 import Edit from './Modal/Edit.js';
 import Confirm from './Modal/Confirm.js';
 import UserInfo from './Modal/UserInfo.js';
+import Chat from './Modal/Chat.js';
 import { $ } from '../../utils/querySelector.js';
 import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
@@ -63,7 +64,7 @@ export default function handleButtons($target, state, button) {
     /*** 테이블 내 아이콘 핸들링 ***/
     // DM
   } else if (button.classList.contains('user_dm')) {
-    handleDM($target, button);
+    handleDM($target, state, button);
 
     // 삭제
   } else if (button.classList.contains('user_delete')) {
@@ -75,7 +76,7 @@ export default function handleButtons($target, state, button) {
     handleConfirmOK($target, state, button);
 
     // 확인 모달 닫기
-  } else if (button.id === 'confirm_close') {
+  } else if (button.id === 'modal_close') {
     console.log('modal close');
 
     button.closest('#Modal_overlay').remove();
@@ -220,8 +221,19 @@ function handleUnblockUsefOfUserModal($target, state, button) {
   new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
 }
 
-function handleDM($target, button) {
+function handleDM($target, state, button) {
   console.log('DM');
+
+  const chat = document.createElement('div');
+  chat.id = 'Modal_overlay';
+
+  $target.appendChild(chat);
+
+  const friendName =
+    button.parentNode.previousSibling.previousSibling.textContent;
+  console.log(friendName);
+
+  new Chat(chat, friendName);
 }
 
 function handleDelete($target, state, button) {
