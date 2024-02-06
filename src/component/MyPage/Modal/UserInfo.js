@@ -4,10 +4,14 @@ import Profile from '../Profile';
 import HistoryTable from '../Table/HistoryTable';
 
 export default class UserInfo extends Component {
-  constructor($target, props) {
+  constructor($target, props, icon1, icon2) {
     super($target, props);
     this.$target = $target;
     this.props = props;
+    this.icon1 = icon1;
+    this.icon2 = icon2;
+    this.iconID1 = '';
+    this.iconID2 = '';
     this.setup();
     this.setEvent();
     this.render();
@@ -21,18 +25,16 @@ export default class UserInfo extends Component {
       totalLoseScore: 4,
       matchHistories: [
         {
-          userName: 'op1',
+          userName: 'op3',
           winner: this.props,
           scoreDate: '2024-01-29',
         },
         {
-          userName: 'op2',
+          userName: 'op4',
           winner: 'op2',
           scoreDate: '2024-01-29',
         },
       ],
-      friends: [],
-      blockedUsers: [],
     };
   }
 
@@ -61,11 +63,13 @@ export default class UserInfo extends Component {
 
     information.appendChild(profile);
 
-    if ($('#Friend_table')) {
-      new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
-    } else {
-      new Profile(profile, this.state, '', '/block.svg');
-    }
+    // if ($('#Friend_table')) {
+    //   new Profile(profile, this.state, '/delete_friend.svg', '/block.svg');
+    // } else if ($('#Block_table')) {
+    //   new Profile(profile, this.state, '', '/block.svg');
+    // }
+    new Profile(profile, this.state, this.icon1, this.icon2);
+
     // tables
     const userHistoryTable = document.createElement('div');
     userHistoryTable.id = 'user_info_history';

@@ -87,11 +87,6 @@ table tr:nth-child(even) {
   fill: #8090a8;
 }
 
-#icon_left1,
-#icon_right1 {
-  display: none;
-}
-
 .icon_right:hover,
 .icon_left:hover {
   cursor: pointer;
