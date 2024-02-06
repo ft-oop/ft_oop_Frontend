@@ -81,10 +81,10 @@ export default class Chat extends Component {
     chat.style.paddingLeft = '20px';
     chat.style.paddingRight = '20px';
     chat.style.borderRadius = '20px';
-    chat.style.borderBottomRightRadius = '0px';
-    chat.style.backgroundColor = '#ABC2EF';
+    chat.style.borderBottomLeftRadius = '0px';
+    chat.style.backgroundColor = '#E7E7E7';
     chat.style.marginBottom = '2px';
-    chat.style.marginLeft = 'auto';
+    chat.style.marginRight = 'auto';
 
     chat.style.overflowWrap = 'break-word';
     chat.textContent = message;
