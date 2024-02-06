@@ -47,8 +47,6 @@ export default class Table extends Component {
   generateHistoryTable() {
     const { matchHistories } = this.props;
 
-    // console.log('History Table');
-
     return matchHistories
       .map(
         (history) => `
@@ -58,7 +56,7 @@ export default class Table extends Component {
           history.userName
         }</td>
         <td class="history_result">${
-          history.winner === 'user' ? 'Win' : 'Lose'
+          history.winner === this.props.userName ? 'Win' : 'Lose'
         }</td>
       </tr>
     `,

@@ -22,37 +22,7 @@ export default class UserInfo extends Component {
       matchHistories: [
         {
           userName: 'op1',
-          winner: 'friend1',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
+          winner: this.props,
           scoreDate: '2024-01-29',
         },
         {
@@ -139,7 +109,7 @@ export default class UserInfo extends Component {
 
     table.style.overflow = 'hidden';
 
-    table.style['border-radius'] = '30px';
-    table.style['box-shadow'] = '5px 5px 10px 0px rgba(0, 0, 0, 0.2);';
+    table.style.borderRadius = '30px';
+    table.style.boxShadow = '5px 5px 10px 0px rgba(0, 0, 0, 0.2);';
   }
 }
