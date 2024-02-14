@@ -86,6 +86,9 @@ export default class MyPage extends Component {
   }
 
   setEvent() {
+    if (this.$target.classList.contains('MyPageEvents')) return;
+
+    this.$target.classList.add('MyPageEvents');
     this.$target.addEventListener('click', this.handleButton.bind(this));
   }
 
