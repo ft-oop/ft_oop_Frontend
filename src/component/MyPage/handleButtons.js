@@ -258,13 +258,15 @@ function handleDelete($target, state, button) {
 function handleConfirmOK($target, state, button) {
   const modal = button.closest('#Modal_overlay');
 
-  if (document.querySelector('#Friend_table')) {
-    console.log('confirm_ok: delete friend');
+  if (modal && modal.id === 'Modal_overlay') {
+    if (document.querySelector('#Friend_table')) {
+      console.log('confirm_ok: delete friend');
 
-    new Confirm(modal, 'friend', state.userName);
-  } else {
-    console.log('confirm_ok: delete block');
+      new Confirm(modal, 'friend', state.userName);
+    } else {
+      console.log('confirm_ok: delete block');
 
-    new Confirm(modal, 'delete', state.userName);
+      new Confirm(modal, 'delete', state.userName);
+    }
   }
 }
