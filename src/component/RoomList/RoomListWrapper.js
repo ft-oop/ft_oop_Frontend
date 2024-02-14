@@ -1,6 +1,7 @@
 import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector';
 import RoomListDetail from './RoomListDetail';
+import { navigate } from '../../utils/navigate';
 
 export default class RoomListWrapper extends Component {
   template() {
@@ -17,7 +18,7 @@ export default class RoomListWrapper extends Component {
 
   mounted() {
     this.addEvent('click', '#goBack', (e) => {
-      history.back();
+      navigate('/');
     });
 
     // 소켓으로 방 정보 받아오기.
