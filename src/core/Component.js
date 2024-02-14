@@ -41,6 +41,7 @@ export default class Component {
     const children = [...this.$target.querySelectorAll(selector)];
     this.$target.addEventListener(eventType, (event) => {
       if (!event.target.closest(selector)) return false;
+      event.stopImmediatePropagation();
       callback(event);
     });
   }
