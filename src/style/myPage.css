@@ -76,6 +76,10 @@ body {
   height: 5px;
 }
 
+#chat_content_wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 ::-webkit-scrollbar-thumb {
   background-color: #e7eff8;
   border-radius: 10px;

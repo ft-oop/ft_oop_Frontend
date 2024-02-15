@@ -1,4 +1,5 @@
 import Component from '../../../core/Component';
+import '../../../style/myPage.css';
 import { $ } from '../../../utils/querySelector';
 
 export default class Chat extends Component {
@@ -14,10 +15,10 @@ export default class Chat extends Component {
             <img src="/eva--close-fill.svg" alt="icon close" id="modal_close"
               class="cursor-pointer"/>
           </div>
-          <div id="chat_content"
-            class="w-full h-[630px] mb-[10px] flex flex-col
-            justify-end overflow-y-auto"
+          <div id="chat_content_wrapper"
+            class="w-full h-[630px] mb-[10px] overflow-y-auto"
           >
+            <div id="chat_content" class="w-full min-h-[630px] flex flex-col justify-end"></div>
           </div>
           <div class="w-full h-[60px] flex justify-center items-center">
             <input type="text" id="chat_input" class="w-full h-[40px] px-[15px] mr-[8px] rounded-[20px]
@@ -49,6 +50,8 @@ export default class Chat extends Component {
     this.setMyChatBubbleStyle(chat, message);
 
     chatContent.appendChild(chat);
+
+    $('#chat_content_wrapper').scrollTo(0, chatContent.scrollHeight);
 
     const closest = chat.previousElementSibling;
     if (closest && closest.class === 'my_chat_bubble') {
