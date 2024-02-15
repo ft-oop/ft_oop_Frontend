@@ -22,6 +22,9 @@ export default class TwoFA extends Component {
             class="bg-transparent w-[300px] h-[100px] border-b border-black text-center text-5xl
               m-[20px] required:border-red-500"
           >
+          <input type="text" style="display:none;">${
+            /* submit 시 새로고침 방지 */ ''
+          }
         </form>
         <span class="text-sm text-center">
           2차 인증 코드를 42에 등록된 이메일로 발송하였습니다.<br />
@@ -42,7 +45,13 @@ export default class TwoFA extends Component {
   setEvent() {
     this.$target.addEventListener('click', (e) => {
       if (e.target.id === 'TwoFA_form__submit') {
-        e.preventDefault();
+        this.checkValid();
+      }
+    });
+
+    this.$target.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.id === 'TwoFA_form__input') {
+        if (e.isComposing) return;
         this.checkValid();
       }
     });
@@ -51,13 +60,13 @@ export default class TwoFA extends Component {
   checkValid() {
     const input = $('#TwoFA_form__input');
 
+    console.log('input.value: ', input.value);
+
     if (input.value === '') {
       input.classList.add('border-red-500');
       input.focus();
       return;
     }
-
-    // 코드 일치 여부 확인 후 로그인
 
     navigate('/');
   }
