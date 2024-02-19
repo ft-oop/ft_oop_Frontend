@@ -11,7 +11,7 @@ function Login($container) {
 
   this.render = () => {
     this.$container.innerHTML = `
-    <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center h-full">
       <img
         src="/logo.png"
         alt="logo"
