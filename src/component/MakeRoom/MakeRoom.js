@@ -12,7 +12,7 @@ export default class MakeRoom extends Component {
         <div class='flex flex-col justify-center items-center w-2/3 flex-1 space-y-8 drop-shadow'>
         ${bootstrapInput('이름', '회원님의 방', 'roomName')}
         <div class="input-group w-full flex">
-          <label class="input-group-text" for="inputGroupSelect01">타입</label>
+          <label class="input-group-text w-20" for="inputGroupSelect01">타입</label>
           <select class="form-select flex-1 border" id="inputGroupSelect01" aria-label="Default select example">
             <option selected></option>
             <option value="1">1:1 대전</option>
@@ -20,7 +20,7 @@ export default class MakeRoom extends Component {
           </select>
         </div>
         <div class="input-group w-full flex">
-          <label class="input-group-text" for="inputGroupSelect01">인원수</label>
+          <label class="input-group-text w-20" for="inputGroupSelect01">인원수</label>
           <select class="form-select flex-1 border" id="inputGroupSelect01">
             <option selected></option>
             <option value="1">4명</option>
