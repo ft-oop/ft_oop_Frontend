@@ -15,7 +15,7 @@ function Login($container) {
       <img
         src="/logo.png"
         alt="logo"
-        class="pointer-events-none w-[500px] h-[500px]"
+        class="pointer-events-none w-[500px] h-[500px] animate-bounce"
       />
       <div
         id="loginBtn"
