@@ -5,6 +5,7 @@ import HistoryTable from './Table/HistoryTable.js';
 import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import handleButtons from './handleButtons.js';
+import { navigate } from '../../utils/navigate.js';
 
 export default class MyPage extends Component {
   setup() {
@@ -73,6 +74,7 @@ export default class MyPage extends Component {
 
     $wrapper.innerHTML = `
     <div class="w-full h-full flex flex-col overflow-auto">
+      <img id='goBack' src="/eva--arrow-back-fill.svg" alt="close" class='h-8 absolute top-6 left-6 rounded-full p-1 hover:shadow-md'/>
       <div class="w-[calc(100% - 400px)] h-[870px] px-[100px] pb-[50px] min-w-[800px] max-w-[1200px] flex flex-col  m-auto">
           <div id="MyPage_profile_container">
             <div id="MyPage_profile"></div>
@@ -83,6 +85,10 @@ export default class MyPage extends Component {
         </div>
       </div>
     </div>`;
+
+    this.addEvent('click', '#goBack', (e) => {
+      navigate('/');
+    });
   }
 
   setEvent() {
