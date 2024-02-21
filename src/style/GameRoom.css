@@ -1,0 +1,80 @@
+#gameScreenContainer {
+  flex-grow: 1;
+  height: 80%;
+  width: 60%;
+
+  overflow: hidden;
+  margin: auto 30px;
+
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#gameChatContainer {
+  flex-grow: 1;
+  height: 80%;
+  width: 20%;
+
+  overflow: hidden;
+  margin: auto 30px;
+
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#gameScreenInfo {
+  height: 100%;
+  width: 90%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+
+  background-color: white;
+}
+
+#gameScreenPicture1 {
+  height: 80px;
+  width: 80px;
+
+  overflow: hidden;
+  margin: auto;
+
+  background-color: white;
+  border-radius: 100%;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#gameScreenScore {
+  height: 100%;
+  width: 80%;
+
+  overflow: hidden;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+#gameScreenPicture2 {
+  height: 80px;
+  width: 80px;
+
+  overflow: hidden;
+  margin: auto;
+
+  background-color: white;
+  border-radius: 100%;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#gameScreenScoreNum {
+  font-size: 50px;
+  font-weight: bold;
+}
