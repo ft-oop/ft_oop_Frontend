@@ -13,7 +13,6 @@ export default class GameScreen extends Component {
     this.setup();
     this.setEvent();
     this.render();
-    // console.log(this.score[0]);
   }
 
   template() {
