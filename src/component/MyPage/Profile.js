@@ -1,6 +1,6 @@
 import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector';
-import '../../style/MyPage.css';
+import '../../style/myPage.css';
 
 export default class Profile extends Component {
   constructor($target, props, icon1, icon2) {

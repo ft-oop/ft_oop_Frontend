@@ -1,5 +1,5 @@
 import Component from '../../core/Component.js';
-import '../../style/MyPage.css';
+import '../../style/myPage.css';
 import Profile from './Profile.js';
 import HistoryTable from './Table/HistoryTable.js';
 import UserTable from './Table/UserTable.js';
