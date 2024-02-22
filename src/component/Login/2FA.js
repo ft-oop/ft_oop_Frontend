@@ -98,15 +98,12 @@ export default class TwoFA extends Component {
       console.log(data);
 
       navigate('/');
-
-      return true;
     } else {
       // error handling
       console.log('2차인증에 실패했습니다.');
       input.classList.add('border-red-500');
       input.value = '';
       input.focus();
-      return false;
     }
   }
 }
