@@ -78,15 +78,15 @@ async function handleCode() {
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
+  if (response.ok) {
+    const result = await response.json();
+    console.log('res: ', result);
+
+    // 2차인증이 or HOME
+  } else {
     console.log('로그인에 실패했습니다.');
     return;
   }
-
-  const result = response.json();
-  console.log('res: ', result);
-
-  navigate('/');
 }
 
 export default Login;
