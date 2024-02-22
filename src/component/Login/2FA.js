@@ -1,6 +1,7 @@
 import Component from '../../core/Component';
 import { navigate } from '../../utils/navigate.js';
 import { $ } from '../../utils/querySelector';
+import { BASE_URL } from '../../constant/routeInfo';
 
 export default class TwoFA extends Component {
   mounted() {
@@ -68,7 +69,7 @@ export default class TwoFA extends Component {
       return;
     }
 
-    navigate('/');
+    this.handleCode(input);
   }
 
   set2FAWrapper($form) {
@@ -78,5 +79,34 @@ export default class TwoFA extends Component {
     $form.style.flexDirection = 'column';
     $form.style.justifyContent = 'center';
     $form.style.alignItems = 'center';
+  }
+
+  async handleCode(input) {
+    const code = input.value;
+    const res = await fetch(`${BASE_URL}/oauth/login/2FA`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code }),
+    });
+
+    console.log(JSON.stringify({ code }));
+
+    if (Response.ok) {
+      const data = await res.json();
+      console.log(data);
+
+      navigate('/');
+
+      return true;
+    } else {
+      // error handling
+      console.log('2차인증에 실패했습니다.');
+      input.classList.add('border-red-500');
+      input.value = '';
+      input.focus();
+      return false;
+    }
   }
 }
