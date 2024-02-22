@@ -4,7 +4,7 @@ function App($container) {
   this.$container = $container;
 
   const init = () => {
-    socketConnect();
+    // socketConnect();
     new Router($container);
   };
 
