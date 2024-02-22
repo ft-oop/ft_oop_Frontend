@@ -1,5 +1,4 @@
 import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
 
 export default class GameScreen extends Component {
   constructor($target, props, picture1, picture2, score1, score2) {
@@ -27,8 +26,8 @@ export default class GameScreen extends Component {
         </div>
       </div>
 
-      <div class="w-full h-4/5 bg-gray-100">
-
+      <div id="pongScene" class="w-full h-4/5 bg-black">
+        <canvas id="myCanvas" class="w-full h-full"></canvas>
       </div>
     `;
   }

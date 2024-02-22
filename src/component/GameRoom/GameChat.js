@@ -1,5 +1,4 @@
 import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
 
 export default class GameChat extends Component {
   constructor($target, props, picture1, picture2) {

@@ -5,6 +5,7 @@ import GameChat from './GameChat.js';
 import '../../style/GameRoom.css';
 import handleButtons from './HandleGameRoomButton.js';
 import { navigate } from '../../utils/navigate.js';
+import PongGame from './PongGame.js';
 
 export default class GameRoom extends Component {
   constructor($target, props) {
@@ -14,11 +15,14 @@ export default class GameRoom extends Component {
   mounted() {
     this.appendInfoWrapper();
 
-    const $gameScreen = this.$target.querySelector('#gameScreenContainer');
-    const $gameChat = this.$target.querySelector('#gameChatContainer');
+    const $gameScreen = $('#gameScreenContainer');
+    const $gameChat = $('#gameChatContainer');
 
     new GameScreen($gameScreen, this.state, '', '', '2', '1');
     new GameChat($gameChat, this.state, '', '');
+
+    const $gameScene = $('#gameScene');
+    new PongGame($gameScene, this.state);
   }
 
   appendInfoWrapper() {
