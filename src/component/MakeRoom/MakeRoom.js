@@ -1,5 +1,6 @@
 import Component from '../../core/Component';
 import { bootstrapInput } from '../../utils/bootstrap';
+import { $ } from '../../utils/querySelector';
 
 export default class MakeRoom extends Component {
   template() {
@@ -46,13 +47,11 @@ export default class MakeRoom extends Component {
   setEvent() {
     this.addEvent('change', '#inputGroupSelect01', (e) => {
       if (e.target.value === '1') {
-        this.$target
-          .querySelector('#inputGroupSelect02')
-          .setAttribute('disabled', true);
+        const select = $('#inputGroupSelect02');
+        select.setAttribute('disabled', true);
+        select.value = '';
       } else if (e.target.value === '2') {
-        this.$target
-          .querySelector('#inputGroupSelect02')
-          .removeAttribute('disabled', false);
+        $('#inputGroupSelect02').removeAttribute('disabled', false);
       }
     });
   }
