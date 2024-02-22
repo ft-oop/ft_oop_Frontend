@@ -13,7 +13,7 @@ export default class MakeRoom extends Component {
         ${bootstrapInput('이름', '회원님의 방', 'roomName')}
         <div class="input-group w-full flex ">
           <label class="input-group-text w-20 flex justify-center font-medium rounded-r-none" for="inputGroupSelect01">타입</label>
-          <select class="form-select flex-1 border" id="inputGroupSelect01" aria-label="Default select example">
+          <select class="form-select flex-1 border px-[10px]" id="inputGroupSelect01" aria-label="Default select example">
             <option selected></option>
             <option value="1">1:1 대전</option>
             <option value="2">토너먼트</option>
@@ -21,7 +21,7 @@ export default class MakeRoom extends Component {
         </div>
         <div class="input-group w-full flex">
           <label class="input-group-text w-20 flex justify-center font-medium rounded-r-none" for="inputGroupSelect01">인원수</label>
-          <select class="form-select flex-1 border" id="inputGroupSelect01">
+          <select class="form-select flex-1 border px-[10px]" id="inputGroupSelect02">
             <option selected></option>
             <option value="1">4명</option>
             <option value="2">8명</option>
@@ -40,6 +40,20 @@ export default class MakeRoom extends Component {
   mounted() {
     this.addEvent('click', '#cancelBtn', (e) => {
       this.$target.remove();
+    });
+  }
+
+  setEvent() {
+    this.addEvent('change', '#inputGroupSelect01', (e) => {
+      if (e.target.value === '1') {
+        this.$target
+          .querySelector('#inputGroupSelect02')
+          .setAttribute('disabled', true);
+      } else if (e.target.value === '2') {
+        this.$target
+          .querySelector('#inputGroupSelect02')
+          .removeAttribute('disabled', false);
+      }
     });
   }
 }
