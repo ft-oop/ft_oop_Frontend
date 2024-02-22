@@ -39,6 +39,15 @@ export default class Chat extends Component {
         e.target.value = '';
       }
     });
+
+    this.$target.addEventListener('click', (e) => {
+      if (e.target.id === 'chat_send') {
+        const chatInput = this.$target.querySelector('#chat_input');
+        if (chatInput.value === '') return;
+        this.sendMessage(chatInput.value);
+        chatInput.value = '';
+      }
+    });
   }
 
   sendMessage(message) {
