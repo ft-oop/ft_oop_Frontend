@@ -12,19 +12,21 @@ export default class PongGame extends Component {
 
   pong() {
     const canvas = $('#myCanvas');
+    canvas.width = 1088.7;
+    canvas.height = 733.59;
     const ctx = canvas.getContext('2d');
 
     //ball position
     let x = canvas.width / 2;
     let y = canvas.height / 2;
-    const ballRadius = 2;
+    const ballRadius = 10;
 
     //centerbar info
-    let centerbarWidth = 3;
-    let centerbarHeight = 10;
+    let centerbarWidth = 10;
+    let centerbarHeight = 31;
     let centerBardy = 0;
-    let paddleHeight = 30;
-    let paddleWidth = 5;
+    let paddleHeight = 100;
+    let paddleWidth = 10;
 
     //user1 info
     let user1_dx = 3;
@@ -34,8 +36,8 @@ export default class PongGame extends Component {
     let user1_downPressed = false;
 
     //user2 info
-    let dx = 0.8;
-    let dy = -0.8;
+    let dx = 5;
+    let dy = -5;
     let user2_paddleY = (canvas.height - paddleHeight) / 2;
     let user2_upPressed = false;
     let user2_downPressed = false;
@@ -57,7 +59,7 @@ export default class PongGame extends Component {
         );
         ctx.fillStyle = 'white';
         ctx.fill();
-        centerBardy += 20;
+        centerBardy += 70;
       }
       centerBardy = 0;
       ctx.closePath();
@@ -78,16 +80,16 @@ export default class PongGame extends Component {
       ctx.fill();
       ctx.closePath();
       if (user1_upPressed && user1_paddleY < canvas.height - paddleHeight) {
-        user1_paddleY += 3;
+        user1_paddleY += 10;
       } else if (user1_downPressed && user1_paddleY > 0) {
-        user1_paddleY -= 3;
+        user1_paddleY -= 10;
       }
     }
 
     function User2_drawPaddle() {
       ctx.beginPath();
       ctx.rect(
-        canvas.width - paddleWidth - 10,
+        canvas.width - paddleWidth - 15,
         user2_paddleY,
         paddleWidth,
         paddleHeight,
@@ -96,9 +98,9 @@ export default class PongGame extends Component {
       ctx.fill();
       ctx.closePath();
       if (user2_upPressed && user2_paddleY < canvas.height - paddleHeight) {
-        user2_paddleY += 3;
+        user2_paddleY += 10;
       } else if (user2_downPressed && user2_paddleY > 0) {
-        user2_paddleY -= 3;
+        user2_paddleY -= 10;
       }
     }
 
@@ -119,9 +121,9 @@ export default class PongGame extends Component {
 
     function User2_gameover() {
       if (x + dx > canvas.width - ballRadius) {
-        alert('USER1 WIN');
-        clearInterval(interval);
-        document.location.reload();
+        //alert('USER1 WIN');
+        //clearInterval(interval);
+        //document.location.reload();
       } else if (x + dx < ballRadius + paddleWidth + 15) {
         if (
           y > user1_paddleY &&
