@@ -8,8 +8,31 @@ import { navigate } from '../../utils/navigate.js';
 import PongGame from './PongGame.js';
 
 export default class GameRoom extends Component {
+  player1_ready;
+  player2_ready;
+  player1_score;
+  player2_score;
+
   constructor($target, props) {
     super($target, props);
+    this.setup();
+  }
+
+  setup() {
+    this.player1_ready = false;
+    this.player2_ready = true;
+    this.player1_score = 0;
+    this.player2_score = 0;
+  }
+
+  setEvent() {
+    his.$target.addEventListener('click', (e) => {
+      if (e.target.id === 'chat_send') {
+        const chatInput = this.$target.querySelector('#chat_input');
+        this.sendMessage(chatInput.value);
+        chatInput.value = '';
+      }
+    });
   }
 
   mounted() {
@@ -18,7 +41,14 @@ export default class GameRoom extends Component {
     const $gameScreen = $('#gameScreenContainer');
     const $gameChat = $('#gameChatContainer');
 
-    new GameScreen($gameScreen, this.state, '', '', '2', '1');
+    new GameScreen(
+      $gameScreen,
+      this.state,
+      '',
+      '',
+      this.player1_score,
+      this.player2_score,
+    );
     new GameChat($gameChat, this.state, '', '');
 
     const $gameScene = $('#gameScene');

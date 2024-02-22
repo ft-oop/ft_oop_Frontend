@@ -89,7 +89,7 @@ export default class PongGame extends Component {
     function User2_drawPaddle() {
       ctx.beginPath();
       ctx.rect(
-        canvas.width - paddleWidth - 15,
+        canvas.width - paddleWidth - 20,
         user2_paddleY,
         paddleWidth,
         paddleHeight,
