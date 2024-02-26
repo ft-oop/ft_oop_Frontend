@@ -26,7 +26,7 @@ export default class NotFound extends Component {
         <p id="NotFoundDescription"
           class="
             flex align-center item-center justify-center
-            text-4xl text-gray-600 font-bold
+            text-3xl text-gray-600 font-semibold
             my-[20px]
           "
           >
