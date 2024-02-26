@@ -81,29 +81,29 @@ export default class TwoFA extends Component {
     $form.style.alignItems = 'center';
   }
 
-  async handleCode(input) {
-    const code = input.value;
-    const res = await fetch(`${BASE_URL}/oauth/login/2FA`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ code }),
-    });
+  // async handleCode(input) {
+  //   const code = input.value;
+  //   const res = await fetch(`${BASE_URL}/oauth/login/2FA`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ code }),
+  //   });
 
-    console.log(JSON.stringify({ code }));
+  //   console.log(JSON.stringify({ code }));
 
-    if (Response.ok) {
-      const data = await res.json();
-      console.log(data);
+  //   if (Response.ok) {
+  //     const data = await res.json();
+  //     console.log(data);
 
-      navigate('/');
-    } else {
-      // error handling
-      console.log('2차인증에 실패했습니다.');
-      input.classList.add('border-red-500');
-      input.value = '';
-      input.focus();
-    }
-  }
+  //     navigate('/');
+  //   } else {
+  //     // error handling
+  //     console.log('2차인증에 실패했습니다.');
+  //     input.classList.add('border-red-500');
+  //     input.value = '';
+  //     input.focus();
+  //   }
+  // }
 }

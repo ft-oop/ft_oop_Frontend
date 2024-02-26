@@ -5,11 +5,12 @@ import Chat from './Modal/Chat.js';
 import { $ } from '../../utils/querySelector.js';
 import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
+import apiController from '../../utils/apiController.js';
 
 let prevFileName = '/image1.jpg';
 let newFileName = '';
 
-export default function handleButtons($target, state, button) {
+export default async function handleButtons($target, state, button) {
   /*** 친구, 차단 목록 테이블 전환 ***/
   if (
     button.classList.contains('icon_right') ||
@@ -30,7 +31,11 @@ export default function handleButtons($target, state, button) {
     // 제출
   } else if (button.id === 'edit_submit') {
     console.log('edit submit');
-    handleModalSubmmit($target, button);
+    const data = await handleModalSubmmit($target, button);
+
+    console.log(data);
+
+    button.closest('#Modal_overlay').remove();
 
     // 편집 닫기
   } else if (button.id === 'edit_modal_close') {
@@ -138,14 +143,17 @@ function uploadImage(e) {
   };
 }
 
-function handleModalSubmmit($target, button) {
+async function handleModalSubmmit($target, button) {
   console.log('edit modal submit');
 
   if (newFileName !== '') {
     $('#mypage_avatar').setAttribute('src', newFileName);
     prevFileName = newFileName;
   }
-  button.closest('#Modal_overlay').remove();
+
+  const data = await postEditInfo();
+
+  return data;
 }
 
 function handleEditModalClose($target, button, prevFileName) {
@@ -268,5 +276,27 @@ function handleConfirmOK($target, state, button) {
 
       new Confirm(modal, 'delete', state.userName);
     }
+  }
+}
+
+async function postEditInfo() {
+  try {
+    const config = {
+      method: 'post',
+      url: '/mypage/editor',
+      data: {
+        userName: 'suhwpark',
+        nickName: 'nick',
+        picture: '123',
+      },
+    };
+
+    const res = await apiController(config);
+    const { data } = res;
+
+    return data;
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 }
