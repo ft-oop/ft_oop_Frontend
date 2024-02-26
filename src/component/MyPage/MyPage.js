@@ -6,7 +6,7 @@ import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import handleButtons from './handleButtons.js';
 import { navigate } from '../../utils/navigate.js';
-import apiController from '../../api/apiController.js';
+import apiController from '../../utils/apiController.js';
 
 export default class MyPage extends Component {
   async getMyPageInfo() {
