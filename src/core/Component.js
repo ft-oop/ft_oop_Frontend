@@ -7,11 +7,25 @@ export default class Component {
     this.$target = $target;
     this.props = props;
     this.setup();
+    // this.setEvent();
+    // this.render();
+  }
+
+  async setup() {
+    await this.asyncInitialization();
+
     this.setEvent();
     this.render();
   }
 
-  setup() {}
+  async asyncInitialization() {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   mounted() {}
 
   template() {

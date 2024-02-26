@@ -1,6 +1,7 @@
 import { $ } from '../../utils/querySelector.js';
 import { BASE_URL } from '../../constant/routeInfo.js';
 import { navigate } from '../../utils/navigate.js';
+import apiController from '../../api/apiController.js';
 
 function Login($container) {
   this.$container = $container;
