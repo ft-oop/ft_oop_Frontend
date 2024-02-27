@@ -23,8 +23,6 @@ export default class Loading extends Component {
     bubble.innerHTML = `
       <img src="/bubble.png" alt="bubbles"
         class="
-          w-200 h-200 my-auto mx-[20px] flex justify-center item-center align-center
-          animate-wiggle
         "
       />
     `;
