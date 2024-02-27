@@ -329,10 +329,12 @@ function handleConfirmOK($target, state, button) {
     if (document.querySelector('#Friend_table')) {
       console.log('confirm_ok: delete friend');
 
+      // post
       new Confirm(modal, 'friend', state.userName);
     } else {
       console.log('confirm_ok: delete block');
 
+      // post
       new Confirm(modal, 'delete', state.userName);
     }
   }
