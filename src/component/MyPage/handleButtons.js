@@ -59,7 +59,10 @@ export default async function handleButtons($target, state, button) {
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
-    handleDeleteFriendOfUserModal($target, state, button);
+    const res = await handleDeleteFriendOfUserModal($target, state, button);
+
+    if (res.state == 200 && res.data === 'OK')
+      new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
@@ -216,13 +219,23 @@ async function handleAddFriendOfUserModal($target, state, button) {
   return res;
 }
 
-function handleDeleteFriendOfUserModal($target, state, button) {
+async function handleDeleteFriendOfUserModal($target, state, button) {
   console.log('delete friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
+  const config = {
+    method: 'delete',
+    url: '/friend/delete',
+    data: {
+      userName: state.userName,
+      friendName: userName,
+    },
+  };
+
+  const res = await apiController(config);
+  return res;
 }
 
 function handleBlockUsefOfUserModal($target, state, button) {
