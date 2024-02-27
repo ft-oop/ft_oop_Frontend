@@ -283,6 +283,10 @@ async function postEditInfo(state, newFileName) {
   try {
     const newNick = $('#nickname_upload').value;
 
+    console.log('userName: ', state.userName);
+    console.log('newNick: ', newNick);
+    console.log('newFileName: ', newFileName);
+
     const config = {
       method: 'post',
       url: '/mypage/editor',
