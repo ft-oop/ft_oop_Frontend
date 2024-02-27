@@ -6,9 +6,39 @@ import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import handleButtons from './handleButtons.js';
 import { navigate } from '../../utils/navigate.js';
+import apiController from '../../utils/apiController.js';
 
 export default class MyPage extends Component {
-  setup() {
+  async getMyPageInfo() {
+    try {
+      const params = {
+        userName: 'suhwpark',
+      };
+
+      const queryString = Object.keys(params)
+        .map(
+          (key) =>
+            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
+        )
+        .join('&');
+
+      const config = {
+        method: 'get',
+        url: '/mypage?' + queryString,
+      };
+      const res = await apiController(config);
+      const { data } = res;
+
+      return data;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
+  async setup() {
+    this.state = await this.getMyPageInfo();
+
     this.state = {
       userName: 'user',
       picture: '',
@@ -51,6 +81,9 @@ export default class MyPage extends Component {
         },
       ],
     };
+
+    this.setEvent();
+    this.render();
   }
 
   mounted() {
@@ -59,6 +92,8 @@ export default class MyPage extends Component {
     const $profile = this.$target.querySelector('#MyPage_profile');
     const $historyTable = this.$target.querySelector('#MyPage_info__history');
     const $friendTable = this.$target.querySelector('#MyPage_info__user_list');
+
+    console.log(this.state);
 
     new Profile($profile, this.state, '', '/edit.svg');
     new HistoryTable($historyTable, this.state);

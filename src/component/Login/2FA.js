@@ -2,6 +2,7 @@ import Component from '../../core/Component';
 import { navigate } from '../../utils/navigate.js';
 import { $ } from '../../utils/querySelector';
 import { BASE_URL } from '../../constant/routeInfo';
+import apiController from '../../utils/apiController.js';
 
 export default class TwoFA extends Component {
   mounted() {
@@ -83,27 +84,42 @@ export default class TwoFA extends Component {
 
   async handleCode(input) {
     const code = input.value;
-    const res = await fetch(`${BASE_URL}/oauth/login/2FA`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ code }),
-    });
 
-    console.log(JSON.stringify({ code }));
+    const config = {
+      method: 'post',
+      url: '/oauth/login/2FA',
+      data: { code },
+    };
 
-    if (Response.ok) {
-      const data = await res.json();
-      console.log(data);
+    const res = await apiController(config);
+    const { data } = res;
 
-      navigate('/');
-    } else {
-      // error handling
-      console.log('2차인증에 실패했습니다.');
-      input.classList.add('border-red-500');
-      input.value = '';
-      input.focus();
-    }
+    console.log(data);
   }
+
+  // async handleCode(input) {
+  //   const code = input.value;
+  //   const res = await fetch(`${BASE_URL}/oauth/login/2FA`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ code }),
+  //   });
+
+  //   console.log(JSON.stringify({ code }));
+
+  //   if (Response.ok) {
+  //     const data = await res.json();
+  //     console.log(data);
+
+  //     navigate('/');
+  //   } else {
+  //     // error handling
+  //     console.log('2차인증에 실패했습니다.');
+  //     input.classList.add('border-red-500');
+  //     input.value = '';
+  //     input.focus();
+  //   }
+  // }
 }
