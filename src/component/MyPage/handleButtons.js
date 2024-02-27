@@ -52,7 +52,10 @@ export default async function handleButtons($target, state, button) {
     // 아이콘 클릭 이벤트 발생 시 상황에 맞는 모달 새로 넣어야 함..
     // 친구 추가
   } else if (button.id === 'icon_add_friend') {
-    handleAddFriendOfUserModal($target, state, button);
+    const res = handleAddFriendOfUserModal($target, state, button);
+
+    if (res.state == 200 && res.data === 'OK')
+      new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
@@ -193,13 +196,24 @@ function handleUser($target, button) {
   }
 }
 
-function handleAddFriendOfUserModal($target, state, button) {
+async function handleAddFriendOfUserModal($target, state, button) {
   console.log('add friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
+  const config = {
+    method: 'post',
+    url: '/friend/add',
+    data: {
+      userName: state.userName,
+      friendName: userName,
+    },
+  };
+
+  const res = await apiController(config);
+
+  return res;
 }
 
 function handleDeleteFriendOfUserModal($target, state, button) {
