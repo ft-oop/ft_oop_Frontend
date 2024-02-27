@@ -39,6 +39,7 @@ export default class MyPage extends Component {
   async setup() {
     this.state = await this.getMyPageInfo();
 
+    // 백엔드 연결 시 삭제
     this.state = {
       userName: 'user',
       picture: '',
