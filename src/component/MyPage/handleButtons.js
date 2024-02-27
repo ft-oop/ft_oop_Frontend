@@ -9,6 +9,7 @@ import apiController from '../../utils/apiController.js';
 
 let prevFileName = '/image1.jpg';
 let newFileName = '';
+let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
   /*** 친구, 차단 목록 테이블 전환 ***/
@@ -94,8 +95,14 @@ export default async function handleButtons($target, state, button) {
     /*** 확인 모달 ***/
     // 확인 모달 열기
   } else if (button.id === 'confirm_ok') {
-    handleConfirmOK($target, state, button);
+    const { res, flag } = await handleConfirmOK($target, state, button);
+    const modal = button.closest('#Modal_overlay');
 
+    if (res.state == 200 && res.data === 'OK') {
+      if (flag == tableNumbers.FRIEND)
+        new Confirm(modal, 'friend', state.userName);
+      else new Confirm(modal, 'delete', state.userName);
+    }
     // 확인 모달 닫기
   } else if (button.id === 'modal_close') {
     console.log('modal close');
@@ -311,33 +318,50 @@ function handleDelete($target, state, button) {
 
   $target.appendChild(confirm);
 
-  const sibling =
+  friendToDelete =
     button.parentNode.previousSibling.previousSibling.previousSibling
       .previousSibling.textContent;
 
   if (document.querySelector('#Friend_table')) {
-    new Confirm(confirm, 'friend', state.userName, sibling);
+    new Confirm(confirm, 'friend', state.userName, friendToDelete);
   } else {
-    new Confirm(confirm, 'block', state.userName, sibling);
+    new Confirm(confirm, 'block', state.userName, friendToDelete);
   }
 }
 
-function handleConfirmOK($target, state, button) {
+async function handleConfirmOK($target, state, button) {
   const modal = button.closest('#Modal_overlay');
+  let config;
 
   if (modal && modal.id === 'Modal_overlay') {
     if (document.querySelector('#Friend_table')) {
       console.log('confirm_ok: delete friend');
 
-      // post
-      new Confirm(modal, 'friend', state.userName);
+      config = {
+        method: 'post',
+        url: '/friend/delete',
+        data: {
+          userName: state.userName,
+          friendName: friendToDelete,
+        },
+      };
     } else {
       console.log('confirm_ok: delete block');
 
-      // post
-      new Confirm(modal, 'delete', state.userName);
+      config = {
+        method: 'post',
+        url: '/friend/ban-list/delete',
+        data: {
+          userName: state.userName,
+          blockName: friendToDelete,
+        },
+      };
     }
   }
+
+  const res = await apiController(config);
+
+  return { res, flag: tableNumbers.FRIEND };
 }
 
 async function postEditInfo(state, newFileName) {
