@@ -1,6 +1,7 @@
 import Component from '../../../core/Component.js';
 import '../../../style/Table.css';
 import { tableNumbers } from '../../../constant/tableNumbers.js';
+import apiController from '../../../utils/apiController.js';
 
 export default class UserTable extends Component {
   constructor($target, title, n, props) {
@@ -12,6 +13,40 @@ export default class UserTable extends Component {
     this.setup();
     this.setEvent();
     this.render();
+  }
+
+  async setup() {
+    this.state = await this.getUserInfo();
+
+    this.setEvent();
+    this.render();
+  }
+
+  async getUserInfo() {
+    try {
+      const params = {
+        userName: 'suhwpark',
+      };
+
+      const queryString = Object.keys(params)
+        .map(
+          (key) =>
+            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
+        )
+        .join('&');
+
+      const config = {
+        method: 'get',
+        url: '/users/info?' + queryString,
+      };
+      const res = await apiController(config);
+      const { data } = res;
+
+      return data;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   }
 
   template() {

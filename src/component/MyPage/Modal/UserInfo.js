@@ -34,6 +34,31 @@ export default class UserInfo extends Component {
           winner: 'op2',
           scoreDate: '2024-01-29',
         },
+        {
+          userName: 'op4',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op4',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op4',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op4',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op4',
+          winner: 'op2',
+          scoreDate: '2024-01-29',
+        },
       ],
     };
   }
@@ -79,9 +104,6 @@ export default class UserInfo extends Component {
     information.appendChild(userHistoryTable);
 
     new HistoryTable(userHistoryTable, this.state);
-
-    const tbody = this.$target.querySelector('tbody');
-    tbody.style.height = '410px';
   }
 
   setUserInfoContainer(info) {
