@@ -31,7 +31,7 @@ export default async function handleButtons($target, state, button) {
     // 제출
   } else if (button.id === 'edit_submit') {
     console.log('edit submit');
-    const data = await handleModalSubmmit($target, button);
+    const data = await handleModalSubmmit($target, state, button);
 
     console.log(data);
 
@@ -143,7 +143,7 @@ function uploadImage(e) {
   };
 }
 
-async function handleModalSubmmit($target, button) {
+async function handleModalSubmmit($target, state, button) {
   console.log('edit modal submit');
 
   if (newFileName !== '') {
@@ -151,7 +151,7 @@ async function handleModalSubmmit($target, button) {
     prevFileName = newFileName;
   }
 
-  const data = await postEditInfo();
+  const data = await postEditInfo(state, newFileName);
 
   return data;
 }
@@ -279,15 +279,17 @@ function handleConfirmOK($target, state, button) {
   }
 }
 
-async function postEditInfo() {
+async function postEditInfo(state, newFileName) {
   try {
+    const newNick = $('#nickname_upload').value;
+
     const config = {
       method: 'post',
       url: '/mypage/editor',
       data: {
-        userName: 'suhwpark',
-        nickName: 'nick',
-        picture: '123',
+        userName: state.userName,
+        nickName: newNick,
+        picture: newFileName,
       },
     };
 
