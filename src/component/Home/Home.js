@@ -5,8 +5,44 @@ import Category from './Category';
 import { navigate } from '../../utils/navigate.js';
 import MakeRoom from '../MakeRoom/MakeRoom.js';
 import RandomMatch from '../RandomMatch/RandomMatch.js';
+import apiController from '../../utils/apiController.js';
 
 export default class Home extends Component {
+  async setup() {
+    this.state = await this.getUserInfo();
+
+    this.setEvent();
+    this.render();
+  }
+
+  async getUserInfo() {
+    try {
+      const params = {
+        userName: 'suhwpark',
+      };
+
+      const queryString = Object.keys(params)
+        .map(
+          (key) =>
+            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
+        )
+        .join('&');
+
+      const config = {
+        method: 'get',
+        url: '/Home?' + queryString,
+      };
+
+      const res = await apiController(config);
+      const { data } = res;
+
+      return data;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
   mounted() {
     const $category = document.createElement('div');
     const $info = document.createElement('div');

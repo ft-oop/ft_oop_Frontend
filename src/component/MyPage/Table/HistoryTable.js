@@ -1,5 +1,6 @@
 import Component from '../../../core/Component.js';
 import '../../../style/Table.css';
+import { $ } from '../../../utils/querySelector.js';
 
 export default class HistoryTable extends Component {
   template() {
@@ -8,11 +9,20 @@ export default class HistoryTable extends Component {
         <caption>
           경기 기록
         </caption>
-        <tbody>
-          ${this.generateHistoryTable()}
+        <tbody class="TableBody">
         </tbody>
       </table>
     `;
+  }
+
+  mounted() {
+    const tbody = this.$target.querySelector('.TableBody');
+
+    if ($('#user_info_history')) {
+      tbody.style.height = '410px';
+    }
+
+    tbody.innerHTML = this.generateHistoryTable();
   }
 
   generateHistoryTable() {

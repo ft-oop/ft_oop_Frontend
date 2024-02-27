@@ -9,6 +9,7 @@ import apiController from '../../utils/apiController.js';
 
 let prevFileName = '/image1.jpg';
 let newFileName = '';
+let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
   /*** 친구, 차단 목록 테이블 전환 ***/
@@ -52,19 +53,35 @@ export default async function handleButtons($target, state, button) {
     // 아이콘 클릭 이벤트 발생 시 상황에 맞는 모달 새로 넣어야 함..
     // 친구 추가
   } else if (button.id === 'icon_add_friend') {
-    handleAddFriendOfUserModal($target, state, button);
+    const res = handleAddFriendOfUserModal($target, state, button);
+    const modalOrigin = button.closest('#Modal_overlay');
+
+    if (res.state == 200 && res.data === 'OK')
+      new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
-    handleDeleteFriendOfUserModal($target, state, button);
+    const res = await handleDeleteFriendOfUserModal($target, state, button);
+    const modalOrigin = button.closest('#Modal_overlay');
+
+    if (res.state == 200 && res.data === 'OK')
+      new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
-    handleBlockUsefOfUserModal($target, state, button);
+    const res = await handleBlockUsefOfUserModal($target, state, button);
+    const modalOrigin = button.closest('#Modal_overlay');
+
+    if (res.state == 200 && res.data === 'OK')
+      new UserInfo(modalOrigin, userName, '', '/unblock.svg');
 
     // 차단 해제
   } else if (button.id === 'icon_unblock') {
-    handleUnblockUsefOfUserModal($target, state, button);
+    const res = await handleUnblockUsefOfUserModal($target, state, button);
+    const modalOrigin = button.closest('#Modal_overlay');
+
+    if (res.state == 200 && res.data === 'OK')
+      new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
 
     /*** 테이블 내 아이콘 핸들링 ***/
     // DM
@@ -78,8 +95,14 @@ export default async function handleButtons($target, state, button) {
     /*** 확인 모달 ***/
     // 확인 모달 열기
   } else if (button.id === 'confirm_ok') {
-    handleConfirmOK($target, state, button);
+    const { res, flag } = await handleConfirmOK($target, state, button);
+    const modal = button.closest('#Modal_overlay');
 
+    if (res.state == 200 && res.data === 'OK') {
+      if (flag == tableNumbers.FRIEND)
+        new Confirm(modal, 'friend', state.userName);
+      else new Confirm(modal, 'delete', state.userName);
+    }
     // 확인 모달 닫기
   } else if (button.id === 'modal_close') {
     console.log('modal close');
@@ -193,40 +216,83 @@ function handleUser($target, button) {
   }
 }
 
-function handleAddFriendOfUserModal($target, state, button) {
+async function handleAddFriendOfUserModal($target, state, button) {
   console.log('add friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
+  const config = {
+    method: 'post',
+    url: '/friend/add',
+    data: {
+      userName: state.userName,
+      friendName: userName,
+    },
+  };
+
+  const res = await apiController(config);
+
+  return res;
 }
 
-function handleDeleteFriendOfUserModal($target, state, button) {
+async function handleDeleteFriendOfUserModal($target, state, button) {
   console.log('delete friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
+  const config = {
+    method: 'delete',
+    url: '/friend/delete',
+    data: {
+      userName: state.userName,
+      friendName: userName,
+    },
+  };
+
+  const res = await apiController(config);
+  return res;
 }
 
-function handleBlockUsefOfUserModal($target, state, button) {
+async function handleBlockUsefOfUserModal($target, state, button) {
   console.log('block user');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  new UserInfo(modalOrigin, userName, '', '/unblock.svg');
+  const config = {
+    method: 'post',
+    url: '/friend/ban-list/add',
+    data: {
+      userName: state.userName,
+      blockName: userName,
+    },
+  };
+
+  const res = await apiController(config);
+
+  return res;
 }
 
-function handleUnblockUsefOfUserModal($target, state, button) {
+async function handleUnblockUsefOfUserModal($target, state, button) {
   console.log('unblock user');
 
   const modalOrigin = button.closest('#Modal_overlay');
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
-  new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
+  const config = {
+    method: 'post',
+    url: '/friend/ban-list/delete',
+    data: {
+      userName: state.userName,
+      blockName: userName,
+    },
+  };
+
+  const res = apiController(config);
+
+  return res;
 }
 
 function handleDM($target, state, button) {
@@ -252,36 +318,59 @@ function handleDelete($target, state, button) {
 
   $target.appendChild(confirm);
 
-  const sibling =
+  friendToDelete =
     button.parentNode.previousSibling.previousSibling.previousSibling
       .previousSibling.textContent;
 
   if (document.querySelector('#Friend_table')) {
-    new Confirm(confirm, 'friend', state.userName, sibling);
+    new Confirm(confirm, 'friend', state.userName, friendToDelete);
   } else {
-    new Confirm(confirm, 'block', state.userName, sibling);
+    new Confirm(confirm, 'block', state.userName, friendToDelete);
   }
 }
 
-function handleConfirmOK($target, state, button) {
+async function handleConfirmOK($target, state, button) {
   const modal = button.closest('#Modal_overlay');
+  let config;
 
   if (modal && modal.id === 'Modal_overlay') {
     if (document.querySelector('#Friend_table')) {
       console.log('confirm_ok: delete friend');
 
-      new Confirm(modal, 'friend', state.userName);
+      config = {
+        method: 'post',
+        url: '/friend/delete',
+        data: {
+          userName: state.userName,
+          friendName: friendToDelete,
+        },
+      };
     } else {
       console.log('confirm_ok: delete block');
 
-      new Confirm(modal, 'delete', state.userName);
+      config = {
+        method: 'post',
+        url: '/friend/ban-list/delete',
+        data: {
+          userName: state.userName,
+          blockName: friendToDelete,
+        },
+      };
     }
   }
+
+  const res = await apiController(config);
+
+  return { res, flag: tableNumbers.FRIEND };
 }
 
 async function postEditInfo(state, newFileName) {
   try {
     const newNick = $('#nickname_upload').value;
+
+    console.log('userName: ', state.userName);
+    console.log('newNick: ', newNick);
+    console.log('newFileName: ', newFileName);
 
     const config = {
       method: 'post',
