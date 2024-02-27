@@ -25,9 +25,6 @@ export default class MyPage extends Component {
       const config = {
         method: 'get',
         url: '/mypage?' + queryString,
-        // data: {
-        //   userName: 'suhwpark',
-        // },
       };
       const res = await apiController(config);
       const { data } = res;
