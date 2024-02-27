@@ -2,6 +2,7 @@ import Component from '../../core/Component';
 import { navigate } from '../../utils/navigate.js';
 import { $ } from '../../utils/querySelector';
 import { BASE_URL } from '../../constant/routeInfo';
+import apiController from '../../utils/apiController.js';
 
 export default class TwoFA extends Component {
   mounted() {
@@ -79,6 +80,21 @@ export default class TwoFA extends Component {
     $form.style.flexDirection = 'column';
     $form.style.justifyContent = 'center';
     $form.style.alignItems = 'center';
+  }
+
+  async handleCode(input) {
+    const code = input.value;
+
+    const config = {
+      method: 'post',
+      url: '/oauth/login/2FA',
+      data: { code },
+    };
+
+    const res = await apiController(config);
+    const { data } = res;
+
+    console.log(data);
   }
 
   // async handleCode(input) {

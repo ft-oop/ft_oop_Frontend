@@ -60,6 +60,36 @@ function Login($container) {
   this.init();
 }
 
+// async function handleCode() {
+//   const queryString = window.location.search;
+//   const urlParams = new URLSearchParams(queryString);
+//   const code = urlParams.get('code');
+
+//   if (!code) return;
+
+//   const data = {
+//     code,
+//   };
+
+//   const response = await fetch(`${BASE_URL}/oauth/login`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(data),
+//   });
+
+//   if (response.ok) {
+//     const result = await response.json();
+//     console.log('res: ', result);
+
+//     // 2차인증이 or HOME
+//   } else {
+//     console.log('로그인에 실패했습니다.');
+//     return;
+//   }
+// }
+
 async function handleCode() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -67,27 +97,18 @@ async function handleCode() {
 
   if (!code) return;
 
-  const data = {
-    code,
+  const config = {
+    method: 'post',
+    url: '/oauth/login',
+    data: {
+      code,
+    },
   };
 
-  const response = await fetch(`${BASE_URL}/oauth/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+  const res = await apiController(config);
+  const { data } = res;
 
-  if (response.ok) {
-    const result = await response.json();
-    console.log('res: ', result);
-
-    // 2차인증이 or HOME
-  } else {
-    console.log('로그인에 실패했습니다.');
-    return;
-  }
+  console.log(data);
 }
 
 export default Login;
