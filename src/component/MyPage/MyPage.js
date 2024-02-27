@@ -25,9 +25,6 @@ export default class MyPage extends Component {
       const config = {
         method: 'get',
         url: '/mypage?' + queryString,
-        // data: {
-        //   userName: 'suhwpark',
-        // },
       };
       const res = await apiController(config);
       const { data } = res;
@@ -41,6 +38,49 @@ export default class MyPage extends Component {
 
   async setup() {
     this.state = await this.getMyPageInfo();
+
+    this.state = {
+      userName: 'user',
+      picture: '',
+      totalWinScore: 1,
+      totalLoseScore: 1,
+      matchHistories: [
+        {
+          userName: 'op1',
+          winner: 'user',
+          scoreDate: '2024-01-29',
+        },
+        {
+          userName: 'op2',
+          winner: 'op2',
+          scoreDate: '2024-01-30',
+        },
+      ],
+      friends: [
+        {
+          userName: 'friend1',
+          picture: '',
+        },
+        {
+          userName: 'friend2',
+          picture: '',
+        },
+        {
+          userName: 'friend3',
+          picture: '',
+        },
+      ],
+      blockedUsers: [
+        {
+          userName: 'block1',
+          picture: '',
+        },
+        {
+          userName: 'block2',
+          picture: '',
+        },
+      ],
+    };
 
     this.setEvent();
     this.render();

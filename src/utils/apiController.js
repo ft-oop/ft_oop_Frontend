@@ -3,7 +3,7 @@ import { navigate } from './navigate.js';
 import NotFound from '../component/notfound.js';
 
 const apiController = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: 'http://localhost:5173/',
 });
 
 // 요청 인터셉터 추가하기(요청 전)
