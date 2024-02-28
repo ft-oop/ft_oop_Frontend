@@ -3,6 +3,16 @@ import Component from '../core/Component.js';
 import { $ } from '../utils/querySelector.js';
 
 export default class Loading extends Component {
+  constructor($target, props) {
+    super($target, props);
+    this.$target = $target;
+    this.props = props;
+    this.setup();
+
+    this.size = [];
+    this.speed = [];
+  }
+
   template() {
     return `
     `;
@@ -17,30 +27,30 @@ export default class Loading extends Component {
 
     this.$target.appendChild(wrapper);
 
-    for (let i = 0; i < 10; i++) {
-      this.createBubbles();
+    for (let i = 0; i < 7; i++) {
+      this.createBubbles(i);
     }
   }
 
-  createBubbles() {
+  createBubbles(i) {
     const bubble = document.createElement('div');
     $('#LoadingWrapper').appendChild(bubble);
 
     bubble.classList.add('Loading');
-    this.setBubbleStyle(bubble);
+    this.setBubbleStyle(bubble, i);
 
     bubble.innerHTML = `
       <img src="/bubble.png" alt="bubbles" class="w-full h-full"/>
     `;
   }
 
-  setBubbleStyle(bubble) {
-    const size = Math.floor(Math.random() * 400) + 200;
+  setBubbleStyle(bubble, i) {
+    let size = Math.floor(Math.random() * 40) + 20;
+    let speed = Math.floor(Math.random() * 5) + 5;
     const delay = Math.random() * 5;
-    const speed = Math.floor(Math.random() * 5) + 5;
 
     // 버블 사이의 간격과 위치 배열 생성
-    const distanceBetweenBubbles = 10; // 버블 사이의 간격
+    const distanceBetweenBubbles = 14; // 버블 사이의 간격
     const numberOfBubbles = Math.floor(100 / distanceBetweenBubbles); // 버블 개수
     const locations = Array.from(
       { length: numberOfBubbles },
@@ -48,8 +58,8 @@ export default class Loading extends Component {
     ); // 버블 위치 목록
 
     // 랜덤하게 위치를 선택
-    const randomIndex = Math.floor(Math.random() * locations.length);
-    const location = locations[randomIndex];
+    const location = locations[i];
+    console.log(size, delay, speed, location);
 
     bubble.style.bottom = `-${size}px`;
     bubble.style.left = `${location}%`;
@@ -83,5 +93,14 @@ export default class Loading extends Component {
         bottom: 100%;
       }
     }`);
+  }
+
+  isSimilarValueExists(value, array, threshold) {
+    for (let i = 0; i < array.length; i++) {
+      if (Math.abs(value - array[i]) <= threshold) {
+        return true;
+      }
+    }
+    return false;
   }
 }
