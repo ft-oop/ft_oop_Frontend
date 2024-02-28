@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { navigate } from './navigate.js';
-import NotFound from '../component/notfound.js';
 
 const apiController = axios.create({
   baseURL: 'http://localhost:5173/', // 서버 8000
