@@ -69,7 +69,6 @@ export default class Loading extends Component {
     ); // 버블 위치 목록
 
     const location = locations[i];
-    console.log(size, delay, speed, location);
 
     // 버블 스타일 설정
     bubble.style.bottom = `-${size}px`;
