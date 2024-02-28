@@ -1,0 +1,8 @@
+.Loading {
+  position: fixed;
+
+  animation-name: shaking, goUp;
+
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: ease-in-out, linear;
+}
