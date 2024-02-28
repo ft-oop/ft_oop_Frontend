@@ -3,6 +3,15 @@ import Component from '../core/Component.js';
 import { $ } from '../utils/querySelector.js';
 
 export default class Loading extends Component {
+  constructor($target, props, notFound = null) {
+    super($target, props);
+
+    this.$target = $target;
+    this.props = props;
+    this.notFound = notFound;
+    this.setup();
+  }
+
   template() {
     return ``;
   }
@@ -13,6 +22,7 @@ export default class Loading extends Component {
 
     this.$target.appendChild(wrapper);
 
+    // 버블 개수 설정
     for (let i = 0; i < 20; i++) {
       this.createBubbles(i);
     }
@@ -24,40 +34,11 @@ export default class Loading extends Component {
 
     this.$target.appendChild(loading);
 
-    loading.innerHTML = `
-      <div id="Loading" class="w-[100vw] h-[100vh] flex flex-col justify-center item-center">
-        <h1 id="LoadingTitle"
-          class="
-            flex align-center item-center justify-center
-            text-8xl text-gray-600 font-bold
-            my-[20px]
-          "
-        >
-          <img src="/bubbles_emoji.png" alt="bubbles"
-            class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
-          />
-          Loading...
-          <img src="/bubbles_emoji.png" alt="bubbles"
-            class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
-          />
-        </h1>
-      </div>
-    `;
-
-    // . .. ... . .. ...
-    // const loadingText = document.getElementById('LoadingTitle');
-    // let dots = '.';
-
-    // setInterval(function () {
-    //   dots += '.';
-    //   if (dots.length > 3) dots = '';
-
-    //   loadingText.innerHTML = `
-    //     <img src="/bubbles_emoji.png" alt="bubbles" class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"/>
-    //     Loading${dots}
-    //     <img src="/bubbles_emoji.png" alt="bubbles" class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"/>
-    // `;
-    // }, 500);
+    if (this.notFound == 404) {
+      this.setNotFound(loading);
+    } else {
+      this.setLoading(loading);
+    }
   }
 
   createBubbles(i) {
@@ -123,5 +104,73 @@ export default class Loading extends Component {
         bottom: 100%;
       }
     }`);
+  }
+
+  setNotFound(loading) {
+    loading.innerHTML = `
+    <div id="NotFound" class="w-[100vw] h-[100vh] flex flex-col justify-center item-center">
+    <h1 id="NotFoundTitle"
+      class="
+        flex align-center item-center justify-center
+        text-8xl text-gray-600 font-bold
+        my-[20px]
+      "
+      >
+      <img src="/bubbles_emoji.png" alt="bubbles"
+        class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
+      />
+      404 Not Found
+      <img src="/bubbles_emoji.png" alt="bubbles"
+        class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
+      />
+    </h1>
+    <p id="NotFoundDescription"
+      class="
+        flex align-center item-center justify-center
+        text-3xl text-gray-600 font-semibold
+        my-[20px]
+      "
+      >
+      페이지를 찾을 수 없습니다.
+    </p>
+  </div>
+    `;
+  }
+
+  setLoading(loading) {
+    loading.innerHTML = `
+    <div id="Loading" class="w-[100vw] h-[100vh] flex flex-col justify-center item-center">
+      <h1 id="LoadingTitle"
+        class="
+          flex align-center item-center justify-center
+          text-8xl text-gray-600 font-bold
+          my-[20px]
+        "
+      >
+        <img src="/bubbles_emoji.png" alt="bubbles"
+          class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
+        />
+        Loading...
+        <img src="/bubbles_emoji.png" alt="bubbles"
+          class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
+        />
+      </h1>
+    </div>
+  `;
+
+    // . .. ... . .. ...
+    // const loadingText = document.getElementById('LoadingTitle');
+    // let dots = '.';
+
+    // setInterval(function () {
+    //   dots += '.';
+    //   if (dots.length > 3) dots = '';
+
+    //   loadingText.innerHTML = `
+    //     <img src="/bubbles_emoji.png" alt="bubbles" class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"/>
+    //     Loading${dots}
+    //     <img src="/bubbles_emoji.png" alt="bubbles" class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"/>
+    // `;
+    // }, 500);
   }
 }
