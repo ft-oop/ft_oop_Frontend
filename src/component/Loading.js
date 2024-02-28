@@ -3,16 +3,6 @@ import Component from '../core/Component.js';
 import { $ } from '../utils/querySelector.js';
 
 export default class Loading extends Component {
-  constructor($target, props) {
-    super($target, props);
-    this.$target = $target;
-    this.props = props;
-    this.setup();
-
-    this.size = [];
-    this.speed = [];
-  }
-
   template() {
     return `
     `;
@@ -27,7 +17,7 @@ export default class Loading extends Component {
 
     this.$target.appendChild(wrapper);
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 10; i++) {
       this.createBubbles(i);
     }
   }
@@ -45,12 +35,13 @@ export default class Loading extends Component {
   }
 
   setBubbleStyle(bubble, i) {
-    let size = Math.floor(Math.random() * 40) + 20;
-    let speed = Math.floor(Math.random() * 5) + 5;
-    const delay = Math.random() * 5;
+    let size = (Math.floor(Math.random() * 40) + 10) * 10;
+    let speedRandom = Math.random() * 10 + 3;
+    let speed = parseFloat(speedRandom.toFixed(3));
+    const delay = Math.floor(Math.random() * 7);
 
     // 버블 사이의 간격과 위치 배열 생성
-    const distanceBetweenBubbles = 14; // 버블 사이의 간격
+    const distanceBetweenBubbles = 10; // 버블 사이의 간격
     const numberOfBubbles = Math.floor(100 / distanceBetweenBubbles); // 버블 개수
     const locations = Array.from(
       { length: numberOfBubbles },
@@ -71,7 +62,6 @@ export default class Loading extends Component {
     const style = document.createElement('style');
     document.head.appendChild(style);
 
-    // @keyframes shaking 추가
     style.sheet.insertRule(`@keyframes shaking {
       0% {
         transform: translateX(-${size * 0.02}%);
@@ -84,7 +74,6 @@ export default class Loading extends Component {
       }
     }`);
 
-    // @keyframes goUp 추가
     style.sheet.insertRule(`@keyframes goUp {
       0% {
         bottom: -${size}px;
