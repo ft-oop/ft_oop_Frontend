@@ -57,7 +57,8 @@ export default class Loading extends Component {
     // let size = Math.floor(Math.random() * 61) + 30; // 30 ~ 90
     let size = (Math.floor(Math.random() * 31) + 10) * 10; // 100 ~ 40
     let speedRandom = Math.random() * 10 + 3;
-    let speed = parseFloat(speedRandom.toFixed(3));
+    let upSpeed = parseFloat(speedRandom.toFixed(3));
+    let shakeSpeed = Math.random() * 9 + 5;
     const delay = Math.floor(Math.random() * 7);
 
     // 버블 사이의 간격과 위치 균등하게 설정
@@ -76,7 +77,7 @@ export default class Loading extends Component {
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.animationDelay = `${delay}s, ${delay}s`;
-    bubble.style.animationDuration = `5s, ${speed}s`;
+    bubble.style.animationDuration = `${shakeSpeed}s, ${upSpeed}s`;
     bubble.style.opacity = `${size / 400}`;
 
     // 버블 애니메이션 설정
