@@ -2,7 +2,6 @@ import { $ } from '../../utils/querySelector.js';
 import { BASE_URL } from '../../constant/routeInfo.js';
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
-import { l } from 'vite/dist/node/types.d-jgA8ss1A.js';
 
 function Login($container) {
   this.$container = $container;
