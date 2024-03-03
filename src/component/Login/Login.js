@@ -1,7 +1,6 @@
-import { $ } from '../../utils/querySelector.js';
-import { BASE_URL } from '../../constant/routeInfo.js';
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
+import Loading from '../Loading.js';
 
 function Login($container) {
   this.$container = $container;
@@ -118,6 +117,7 @@ async function handleCode() {
     apiController(config);
     navigate('/2FA');
   }
+  return new Loading();
 }
 
 export default Login;
