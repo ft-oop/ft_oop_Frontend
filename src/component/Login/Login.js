@@ -111,7 +111,8 @@ async function handleCode() {
   if (status === 201) {
     const config = {
       method: 'get',
-      url: '/2FA/email' + data.email,
+      url: '/2FA/email',
+      params: data,
     };
     navigate('/2FA');
   }
