@@ -13,7 +13,9 @@ apiController.interceptors.request.use(
 
     // 토큰이 존재할 경우 헤더에 추가
     if (accessToken !== null) {
+      console.log('aaa', accessToken);
       config.headers.Authorization = `Bearer ${accessToken}`;
+      console.log(config.headers);
     }
 
     return config;
@@ -32,16 +34,6 @@ apiController.interceptors.response.use(
     // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 데이터가 있는 작업 수행
 
-    /**
-     * 201: Created
-     * @description: 요청이 성공적으로 처리되었으며 그 결과로 새로운 리소스가 생성되었습니다. 2FA로 유저 리디렉션
-     */
-    if (response.status === 201) {
-      console.log('201 Created');
-    }
-    if (response.status === 200) {
-      console.log('200 OK');
-    }
     console.log(response);
 
     return response;
