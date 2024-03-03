@@ -106,7 +106,7 @@ async function handleCode() {
   };
 
   const res = await apiController(config);
-  const { data, status } = res;
+  const { status } = res;
 
   if (status === 201) {
     const config = {
