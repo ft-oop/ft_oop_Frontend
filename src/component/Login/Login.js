@@ -105,10 +105,11 @@ async function handleCode() {
     },
   };
 
-  const res = await apiController(config);
-  const { access_token, refresh_token, status } = res;
-  localStorage.setItem('accessToken', access_token);
-  localStorage.setItem('refreshToken', refresh_token);
+  const { data, status } = await apiController(config);
+
+  localStorage.setItem('accessToken', data.access_token);
+  localStorage.setItem('refreshToken', data.refresh_token);
+
   if (status === 201) {
     const config = {
       method: 'get',
