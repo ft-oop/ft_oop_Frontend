@@ -13,9 +13,7 @@ apiController.interceptors.request.use(
 
     // 토큰이 존재할 경우 헤더에 추가
     if (accessToken !== null) {
-      console.log('aaa', accessToken);
       config.headers.Authorization = `Bearer ${accessToken}`;
-      console.log(config.headers);
     }
 
     return config;
