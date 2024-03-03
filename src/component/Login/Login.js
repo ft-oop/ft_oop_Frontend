@@ -112,7 +112,6 @@ async function handleCode() {
     const config = {
       method: 'get',
       url: '/oauth/login/2FA/email',
-      params: { email: data },
     };
 
     apiController(config);
