@@ -2,7 +2,7 @@ import axios from 'axios';
 import { navigate } from './navigate.js';
 
 const apiController = axios.create({
-  baseURL: 'http://localhost:5173/', // 서버 8000
+  baseURL: 'http://localhost:8000/', // 서버 8000
 });
 
 // 요청 인터셉터 추가하기(요청 전)
