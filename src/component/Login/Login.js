@@ -117,7 +117,6 @@ async function handleCode() {
     apiController(config);
     navigate('/2FA');
   }
-  return new Loading();
 }
 
 export default Login;
