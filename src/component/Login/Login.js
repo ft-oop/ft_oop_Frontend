@@ -98,7 +98,7 @@ async function handleCode() {
   if (!code) return;
 
   const config = {
-    method: 'post',
+    method: 'POST',
     url: '/oauth/login/',
     data: {
       code,
@@ -112,7 +112,6 @@ async function handleCode() {
 
   if (status === 201) {
     const config = {
-      method: 'get',
       url: '/oauth/login/2FA/email',
     };
 
