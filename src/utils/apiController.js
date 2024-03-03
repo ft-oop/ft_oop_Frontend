@@ -6,28 +6,28 @@ const apiController = axios.create({
 });
 
 // 요청 인터셉터 추가하기(요청 전)
-axios.interceptors.request.use(
+apiController.interceptors.request.use(
   function (config) {
     // 요청이 전달되기 전에 작업 수행
-    const token = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');
 
     // 토큰이 존재할 경우 헤더에 추가
-    if (token !== null) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (accessToken !== null) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;
   },
-  function (error) {
+  async function (error) {
     // 요청 오류가 있는 작업 수행
     console.log(error);
 
-    return Promise.reject(error);
+    return await Promise.reject(error);
   },
 );
 
 // 응답 인터셉터 추가하기
-axios.interceptors.response.use(
+apiController.interceptors.response.use(
   function (response) {
     // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 데이터가 있는 작업 수행

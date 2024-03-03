@@ -105,7 +105,7 @@ async function handleCode() {
     },
   };
 
-  const { data, status } = await apiController(config);
+  const { data, status, headers } = await apiController(config);
 
   localStorage.setItem('accessToken', data.access_token);
   localStorage.setItem('refreshToken', data.refresh_token);
