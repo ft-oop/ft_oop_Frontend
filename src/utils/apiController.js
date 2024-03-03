@@ -66,6 +66,7 @@ apiController.interceptors.response.use(
 
 // 토큰 갱신 함수
 async function reissueToken() {
+  // 민진님!! try catch문을 사용하여 에러 처리를 해주셨는데 이렇게 처리해도 되는지 잘 모르겠어요 ㅎㅎ
   try {
     const reissueConfig = {
       url: '/jwt/reissue',
