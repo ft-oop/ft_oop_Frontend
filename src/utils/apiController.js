@@ -9,7 +9,7 @@ const apiController = axios.create({
 axios.interceptors.request.use(
   function (config) {
     // 요청이 전달되기 전에 작업 수행
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
 
     // 토큰이 존재할 경우 헤더에 추가
     if (token !== null) {
