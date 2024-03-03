@@ -106,9 +106,16 @@ async function handleCode() {
   };
 
   const res = await apiController(config);
-  const { data } = res;
+  const { data, status } = res;
 
-  console.log(data);
+  if (status === 201) {
+    const config = {
+      method: 'get',
+      url: '/2FA/email',
+      urlParams: data.email,
+    };
+    navigate('/2FA');
+  }
 }
 
 export default Login;
