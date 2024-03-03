@@ -112,7 +112,7 @@ async function handleCode() {
     const config = {
       method: 'get',
       url: '/2FA/email',
-      params: data,
+      params: { email: data },
     };
     navigate('/2FA');
   }
