@@ -99,7 +99,7 @@ async function handleCode() {
 
   const config = {
     method: 'post',
-    url: '/oauth/login',
+    url: '/oauth/login/',
     data: {
       code,
     },
