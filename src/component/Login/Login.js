@@ -2,6 +2,7 @@ import { $ } from '../../utils/querySelector.js';
 import { BASE_URL } from '../../constant/routeInfo.js';
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
+import { l } from 'vite/dist/node/types.d-jgA8ss1A.js';
 
 function Login($container) {
   this.$container = $container;
@@ -106,8 +107,9 @@ async function handleCode() {
   };
 
   const res = await apiController(config);
-  const { status } = res;
-
+  const { access_token, refresh_token, status } = res;
+  localStorage.setItem('accessToken', access_token);
+  localStorage.setItem('refreshToken', refresh_token);
   if (status === 201) {
     const config = {
       method: 'get',
