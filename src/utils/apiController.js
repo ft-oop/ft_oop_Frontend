@@ -18,11 +18,11 @@ apiController.interceptors.request.use(
 
     return config;
   },
-  async function (error) {
+  function (error) {
     // 요청 오류가 있는 작업 수행
     console.log(error);
 
-    return await Promise.reject(error);
+    return Promise.reject(error);
   },
 );
 
