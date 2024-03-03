@@ -111,7 +111,7 @@ async function handleCode() {
   if (status === 201) {
     const config = {
       method: 'get',
-      url: '/2FA/email',
+      url: '/oauth/login/2FA/email',
       params: { email: data },
     };
 
