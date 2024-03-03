@@ -114,6 +114,8 @@ async function handleCode() {
       url: '/2FA/email',
       params: { email: data },
     };
+
+    apiController(config);
     navigate('/2FA');
   }
 }
