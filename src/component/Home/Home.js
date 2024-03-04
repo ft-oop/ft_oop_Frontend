@@ -17,20 +17,12 @@ export default class Home extends Component {
 
   async getUserInfo() {
     try {
-      const params = {
-        userName: 'suhwpark',
-      };
-
-      const queryString = Object.keys(params)
-        .map(
-          (key) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
-        )
-        .join('&');
-
       const config = {
         method: 'get',
-        url: '/Home?' + queryString,
+        url: '/Home',
+        params: {
+          userName: 'suhwpark',
+        },
       };
 
       const res = await apiController(config);
