@@ -64,11 +64,12 @@ apiController.interceptors.response.use(
       // const accessToken = await reissueToken();
 
       const { data } = await apiController(reissueConfig);
+      console.log('data', data);
       const { accessToken } = data;
 
       localStorage.setItem('accessToken', accessToken);
 
-      return await apiController(config);
+      // return await apiController(config);
     } else if (status === 403) {
       // 토큰 없이 main 진입
       navigate('/login');
