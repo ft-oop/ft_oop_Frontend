@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { navigate } from '../../utils/navigate.js';
 
 const apiController = axios.create({
   baseURL: 'http://localhost:8000/', // 서버 8000
@@ -49,6 +50,8 @@ apiController.interceptors.response.use(
       if (data.errorMessage === '...') {
         // 에러 처리
       }
+    } else if (status === 401) {
+      navigate('/login');
     } else if (status === 12888) {
       // 토큰 만료
       console.log(data.errorMessage);
