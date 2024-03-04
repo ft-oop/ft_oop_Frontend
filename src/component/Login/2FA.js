@@ -1,8 +1,7 @@
 import Component from '../../core/Component';
-import { navigate } from '../../utils/navigate.js';
 import { $ } from '../../utils/querySelector';
-import { BASE_URL } from '../../constant/routeInfo';
 import apiController from '../../utils/apiController.js';
+import { navigate } from '../../utils/navigate.js';
 
 export default class TwoFA extends Component {
   mounted() {
@@ -86,7 +85,7 @@ export default class TwoFA extends Component {
     const code = input.value;
 
     const config = {
-      method: 'post',
+      method: 'POST',
       url: '/oauth/login/2FA',
       data: { code },
     };
@@ -95,6 +94,10 @@ export default class TwoFA extends Component {
     const { data } = res;
 
     console.log(data);
+
+    if (res.status === 200) {
+      navigate('/');
+    }
   }
 
   // async handleCode(input) {

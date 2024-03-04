@@ -1,5 +1,3 @@
-import { $ } from '../../utils/querySelector.js';
-import { BASE_URL } from '../../constant/routeInfo.js';
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
 
@@ -25,7 +23,7 @@ function Login($container) {
         class="flex justify-center items-center text-2xl font-semibold hover:text-3xl hover:font-bold text-purple-400 w-[200px] h-[200px] bg-cover cursor-pointer"
         style="background-image: url(/bubble.png)"
       >
-        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-8e89d15b93c6c2cbc2a27bfce7e005898123d9102d922b7e04028cb238fc2d1b&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Flogin&response_type=code"
+        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-e5cd37c35750100ba3e0124e1161a48dc116d003c905db2d268761a44f090c48&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Flogin&response_type=code"
           class="w-full h-full justify-center hover:text-3xl hover:text-purple-400"
         >
           <span class="w-full h-full rounded-full flex items-center justify-center align-middle">
@@ -98,17 +96,28 @@ async function handleCode() {
   if (!code) return;
 
   const config = {
-    method: 'post',
-    url: '/oauth/login',
+    method: 'POST',
+    url: '/oauth/login/',
     data: {
       code,
     },
   };
 
-  const res = await apiController(config);
-  const { data } = res;
+  const { data, status } = await apiController(config);
 
-  console.log(data);
+  localStorage.setItem('accessToken', data.access_token);
+  localStorage.setItem('refreshToken', data.refresh_token);
+
+  if (status === 200) {
+    navigate('/');
+  } else if (status === 201) {
+    const config = {
+      url: '/oauth/login/2FA/email',
+    };
+
+    apiController(config);
+    navigate('/2FA');
+  }
 }
 
 export default Login;

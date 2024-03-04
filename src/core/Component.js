@@ -19,11 +19,7 @@ export default class Component {
   }
 
   async asyncInitialization() {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1));
-    } catch (e) {
-      console.error(e);
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1));
   }
 
   mounted() {}

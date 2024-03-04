@@ -10,30 +10,16 @@ import apiController from '../../utils/apiController.js';
 
 export default class MyPage extends Component {
   async getMyPageInfo() {
-    try {
-      const params = {
-        userName: 'suhwpark',
-      };
+    const config = {
+      url: '/mypage',
+      params: {
+        userName: 'suhwpark', // 토큰 생성되면 없애기
+      },
+    };
+    const res = await apiController(config);
+    const { data } = res;
 
-      const queryString = Object.keys(params)
-        .map(
-          (key) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
-        )
-        .join('&');
-
-      const config = {
-        method: 'get',
-        url: '/mypage?' + queryString,
-      };
-      const res = await apiController(config);
-      const { data } = res;
-
-      return data;
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return data;
   }
 
   async setup() {

@@ -1,5 +1,4 @@
 import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
 import '../../style/myPage.css';
 
 export default class Profile extends Component {

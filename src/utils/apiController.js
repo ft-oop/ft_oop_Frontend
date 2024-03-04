@@ -1,24 +1,23 @@
 import axios from 'axios';
-import { navigate } from './navigate.js';
 
 const apiController = axios.create({
-  baseURL: 'http://localhost:5173/', // 서버 8000
+  baseURL: 'http://localhost:8000/', // 서버 8000
 });
 
 // 요청 인터셉터 추가하기(요청 전)
-axios.interceptors.request.use(
+apiController.interceptors.request.use(
   function (config) {
     // 요청이 전달되기 전에 작업 수행
-    const token = localStorage.getItem('token');
+    const accessToken = localStorage.getItem('accessToken');
 
     // 토큰이 존재할 경우 헤더에 추가
-    if (token !== null) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (accessToken !== null) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;
   },
-  function (error) {
+  async function (error) {
     // 요청 오류가 있는 작업 수행
     console.log(error);
 
@@ -27,10 +26,11 @@ axios.interceptors.request.use(
 );
 
 // 응답 인터셉터 추가하기
-axios.interceptors.response.use(
+apiController.interceptors.response.use(
   function (response) {
     // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 데이터가 있는 작업 수행
+
     console.log(response);
 
     return response;
@@ -49,11 +49,20 @@ axios.interceptors.response.use(
       if (data.errorMessage === '...') {
         // 에러 처리
       }
-    } else if (status === 401) {
+    } else if (status === 12888) {
       // 토큰 만료
       console.log(data.errorMessage);
 
-      const accessToken = await reissueToken();
+      const reissueConfig = {
+        url: '/jwt/reissue',
+        method: 'POST',
+      };
+
+      // const accessToken = await reissueToken();
+
+      const { data } = await apiController(reissueConfig);
+      const { accessToken } = data;
+
       localStorage.setItem('accessToken', accessToken);
 
       return apiController(config);
@@ -64,22 +73,24 @@ axios.interceptors.response.use(
 );
 
 // 토큰 갱신 함수
-async function reissueToken() {
-  try {
-    const reissueConfig = {
-      url: '/jwt/reissue',
-      method: 'post',
-    };
+// async function reissueToken() {
+//   // 민진님!! try catch문을 사용하여 에러 처리를 해주셨는데 이렇게 처리해도 되는지 잘 모르겠어요 ㅎㅎ
+//   // 저도 잘 모르겠어요.. 백이랑 연결해서 테스트 해보면서 확인해야 할 것 같아여ㅠ
+//   try {
+//     const reissueConfig = {
+//       url: '/jwt/reissue',
+//       method: 'POST',
+//     };
 
-    const { data } = await apiController(reissueConfig);
-    const { accessToken } = data;
+//     const { data } = await apiController(reissueConfig);
+//     const { accessToken } = data;
 
-    return accessToken;
-  } catch (e) {
-    // 유저 정보 삭제 후 로그인 페이지로 이동
-    localStorage.removeItem('accessToken');
-    navigate('/login');
-  }
-}
+//     return accessToken;
+//   } catch (e) {
+//     // 유저 정보 삭제 후 로그인 페이지로 이동
+//     localStorage.removeItem('accessToken');
+//     navigate('/login');
+//   }
+// }
 
 export default apiController;

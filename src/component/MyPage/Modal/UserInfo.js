@@ -1,6 +1,5 @@
 import Component from '../../../core/Component';
 import apiController from '../../../utils/apiController';
-import { $ } from '../../../utils/querySelector';
 import Profile from '../Profile';
 import HistoryTable from '../Table/HistoryTable';
 
@@ -68,31 +67,17 @@ export default class UserInfo extends Component {
   }
 
   async getUserInfo() {
-    try {
-      const params = {
+    const config = {
+      url: '/users/info',
+      params: {
         userName: this.props,
-      };
+      },
+    };
 
-      const queryString = Object.keys(params)
-        .map(
-          (key) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
-        )
-        .join('&');
+    const res = await apiController(config);
+    const { data } = res;
 
-      const config = {
-        method: 'get',
-        url: '/users/info?' + queryString,
-      };
-
-      const res = await apiController(config);
-      const { data } = res;
-
-      return data;
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return data;
   }
 
   template() {
