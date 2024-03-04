@@ -50,12 +50,8 @@ apiController.interceptors.response.use(
       if (data.errorMessage === '...') {
         // 에러 처리
       }
-    } else if (status === 403) {
-      // 토큰 없이 main 진입
-      navigate('/login');
     } else if (status === 401) {
       // 401 토큰 만료
-
       const reissueConfig = {
         url: '/jwt/reissue',
         method: 'POST',
@@ -72,6 +68,9 @@ apiController.interceptors.response.use(
       localStorage.setItem('accessToken', accessToken);
 
       return apiController(config);
+    } else if (status === 403) {
+      // 토큰 없이 main 진입
+      navigate('/login');
     }
 
     return Promise.reject(error.response);
