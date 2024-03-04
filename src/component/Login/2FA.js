@@ -1,7 +1,7 @@
 import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector';
 import apiController from '../../utils/apiController.js';
-import navigate from '../../utils/navigate.js';
+import { navigate } from '../../utils/navigate.js';
 
 export default class TwoFA extends Component {
   mounted() {

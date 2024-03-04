@@ -49,7 +49,7 @@ apiController.interceptors.response.use(
       if (data.errorMessage === '...') {
         // 에러 처리
       }
-    } else if (status === 401) {
+    } else if (status === 12888) {
       // 토큰 만료
       console.log(data.errorMessage);
 
