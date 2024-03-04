@@ -17,7 +17,7 @@ export default class Home extends Component {
 
   async getUserInfo() {
     const config = {
-      url: '/main', // /HOME??
+      url: '/main',
     };
 
     const res = await apiController(config);
@@ -50,8 +50,6 @@ export default class Home extends Component {
       <span class='underline decoration-indigo-500 decoration-solid underline-offset-3 decoration-2 font-semibold text-2xl group-hover:text-gray-500'>${this.state.username}</span>님
     </div>
     `;
-
-    // window.URL.revokeObjectURL(url);
 
     // 마이페이지 버튼 클릭 시 이벤트
     this.addEvent('click', '#info', (e) => {

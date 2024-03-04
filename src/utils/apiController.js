@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { navigate } from './navigate.js';
 
 const apiController = axios.create({
   baseURL: 'http://localhost:8000/', // 서버 8000
@@ -49,23 +50,27 @@ apiController.interceptors.response.use(
       if (data.errorMessage === '...') {
         // 에러 처리
       }
-    } else if (status === 12888) {
-      // 토큰 만료
-      console.log(data.errorMessage);
-
+    } else if (status === 401) {
+      // 401 토큰 만료
+      localStorage.removeItem('accessToken');
       const reissueConfig = {
         url: '/jwt/reissue',
         method: 'POST',
+        data: {
+          refresh: localStorage.getItem('refreshToken'),
+        },
       };
 
       // const accessToken = await reissueToken();
 
       const { data } = await apiController(reissueConfig);
-      const { accessToken } = data;
+      const { access } = data;
+      localStorage.setItem('accessToken', access);
 
-      localStorage.setItem('accessToken', accessToken);
-
-      return apiController(config);
+      return await apiController(config);
+    } else if (status === 403) {
+      // 토큰 없이 main 진입
+      navigate('/login');
     }
 
     return Promise.reject(error.response);
