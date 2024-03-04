@@ -109,7 +109,9 @@ async function handleCode() {
   localStorage.setItem('accessToken', data.access_token);
   localStorage.setItem('refreshToken', data.refresh_token);
 
-  if (status === 201) {
+  if (status === 200) {
+    navigate('/');
+  } else if (status === 201) {
     const config = {
       url: '/oauth/login/2FA/email',
     };
