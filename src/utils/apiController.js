@@ -52,12 +52,10 @@ apiController.interceptors.response.use(
       }
     } else if (status === 401) {
       // 401 토큰 만료
+      localStorage.removeItem('accessToken');
       const reissueConfig = {
         url: '/jwt/reissue',
         method: 'POST',
-        headers: {
-          Authorization: undefined,
-        },
         data: {
           refreshToken: localStorage.getItem('refreshToken'),
         },
