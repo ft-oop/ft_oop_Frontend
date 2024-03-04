@@ -17,8 +17,7 @@ export default class Home extends Component {
 
   async getUserInfo() {
     const config = {
-      method: 'get',
-      url: '/Home',
+      url: '/main', // /HOME??
       params: {
         userName: 'suhwpark',
       },

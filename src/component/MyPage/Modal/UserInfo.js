@@ -69,7 +69,6 @@ export default class UserInfo extends Component {
 
   async getUserInfo() {
     const config = {
-      method: 'get',
       url: '/users/info',
       params: {
         userName: this.props,

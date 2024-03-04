@@ -24,10 +24,9 @@ export default class UserTable extends Component {
 
   async getUserInfo() {
     const config = {
-      method: 'get',
       url: '/users/info',
       params: {
-        userName: 'suhwpark', // 수정 필요
+        userName: 'suhwpark', // 확인하고자 하는 유저 이름으로 수정
       },
     };
     const res = await apiController(config);
