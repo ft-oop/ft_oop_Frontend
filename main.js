@@ -1,6 +1,5 @@
-import App from "./src/app";
-import { $ } from "./src/utils/querySelector";
+import App from './src/app';
+import { $ } from './src/utils/querySelector';
+import { render } from './src/utils/useState';
 
-window.addEventListener("DOMContentLoaded", () => {
-  new App($("#app"));
-});
+render(App, $('#app'));
