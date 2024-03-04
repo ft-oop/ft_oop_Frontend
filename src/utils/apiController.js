@@ -51,9 +51,10 @@ apiController.interceptors.response.use(
         // 에러 처리
       }
     } else if (status === 401) {
+      // 토큰 없이 main 진입
       navigate('/login');
     } else if (status === 12888) {
-      // 토큰 만료
+      // 403 토큰 만료
       console.log(data.errorMessage);
 
       const reissueConfig = {

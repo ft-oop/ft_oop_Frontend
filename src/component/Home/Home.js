@@ -17,7 +17,7 @@ export default class Home extends Component {
 
   async getUserInfo() {
     const config = {
-      url: '/main', // /HOME??
+      url: '/main',
     };
 
     const res = await apiController(config);
