@@ -1,9 +1,7 @@
 import { debounceFrame } from './debounceFrame';
-
 function MyReact() {
   const options = {
     currentStateKey: 0,
-    renderCount: 0,
     states: [],
     root: null,
     rootComponent: null,
@@ -27,7 +25,6 @@ function MyReact() {
     if (!root || !rootComponent) return;
     root.innerHTML = new rootComponent(root);
     options.currentStateKey = 0;
-    options.renderCount += 1;
   });
 
   function render(rootComponent, root) {
