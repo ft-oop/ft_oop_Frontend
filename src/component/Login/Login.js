@@ -105,8 +105,8 @@ async function handleCode() {
 
   const { data, status } = await apiController(config);
 
-  localStorage.setItem('accessToken', data.access_token);
-  localStorage.setItem('refreshToken', data.refresh_token);
+  localStorage.setItem('accessToken', data.access);
+  localStorage.setItem('refreshToken', data.refresh);
 
   if (status === 200) {
     navigate('/');
