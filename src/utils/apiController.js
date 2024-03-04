@@ -55,7 +55,9 @@ apiController.interceptors.response.use(
       const reissueConfig = {
         url: '/jwt/reissue',
         method: 'POST',
-        headers: null,
+        headers: {
+          Authorization: undefined,
+        },
         data: {
           refreshToken: localStorage.getItem('refreshToken'),
         },
@@ -68,7 +70,7 @@ apiController.interceptors.response.use(
 
       localStorage.setItem('accessToken', accessToken);
 
-      return apiController(config);
+      return await apiController(config);
     } else if (status === 403) {
       // 토큰 없이 main 진입
       navigate('/login');
