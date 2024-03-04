@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { navigate } from '../../utils/navigate.js';
+import { navigate } from './navigate.js';
 
 const apiController = axios.create({
   baseURL: 'http://localhost:8000/', // 서버 8000
