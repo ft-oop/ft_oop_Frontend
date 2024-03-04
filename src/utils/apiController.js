@@ -57,7 +57,7 @@ apiController.interceptors.response.use(
         url: '/jwt/reissue',
         method: 'POST',
         data: {
-          refreshToken: localStorage.getItem('refreshToken'),
+          refresh: localStorage.getItem('refreshToken'),
         },
       };
 
