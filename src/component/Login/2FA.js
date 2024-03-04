@@ -1,6 +1,7 @@
 import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector';
 import apiController from '../../utils/apiController.js';
+import navigate from '../../utils/navigate.js';
 
 export default class TwoFA extends Component {
   mounted() {
@@ -93,6 +94,10 @@ export default class TwoFA extends Component {
     const { data } = res;
 
     console.log(data);
+
+    if (res.status === 200) {
+      navigate('/');
+    }
   }
 
   // async handleCode(input) {
