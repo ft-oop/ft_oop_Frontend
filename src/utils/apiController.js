@@ -55,6 +55,7 @@ apiController.interceptors.response.use(
       const reissueConfig = {
         url: '/jwt/reissue',
         method: 'POST',
+        headers: null,
         data: {
           refreshToken: localStorage.getItem('refreshToken'),
         },
