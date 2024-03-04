@@ -47,7 +47,7 @@ export default class Home extends Component {
     $info.innerHTML = `
     <div id='info' class='absolute flex top-10 right-6 text-3xl font-bold items-center gap-2 cursor-pointer group'>
       <img alt='avator' src='${this.state.picture}' class='w-10 h-10 rounded-full shadow-md group-hover:w-11 group-hover:h-11' />
-      <span class='underline decoration-indigo-500 decoration-solid underline-offset-3 decoration-2 font-semibold text-2xl group-hover:text-gray-500'>${this.state.userName}</span>님
+      <span class='underline decoration-indigo-500 decoration-solid underline-offset-3 decoration-2 font-semibold text-2xl group-hover:text-gray-500'>${this.state.username}</span>님
     </div>
     `;
 
