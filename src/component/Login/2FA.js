@@ -86,7 +86,7 @@ export default class TwoFA extends Component {
     const code = input.value;
 
     const config = {
-      method: 'post',
+      method: 'POST',
       url: '/oauth/login/2FA',
       data: { code },
     };

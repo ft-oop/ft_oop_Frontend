@@ -223,7 +223,7 @@ async function handleAddFriendOfUserModal($target, state, button) {
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
-    method: 'post',
+    method: 'POST',
     url: '/friend/add',
     data: {
       userName: state.userName,
@@ -262,7 +262,7 @@ async function handleBlockUsefOfUserModal($target, state, button) {
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
-    method: 'post',
+    method: 'POST',
     url: '/friend/ban-list/add',
     data: {
       userName: state.userName,
@@ -282,7 +282,7 @@ async function handleUnblockUsefOfUserModal($target, state, button) {
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
-    method: 'post',
+    method: 'POST',
     url: '/friend/ban-list/delete',
     data: {
       userName: state.userName,
@@ -338,7 +338,7 @@ async function handleConfirmOK($target, state, button) {
       console.log('confirm_ok: delete friend');
 
       config = {
-        method: 'post',
+        method: 'POST',
         url: '/friend/delete',
         data: {
           userName: state.userName,
@@ -349,7 +349,7 @@ async function handleConfirmOK($target, state, button) {
       console.log('confirm_ok: delete block');
 
       config = {
-        method: 'post',
+        method: 'POST',
         url: '/friend/ban-list/delete',
         data: {
           userName: state.userName,
@@ -372,7 +372,7 @@ async function postEditInfo(state, newFileName) {
   console.log('newFileName: ', newFileName);
 
   const config = {
-    method: 'post',
+    method: 'POST',
     url: '/mypage/editor',
     data: {
       userName: state.userName,
