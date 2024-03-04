@@ -18,7 +18,7 @@ apiController.interceptors.request.use(
 
     return config;
   },
-  function (error) {
+  async function (error) {
     // 요청 오류가 있는 작업 수행
     console.log(error);
 
@@ -54,7 +54,16 @@ apiController.interceptors.response.use(
       // 토큰 만료
       console.log(data.errorMessage);
 
-      const accessToken = await reissueToken();
+      const reissueConfig = {
+        url: '/jwt/reissue',
+        method: 'POST',
+      };
+
+      // const accessToken = await reissueToken();
+
+      const { data } = await apiController(reissueConfig);
+      const { accessToken } = data;
+
       localStorage.setItem('accessToken', accessToken);
 
       return apiController(config);
@@ -65,23 +74,24 @@ apiController.interceptors.response.use(
 );
 
 // 토큰 갱신 함수
-async function reissueToken() {
-  // 민진님!! try catch문을 사용하여 에러 처리를 해주셨는데 이렇게 처리해도 되는지 잘 모르겠어요 ㅎㅎ
-  try {
-    const reissueConfig = {
-      url: '/jwt/reissue',
-      method: 'post',
-    };
+// async function reissueToken() {
+//   // 민진님!! try catch문을 사용하여 에러 처리를 해주셨는데 이렇게 처리해도 되는지 잘 모르겠어요 ㅎㅎ
+//   // 저도 잘 모르겠어요.. 백이랑 연결해서 테스트 해보면서 확인해야 할 것 같아여ㅠ
+//   try {
+//     const reissueConfig = {
+//       url: '/jwt/reissue',
+//       method: 'POST',
+//     };
 
-    const { data } = await apiController(reissueConfig);
-    const { accessToken } = data;
+//     const { data } = await apiController(reissueConfig);
+//     const { accessToken } = data;
 
-    return accessToken;
-  } catch (e) {
-    // 유저 정보 삭제 후 로그인 페이지로 이동
-    localStorage.removeItem('accessToken');
-    navigate('/login');
-  }
-}
+//     return accessToken;
+//   } catch (e) {
+//     // 유저 정보 삭제 후 로그인 페이지로 이동
+//     localStorage.removeItem('accessToken');
+//     navigate('/login');
+//   }
+// }
 
 export default apiController;
