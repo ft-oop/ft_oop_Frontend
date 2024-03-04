@@ -23,30 +23,17 @@ export default class UserTable extends Component {
   }
 
   async getUserInfo() {
-    try {
-      const params = {
-        userName: 'suhwpark',
-      };
+    const config = {
+      method: 'get',
+      url: '/users/info',
+      params: {
+        userName: 'suhwpark', // 수정 필요
+      },
+    };
+    const res = await apiController(config);
+    const { data } = res;
 
-      const queryString = Object.keys(params)
-        .map(
-          (key) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(params[key]),
-        )
-        .join('&');
-
-      const config = {
-        method: 'get',
-        url: '/users/info?' + queryString,
-      };
-      const res = await apiController(config);
-      const { data } = res;
-
-      return data;
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return data;
   }
 
   template() {

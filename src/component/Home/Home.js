@@ -16,23 +16,18 @@ export default class Home extends Component {
   }
 
   async getUserInfo() {
-    try {
-      const config = {
-        method: 'get',
-        url: '/Home',
-        params: {
-          userName: 'suhwpark',
-        },
-      };
+    const config = {
+      method: 'get',
+      url: '/Home',
+      params: {
+        userName: 'suhwpark',
+      },
+    };
 
-      const res = await apiController(config);
-      const { data } = res;
+    const res = await apiController(config);
+    const { data } = res;
 
-      return data;
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return data;
   }
 
   mounted() {

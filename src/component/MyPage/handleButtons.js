@@ -365,29 +365,24 @@ async function handleConfirmOK($target, state, button) {
 }
 
 async function postEditInfo(state, newFileName) {
-  try {
-    const newNick = $('#nickname_upload').value;
+  const newNick = $('#nickname_upload').value;
 
-    console.log('userName: ', state.userName);
-    console.log('newNick: ', newNick);
-    console.log('newFileName: ', newFileName);
+  console.log('userName: ', state.userName);
+  console.log('newNick: ', newNick);
+  console.log('newFileName: ', newFileName);
 
-    const config = {
-      method: 'post',
-      url: '/mypage/editor',
-      data: {
-        userName: state.userName,
-        nickName: newNick,
-        picture: newFileName,
-      },
-    };
+  const config = {
+    method: 'post',
+    url: '/mypage/editor',
+    data: {
+      userName: state.userName,
+      nickName: newNick,
+      picture: newFileName,
+    },
+  };
 
-    const res = await apiController(config);
-    const { data } = res;
+  const res = await apiController(config);
+  const { data } = res;
 
-    return data;
-  } catch (e) {
-    console.log(e);
-    throw e;
-  }
+  return data;
 }
