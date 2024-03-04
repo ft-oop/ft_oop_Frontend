@@ -1,7 +1,5 @@
 import Component from '../../core/Component';
-import { navigate } from '../../utils/navigate.js';
 import { $ } from '../../utils/querySelector';
-import { BASE_URL } from '../../constant/routeInfo';
 import apiController from '../../utils/apiController.js';
 
 export default class TwoFA extends Component {

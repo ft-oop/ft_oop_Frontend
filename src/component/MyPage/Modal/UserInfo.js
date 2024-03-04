@@ -1,6 +1,5 @@
 import Component from '../../../core/Component';
 import apiController from '../../../utils/apiController';
-import { $ } from '../../../utils/querySelector';
 import Profile from '../Profile';
 import HistoryTable from '../Table/HistoryTable';
 

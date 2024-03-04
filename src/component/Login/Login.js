@@ -1,6 +1,5 @@
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
-import Loading from '../Loading.js';
 
 function Login($container) {
   this.$container = $container;
