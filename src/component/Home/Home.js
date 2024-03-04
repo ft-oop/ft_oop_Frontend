@@ -51,8 +51,6 @@ export default class Home extends Component {
     </div>
     `;
 
-    // window.URL.revokeObjectURL(url);
-
     // 마이페이지 버튼 클릭 시 이벤트
     this.addEvent('click', '#info', (e) => {
       const targetURL = '/mypage';
