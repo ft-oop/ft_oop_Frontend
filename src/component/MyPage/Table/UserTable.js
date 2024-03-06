@@ -98,7 +98,7 @@ export default class UserTable extends Component {
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
             ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}  
-              <img src="/image2.jpg" alt="profile" id="${type}_avatar_${
+              <img src="${user.picture}" alt="profile" id="${type}_avatar_${
           user.username
         }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
