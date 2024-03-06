@@ -24,7 +24,7 @@ export default class UserTable extends Component {
 
   async getUserInfo() {
     const config = {
-      url: '/mypage',
+      url: '/users/info',
       params: {
         username: this.props.username, // 확인하고자 하는 유저 이름으로 수정
       },
@@ -44,8 +44,14 @@ export default class UserTable extends Component {
       rightImage = '/arrow-right-disabled.svg';
     }
 
+    let tableID = 'Friend_table';
+
+    if (this.n === tableNumbers.BLOCK) {
+      tableID = 'Block_table';
+    }
+
     return `
-      <table class="MyPage__table">
+      <table class="MyPage__table" id=${tableID}>
         <caption>
           <img src="${leftImage}" class="icon_left" id="icon_left${
       this.n
