@@ -243,7 +243,7 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
-    method: 'delete',
+    method: 'POST',
     url: '/friend/delete',
     data: {
       userName: state.userName,
