@@ -40,7 +40,7 @@ export default class Profile extends Component {
         <img id="mypage_avatar" src="/image1.jpg" alt="profile" class="w-[100%] h-[100%] object-cover">
       </div>
       <div id="mypage_profile__wrapper">
-        <div id="mypage_name">${this.props.userName}</div>
+        <div id="mypage_name">${this.props.username}</div>
         <div id="mypage_winlose">${this.props.totalWin}승 ${
       this.props.totalLose
     }패</div>

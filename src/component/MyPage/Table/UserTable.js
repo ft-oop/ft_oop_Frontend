@@ -26,7 +26,7 @@ export default class UserTable extends Component {
     const config = {
       url: '/users/info',
       params: {
-        userName: 'suhwpark', // 확인하고자 하는 유저 이름으로 수정
+        username: this.props.username, // 확인하고자 하는 유저 이름으로 수정
       },
     };
     const res = await apiController(config);
@@ -93,14 +93,14 @@ export default class UserTable extends Component {
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
             ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}  
               <img src="/image2.jpg" alt="profile" id="${type}_avatar_${
-          user.userName
+          user.username
         }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
-        <td id="${type}_name_${user.userName}" class="user_name">${
-          user.userName
+        <td id="${type}_name_${user.username}" class="user_name">${
+          user.username
         }</td>
         ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
