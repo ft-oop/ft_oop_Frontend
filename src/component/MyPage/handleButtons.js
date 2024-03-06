@@ -7,11 +7,12 @@ import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import apiController from '../../utils/apiController.js';
 
-let prevFileName = '/image1.jpg';
+let prevFileName = '';
 let newFileName = '';
 let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
+  prevFileName = $('#mypage_avatar').getAttribute('src');
   /*** 친구, 차단 목록 테이블 전환 ***/
   if (
     button.classList.contains('icon_right') ||
