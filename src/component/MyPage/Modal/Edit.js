@@ -49,7 +49,7 @@ export default class Edit extends Component {
     return `
       <div class="input-group mb-3">
         <span class="input-group-text" id="input_nickname">이름 입력</span>
-        <input type="text" id="nickname_upload" class="form-control" placeholder="NickName" aria-label="NickName" aria-describedby="input_nickname">
+        <input type="text" id="nickname_upload" class="form-control" placeholder="NickName" aria-label="Name" aria-describedby="input_nickname">
       </div>
     `;
   }
