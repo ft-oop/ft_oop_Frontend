@@ -367,7 +367,7 @@ async function handleConfirmOK($target, state, button) {
 async function postEditInfo(state, newFileName) {
   const newNick = $('#nickname_upload').value;
 
-  console.log('userName: ', state.userName);
+  console.log('userName: ', state.username);
   console.log('newNick: ', newNick);
   console.log('newFileName: ', newFileName);
 

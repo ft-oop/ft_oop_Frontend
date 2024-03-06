@@ -24,7 +24,7 @@ export default class UserTable extends Component {
 
   async getUserInfo() {
     const config = {
-      url: '/users/info',
+      url: '/mypage',
       params: {
         username: this.props.username, // 확인하고자 하는 유저 이름으로 수정
       },

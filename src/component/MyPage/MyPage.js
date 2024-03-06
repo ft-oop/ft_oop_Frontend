@@ -77,7 +77,7 @@ export default class MyPage extends Component {
     const $historyTable = this.$target.querySelector('#MyPage_info__history');
     const $friendTable = this.$target.querySelector('#MyPage_info__user_list');
 
-    console.log(this.state);
+    // console.log(this.state);
 
     new Profile($profile, this.state, '', '/edit.svg');
     new HistoryTable($historyTable, this.state);
