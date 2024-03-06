@@ -46,11 +46,12 @@ apiController.interceptors.response.use(
 
     console.log('status: ' + status);
 
-    if (status === 400) {
-      if (data.errorMessage === '...') {
-        // 에러 처리
-      }
-    } else if (status === 401) {
+    // if (status === 400) {
+    //   if (data.errorMessage === '...') {
+    //     // 에러 처리
+    //   }
+    // } else if (status === 401) {
+    if (status === 401) {
       // 401 토큰 만료
       localStorage.removeItem('accessToken');
       const reissueConfig = {

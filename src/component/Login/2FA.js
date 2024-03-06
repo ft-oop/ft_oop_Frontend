@@ -97,7 +97,7 @@ export default class TwoFA extends Component {
 
     if (res.status === 200) {
       navigate('/');
-    } else {
+    } else if (res.status === 400) {
       console.log('2차인증에 실패했습니다.');
       input.value = '';
       $('#InvalidCode').classList.add('text-red-500');
