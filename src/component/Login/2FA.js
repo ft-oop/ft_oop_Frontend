@@ -17,6 +17,7 @@ export default class TwoFA extends Component {
           bg-white rounded-[30px] shadow-[5px_5px_10px_0px_rgba(0,0,0,0.2)] text-2xl"
       >
         <h1>2차 인증 코드</h1>
+        <p id="InvalidCode" class="my-[10px] text-white text-sm">잘못된 코드입니다.</p>
         <form name="2FA">
           <input
             type="text" id="TwoFA_form__input"
@@ -91,12 +92,17 @@ export default class TwoFA extends Component {
     };
 
     const res = await apiController(config);
-    const { data } = res;
 
-    console.log(data);
+    console.log(res.status);
 
     if (res.status === 200) {
       navigate('/');
+    } else {
+      console.log('2차인증에 실패했습니다.');
+      input.value = '';
+      $('#InvalidCode').classList.add('text-red-500');
+      input.classList.add('border-red-500');
+      input.focus();
     }
   }
 
