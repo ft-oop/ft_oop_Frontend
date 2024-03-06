@@ -41,8 +41,8 @@ export default class Profile extends Component {
       </div>
       <div id="mypage_profile__wrapper">
         <div id="mypage_name">${this.props.username}</div>
-        <div id="mypage_winlose">${this.props.totalWin}승 ${
-      this.props.totalLose
+        <div id="mypage_winlose">${this.props.total_win}승 ${
+      this.props.total_lose
     }패</div>
       </div>
       ${this.icon1 !== '' ? this.createIcon1() : ''}
