@@ -72,7 +72,7 @@ export default class UserTable extends Component {
 
     if (this.n === tableNumbers.BLOCK) {
       idName = 'Block_table';
-      users = this.props.banList;
+      users = this.props.ban_list;
       display = 'display: none';
       type = 'block';
     }
