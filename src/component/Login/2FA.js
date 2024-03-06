@@ -83,27 +83,41 @@ export default class TwoFA extends Component {
   }
 
   async handleCode(input) {
-    const code = input.value;
+    try {
+      const code = input.value;
 
-    const config = {
-      method: 'POST',
-      url: '/oauth/login/2FA',
-      data: { code },
-    };
+      const config = {
+        method: 'POST',
+        url: '/oauth/login/2FA',
+        data: { code },
+      };
 
-    const res = await apiController(config);
+      console.log(config);
 
-    console.log(res.status);
+      const res = await apiController(config);
 
-    if (res.status === 200) {
-      navigate('/');
-    } else if (res.status === 400) {
-      console.log('2차인증에 실패했습니다.');
-      input.value = '';
-      $('#InvalidCode').classList.add('text-red-500');
-      input.classList.add('border-red-500');
-      input.focus();
+      // console.log(res);
+
+      if (res && res.status === 200) {
+        navigate('/');
+      }
+    } catch (e) {
+      if (e.status === 400) {
+        console.log('2차인증에 실패했습니다.');
+        input.value = '';
+        $('#InvalidCode').classList.remove('text-white');
+        $('#InvalidCode').classList.add('text-red-500');
+        input.classList.add('border-red-500');
+        input.focus();
+      }
     }
+    // } else if (res.status === 400) {
+    //   console.log('2차인증에 실패했습니다.');
+    //   input.value = '';
+    //   $('#InvalidCode').classList.add('text-red-500');
+    //   input.classList.add('border-red-500');
+    //   input.focus();
+    // }
   }
 
   // async handleCode(input) {
