@@ -17,6 +17,7 @@ export default class TwoFA extends Component {
           bg-white rounded-[30px] shadow-[5px_5px_10px_0px_rgba(0,0,0,0.2)] text-2xl"
       >
         <h1>2차 인증 코드</h1>
+        <p id="InvalidCode" class="my-[10px] text-white text-sm">잘못된 코드입니다.</p>
         <form name="2FA">
           <input
             type="text" id="TwoFA_form__input"
@@ -82,22 +83,41 @@ export default class TwoFA extends Component {
   }
 
   async handleCode(input) {
-    const code = input.value;
+    try {
+      const code = input.value;
 
-    const config = {
-      method: 'POST',
-      url: '/oauth/login/2FA',
-      data: { code },
-    };
+      const config = {
+        method: 'POST',
+        url: '/oauth/login/2FA',
+        data: { code },
+      };
 
-    const res = await apiController(config);
-    const { data } = res;
+      console.log(config);
 
-    console.log(data);
+      const res = await apiController(config);
 
-    if (res.status === 200) {
-      navigate('/');
+      // console.log(res);
+
+      if (res && res.status === 200) {
+        navigate('/');
+      }
+    } catch (e) {
+      if (e.status === 400) {
+        console.log('2차인증에 실패했습니다.');
+        input.value = '';
+        $('#InvalidCode').classList.remove('text-white');
+        $('#InvalidCode').classList.add('text-red-500');
+        input.classList.add('border-red-500');
+        input.focus();
+      }
     }
+    // } else if (res.status === 400) {
+    //   console.log('2차인증에 실패했습니다.');
+    //   input.value = '';
+    //   $('#InvalidCode').classList.add('text-red-500');
+    //   input.classList.add('border-red-500');
+    //   input.focus();
+    // }
   }
 
   // async handleCode(input) {

@@ -40,17 +40,13 @@ apiController.interceptors.response.use(
     // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 오류가 있는 작업 수행
 
-    console.log('error: ', error);
+    // console.log('error: ', error);
 
     const { config, data, status } = error.response;
 
-    console.log('status: ' + status);
-
-    if (status === 400) {
-      if (data.errorMessage === '...') {
-        // 에러 처리
-      }
-    } else if (status === 401) {
+    // console.log('status: ' + status);
+    
+  if (status === 401) {
       // 401 토큰 만료
       localStorage.removeItem('accessToken');
       const reissueConfig = {
@@ -71,6 +67,7 @@ apiController.interceptors.response.use(
     } else if (status === 403) {
       // 토큰 없이 main 진입
       navigate('/login');
+      return ;
     }
 
     return Promise.reject(error.response);
