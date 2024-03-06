@@ -98,7 +98,10 @@ export default async function handleButtons($target, state, button) {
     const { res, flag } = await handleConfirmOK($target, state, button);
     const modal = button.closest('#Modal_overlay');
 
-    if (res.state == 200 && res.data === 'OK') {
+    console.log(flag);
+
+    if (res.state == 200) {
+      console.log('success');
       if (flag == tableNumbers.FRIEND)
         new Confirm(modal, 'friend', state.userName);
       else new Confirm(modal, 'delete', state.userName);
@@ -246,7 +249,6 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
     method: 'POST',
     url: '/friend/delete',
     data: {
-      userName: state.userName,
       friendName: userName,
     },
   };
@@ -287,7 +289,6 @@ async function handleUnblockUsefOfUserModal($target, state, button) {
     method: 'POST',
     url: '/friend/ban-list/delete',
     data: {
-      userName: state.userName,
       blockName: userName,
     },
   };
