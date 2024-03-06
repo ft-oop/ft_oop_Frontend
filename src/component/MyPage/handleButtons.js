@@ -343,7 +343,6 @@ async function handleConfirmOK($target, state, button) {
         method: 'POST',
         url: '/friend/delete',
         data: {
-          userName: state.userName,
           friendName: friendToDelete,
         },
       };
@@ -354,12 +353,13 @@ async function handleConfirmOK($target, state, button) {
         method: 'POST',
         url: '/friend/ban-list/delete',
         data: {
-          userName: state.userName,
           blockName: friendToDelete,
         },
       };
     }
   }
+
+  console.log(config);
 
   const res = await apiController(config);
 
