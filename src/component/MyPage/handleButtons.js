@@ -177,7 +177,9 @@ async function handleModalSubmmit($target, state, button) {
     $('#mypage_avatar').setAttribute('src', newFileName);
     prevFileName = newFileName;
   }
-  // 여기서 userName 업데이트
+  if ($('#nickname_upload').value !== '') {
+    $('#mypage_name').textContent = $('#nickname_upload').value;
+  }
 
   const data = await postEditInfo(state, newFileName);
 
