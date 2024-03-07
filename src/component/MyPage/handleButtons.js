@@ -12,6 +12,7 @@ let newFileName = '';
 let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
+  prevFileName = $('#mypage_avatar').getAttribute('src');
   /*** 친구, 차단 목록 테이블 전환 ***/
   if (
     button.classList.contains('icon_right') ||
@@ -22,7 +23,6 @@ export default async function handleButtons($target, state, button) {
     /*** 사용자 정보 편짐 모달 ***/
     // 편집 모달 열기
   } else if (button.id === 'edit_modal_open') {
-    prevFileName = $('#mypage_avatar').getAttribute('src');
     handleEdit($target, state, button);
 
     // 이미지 편집 아이콘 클릭
