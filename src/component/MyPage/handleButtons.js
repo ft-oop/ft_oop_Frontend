@@ -34,7 +34,6 @@ export default async function handleButtons($target, state, button) {
     // 제출
   } else if (button.id === 'edit_submit') {
     // console.log('edit submit');
-    console.log('submit=======================');
     const data = await handleModalSubmmit($target, state, button);
 
     button.closest('#Modal_overlay').remove();
@@ -59,7 +58,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state == 200)
+    if (res.state === 200)
       new UserInfo(
         modalOrigin,
         state.username,
@@ -74,7 +73,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state == 200)
+    if (res.state === 200)
       new UserInfo(
         modalOrigin,
         state.username,
@@ -89,7 +88,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state == 200)
+    if (res.state === 200)
       new UserInfo(modalOrigin, state.username, '', '/unblock.svg');
 
     // 차단 해제
@@ -99,7 +98,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state == 200)
+    if (res.state === 200)
       new UserInfo(
         modalOrigin,
         state.username,
@@ -125,9 +124,9 @@ export default async function handleButtons($target, state, button) {
     console.log('modal: ', modal);
     console.log('flag: ', flag);
 
-    if (res.state == 200) {
+    if (res.state === 200) {
       console.log('success');
-      if (flag == tableNumbers.FRIEND)
+      if (flag === tableNumbers.FRIEND)
         new Confirm(modal, 'friend', state.username);
       else new Confirm(modal, 'delete', state.username);
     }
