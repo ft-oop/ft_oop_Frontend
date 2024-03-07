@@ -173,6 +173,8 @@ function uploadImage(e) {
 async function handleModalSubmmit($target, state, button) {
   console.log('edit modal submit');
 
+  const data = await postEditInfo(state, newFileName);
+
   if (newFileName !== '') {
     $('#mypage_avatar').setAttribute('src', newFileName);
     prevFileName = newFileName;
@@ -180,8 +182,6 @@ async function handleModalSubmmit($target, state, button) {
   if ($('#nickname_upload').value !== '') {
     $('#mypage_name').textContent = $('#nickname_upload').value;
   }
-
-  const data = await postEditInfo(state, newFileName);
 
   return data;
 }
