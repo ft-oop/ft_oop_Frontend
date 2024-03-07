@@ -57,7 +57,9 @@ export default async function handleButtons($target, state, button) {
     const res = await handleAddFriendOfUserModal($target, state, button);
     const modalOrigin = button.closest('#Modal_overlay');
 
-    if (res.state == 200 && res.data === 'OK')
+    console.log('modal: ', modalOrigin);
+
+    if (res.state == 200)
       new UserInfo(
         modalOrigin,
         state.username,
@@ -70,7 +72,9 @@ export default async function handleButtons($target, state, button) {
     const res = await handleDeleteFriendOfUserModal($target, state, button);
     const modalOrigin = button.closest('#Modal_overlay');
 
-    if (res.state == 200 && res.data === 'OK')
+    console.log('modal: ', modalOrigin);
+
+    if (res.state == 200)
       new UserInfo(
         modalOrigin,
         state.username,
@@ -83,6 +87,8 @@ export default async function handleButtons($target, state, button) {
     const res = await handleBlockUsefOfUserModal($target, state, button);
     const modalOrigin = button.closest('#Modal_overlay');
 
+    console.log('modal: ', modalOrigin);
+
     if (res.state == 200)
       new UserInfo(modalOrigin, state.username, '', '/unblock.svg');
 
@@ -90,6 +96,8 @@ export default async function handleButtons($target, state, button) {
   } else if (button.id === 'icon_unblock') {
     const res = await handleUnblockUsefOfUserModal($target, state, button);
     const modalOrigin = button.closest('#Modal_overlay');
+
+    console.log('modal: ', modalOrigin);
 
     if (res.state == 200)
       new UserInfo(
@@ -114,7 +122,8 @@ export default async function handleButtons($target, state, button) {
     const { res, flag } = await handleConfirmOK($target, state, button);
     const modal = button.closest('#Modal_overlay');
 
-    console.log(flag);
+    console.log('modal: ', modal);
+    console.log('flag: ', flag);
 
     if (res.state == 200) {
       console.log('success');
@@ -354,10 +363,13 @@ function handleDelete($target, state, button) {
 async function handleConfirmOK($target, state, button) {
   const modal = button.closest('#Modal_overlay');
   let config;
+  let flag;
 
   if (modal && modal.id === 'Modal_overlay') {
     if (document.querySelector('#Friend_table')) {
       console.log('confirm_ok: delete friend');
+
+      flag = tableNumbers.FRIEND;
 
       config = {
         method: 'POST',
@@ -368,6 +380,8 @@ async function handleConfirmOK($target, state, button) {
       };
     } else {
       console.log('confirm_ok: delete block');
+
+      flag = tableNumbers.BLOCK;
 
       config = {
         method: 'POST',
@@ -383,7 +397,7 @@ async function handleConfirmOK($target, state, button) {
 
   const res = await apiController(config);
 
-  return { res, flag: tableNumbers.FRIEND };
+  return { res, flag };
 }
 
 async function postEditInfo(state, newFileName) {
