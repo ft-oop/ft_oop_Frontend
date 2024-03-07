@@ -58,7 +58,12 @@ export default async function handleButtons($target, state, button) {
     const modalOrigin = button.closest('#Modal_overlay');
 
     if (res.state == 200 && res.data === 'OK')
-      new UserInfo(modalOrigin, userName, '/delete_friend.svg', '/block.svg');
+      new UserInfo(
+        modalOrigin,
+        state.username,
+        '/delete_friend.svg',
+        '/block.svg',
+      );
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
@@ -66,23 +71,33 @@ export default async function handleButtons($target, state, button) {
     const modalOrigin = button.closest('#Modal_overlay');
 
     if (res.state == 200 && res.data === 'OK')
-      new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
+      new UserInfo(
+        modalOrigin,
+        state.username,
+        '/add_friend.svg',
+        '/block.svg',
+      );
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
     const res = await handleBlockUsefOfUserModal($target, state, button);
     const modalOrigin = button.closest('#Modal_overlay');
 
-    if (res.state == 200 && res.data === 'OK')
-      new UserInfo(modalOrigin, userName, '', '/unblock.svg');
+    if (res.state == 200)
+      new UserInfo(modalOrigin, state.username, '', '/unblock.svg');
 
     // 차단 해제
   } else if (button.id === 'icon_unblock') {
     const res = await handleUnblockUsefOfUserModal($target, state, button);
     const modalOrigin = button.closest('#Modal_overlay');
 
-    if (res.state == 200 && res.data === 'OK')
-      new UserInfo(modalOrigin, userName, '/add_friend.svg', '/block.svg');
+    if (res.state == 200)
+      new UserInfo(
+        modalOrigin,
+        state.username,
+        '/add_friend.svg',
+        '/block.svg',
+      );
 
     /*** 테이블 내 아이콘 핸들링 ***/
     // DM
@@ -104,8 +119,8 @@ export default async function handleButtons($target, state, button) {
     if (res.state == 200) {
       console.log('success');
       if (flag == tableNumbers.FRIEND)
-        new Confirm(modal, 'friend', state.userName);
-      else new Confirm(modal, 'delete', state.userName);
+        new Confirm(modal, 'friend', state.username);
+      else new Confirm(modal, 'delete', state.username);
     }
     // 확인 모달 닫기
   } else if (button.id === 'modal_close') {
@@ -139,7 +154,7 @@ function handleEdit($target, state, button) {
 
   $target.appendChild(modal);
 
-  new Edit(modal, state.userName);
+  new Edit(modal, state.username);
 }
 
 function handleAvatarUpload($target, button) {
@@ -227,14 +242,14 @@ async function handleAddFriendOfUserModal($target, state, button) {
   console.log('add friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
-  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+  const target = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
     method: 'POST',
     url: '/friend/add',
     data: {
-      userName: state.userName,
-      friendName: userName,
+      userName: state.username,
+      friendName: target,
     },
   };
 
@@ -247,13 +262,13 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
   console.log('delete friend');
 
   const modalOrigin = button.closest('#Modal_overlay');
-  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+  const target = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
     method: 'POST',
     url: '/friend/delete',
     data: {
-      friendName: userName,
+      friendName: target,
     },
   };
 
@@ -267,14 +282,14 @@ async function handleBlockUsefOfUserModal($target, state, button) {
   console.log('block user');
 
   const modalOrigin = button.closest('#Modal_overlay');
-  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+  const target = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
     method: 'POST',
     url: '/friend/ban-list/add',
     data: {
-      userName: state.userName,
-      blockName: userName,
+      userName: state.username,
+      blockName: target,
     },
   };
 
@@ -287,13 +302,13 @@ async function handleUnblockUsefOfUserModal($target, state, button) {
   console.log('unblock user');
 
   const modalOrigin = button.closest('#Modal_overlay');
-  const userName = modalOrigin.querySelector('#mypage_name').textContent;
+  const target = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
     method: 'POST',
     url: '/friend/ban-list/delete',
     data: {
-      blockName: userName,
+      blockName: target,
     },
   };
 
@@ -330,9 +345,9 @@ function handleDelete($target, state, button) {
       .previousSibling.textContent;
 
   if (document.querySelector('#Friend_table')) {
-    new Confirm(confirm, 'friend', state.userName, friendToDelete);
+    new Confirm(confirm, 'friend', state.username, friendToDelete);
   } else {
-    new Confirm(confirm, 'block', state.userName, friendToDelete);
+    new Confirm(confirm, 'block', state.username, friendToDelete);
   }
 }
 
