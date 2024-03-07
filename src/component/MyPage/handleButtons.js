@@ -36,7 +36,7 @@ export default async function handleButtons($target, state, button) {
     console.log('edit submit');
     const data = await handleModalSubmmit($target, state, button);
 
-    console.log(data);
+    console.log('submit=======================');
 
     button.closest('#Modal_overlay').remove();
 
