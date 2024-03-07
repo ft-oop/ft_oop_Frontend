@@ -12,9 +12,7 @@ let newFileName = '';
 let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
-  prevFileName = $('#mypage_avatar').getAttribute('src');
-  console.log($('#mypage_avatar').getAttribute('src'));
-  console.log($('#mypage_avatar').src);
+  prevFileName = $('#mypage_avatar').src;
 
   /*** 친구, 차단 목록 테이블 전환 ***/
   if (
