@@ -116,10 +116,9 @@ export default class MyPage extends Component {
     this.$target.classList.add('MyPageEvents');
     this.$target.addEventListener('click', this.handleButton.bind(this));
 
-    this.addEvent('keydown', '#nickname_upload', (e) => {
-      if (e.key === 'Enter') {
+    this.$target.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.id === 'nickname_upload') {
         if (e.isComposing) return;
-        console.log('~~~~~~~~~ enter keypress ~~~~~~~~~');
         handleButtons(this.$target, this.state, $('#edit_submit'));
       }
     });
