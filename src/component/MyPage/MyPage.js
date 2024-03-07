@@ -7,6 +7,7 @@ import { tableNumbers } from '../../constant/tableNumbers.js';
 import handleButtons from './handleButtons.js';
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
+import { $ } from '../../utils/querySelector.js';
 
 export default class MyPage extends Component {
   async getMyPageInfo() {
