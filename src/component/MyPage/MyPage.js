@@ -119,7 +119,7 @@ export default class MyPage extends Component {
     this.addEvent('keydown', '#nickname_upload', (e) => {
       if (e.key === 'Enter') {
         if (e.isComposing) return;
-        console.log('enter keypress');
+        console.log('~~~~~~~~~ enter keypress ~~~~~~~~~');
         handleButtons(this.$target, this.state, $('#edit_submit'));
       }
     });
