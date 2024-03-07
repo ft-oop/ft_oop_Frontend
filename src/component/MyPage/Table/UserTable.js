@@ -26,7 +26,7 @@ export default class UserTable extends Component {
     const config = {
       url: '/users/info',
       params: {
-        username: this.props.username, // 확인하고자 하는 유저 이름으로 수정
+        username: this.props.username,
       },
     };
     const res = await apiController(config);

@@ -94,9 +94,9 @@ export default class TwoFA extends Component {
 
       console.log(config);
 
-      const res = await apiController(config);
+      // 여기 loading을 넣는다면?
 
-      // console.log(res);
+      const res = await apiController(config);
 
       if (res && res.status === 200) {
         navigate('/');
@@ -111,38 +111,5 @@ export default class TwoFA extends Component {
         input.focus();
       }
     }
-    // } else if (res.status === 400) {
-    //   console.log('2차인증에 실패했습니다.');
-    //   input.value = '';
-    //   $('#InvalidCode').classList.add('text-red-500');
-    //   input.classList.add('border-red-500');
-    //   input.focus();
-    // }
   }
-
-  // async handleCode(input) {
-  //   const code = input.value;
-  //   const res = await fetch(`${BASE_URL}/oauth/login/2FA`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ code }),
-  //   });
-
-  //   console.log(JSON.stringify({ code }));
-
-  //   if (Response.ok) {
-  //     const data = await res.json();
-  //     console.log(data);
-
-  //     navigate('/');
-  //   } else {
-  //     // error handling
-  //     console.log('2차인증에 실패했습니다.');
-  //     input.classList.add('border-red-500');
-  //     input.value = '';
-  //     input.focus();
-  //   }
-  // }
 }
