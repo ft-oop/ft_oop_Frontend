@@ -23,7 +23,7 @@ function Login($container) {
         class="flex justify-center items-center text-2xl font-semibold hover:text-3xl hover:font-bold text-purple-400 w-[200px] h-[200px] bg-cover cursor-pointer"
         style="background-image: url(/bubble.png)"
       >
-        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-e5cd37c35750100ba3e0124e1161a48dc116d003c905db2d268761a44f090c48&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Flogin&response_type=code"
+        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-e5cd37c35750100ba3e0124e1161a48dc116d003c905db2d268761a44f090c48&redirect_uri=http%3A%2F%2F10.13.6.5%3A5173%2Flogin&response_type=code"
           class="w-full h-full justify-center hover:text-3xl hover:text-purple-400"
         >
           <span class="w-full h-full rounded-full flex items-center justify-center align-middle">
