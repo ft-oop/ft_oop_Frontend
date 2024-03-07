@@ -115,6 +115,13 @@ export default class MyPage extends Component {
 
     this.$target.classList.add('MyPageEvents');
     this.$target.addEventListener('click', this.handleButton.bind(this));
+
+    this.$target.addEvent('keydown', '#nickname_upload', (e) => {
+      if (e.key === 'Enter') {
+        if (e.isComposing) return;
+        handleButtons(this.$target, this.state, $('#edit_submit'));
+      }
+    });
   }
 
   handleButton(event) {
