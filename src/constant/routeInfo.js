@@ -6,7 +6,8 @@ import RoomList from '../component/RoomList/RoomList.js';
 import GameRoom from '../component/GameRoom/GameRoom.js';
 import Loading from '../component/Loading.js';
 
-export const BASE_URL = 'http://localhost:5173';
+// export const BASE_URL = 'http://localhost:5173';
+export const BASE_URL = 'http://10.13.6.5:5173/';
 
 export const routes = [
   { path: /^\/$/, element: Home },
