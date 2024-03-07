@@ -7,14 +7,12 @@ import { tableNumbers } from '../../constant/tableNumbers.js';
 import handleButtons from './handleButtons.js';
 import { navigate } from '../../utils/navigate.js';
 import apiController from '../../utils/apiController.js';
+import { $ } from '../../utils/querySelector.js';
 
 export default class MyPage extends Component {
   async getMyPageInfo() {
     const config = {
       url: '/mypage',
-      params: {
-        userName: 'suhwpark', // 토큰 생성되면 없애기
-      },
     };
     const res = await apiController(config);
     const { data } = res;
@@ -26,48 +24,48 @@ export default class MyPage extends Component {
     this.state = await this.getMyPageInfo();
 
     // 백엔드 연결 시 삭제
-    this.state = {
-      userName: 'user',
-      picture: '',
-      totalWinScore: 1,
-      totalLoseScore: 1,
-      matchHistories: [
-        {
-          userName: 'op1',
-          winner: 'user',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op2',
-          winner: 'op2',
-          scoreDate: '2024-01-30',
-        },
-      ],
-      friends: [
-        {
-          userName: 'friend1',
-          picture: '',
-        },
-        {
-          userName: 'friend2',
-          picture: '',
-        },
-        {
-          userName: 'friend3',
-          picture: '',
-        },
-      ],
-      blockedUsers: [
-        {
-          userName: 'block1',
-          picture: '',
-        },
-        {
-          userName: 'block2',
-          picture: '',
-        },
-      ],
-    };
+    // this.state = {
+    //   userName: 'user',
+    //   picture: '',
+    //   totalWinScore: 1,
+    //   totalLoseScore: 1,
+    //   matchHistories: [
+    //     {
+    //       userName: 'op1',
+    //       winner: 'user',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op2',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-30',
+    //     },
+    //   ],
+    //   friends: [
+    //     {
+    //       userName: 'friend1',
+    //       picture: '',
+    //     },
+    //     {
+    //       userName: 'friend2',
+    //       picture: '',
+    //     },
+    //     {
+    //       userName: 'friend3',
+    //       picture: '',
+    //     },
+    //   ],
+    //   blockedUsers: [
+    //     {
+    //       userName: 'block1',
+    //       picture: '',
+    //     },
+    //     {
+    //       userName: 'block2',
+    //       picture: '',
+    //     },
+    //   ],
+    // };
 
     this.setEvent();
     this.render();
@@ -80,7 +78,7 @@ export default class MyPage extends Component {
     const $historyTable = this.$target.querySelector('#MyPage_info__history');
     const $friendTable = this.$target.querySelector('#MyPage_info__user_list');
 
-    console.log(this.state);
+    // console.log(this.state);
 
     new Profile($profile, this.state, '', '/edit.svg');
     new HistoryTable($historyTable, this.state);
@@ -118,6 +116,13 @@ export default class MyPage extends Component {
 
     this.$target.classList.add('MyPageEvents');
     this.$target.addEventListener('click', this.handleButton.bind(this));
+
+    this.$target.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.id === 'nickname_upload') {
+        if (e.isComposing) return;
+        handleButtons(this.$target, this.state, $('#edit_submit'));
+      }
+    });
   }
 
   handleButton(event) {

@@ -3,6 +3,7 @@ import { navigate } from './navigate.js';
 
 const apiController = axios.create({
   baseURL: 'http://localhost:8000/', // 서버 8000
+  // baseURL: 'http://10.13.6.5:8000/', // 서버 8000
 });
 
 // 요청 인터셉터 추가하기(요청 전)
@@ -32,7 +33,7 @@ apiController.interceptors.response.use(
     // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 데이터가 있는 작업 수행
 
-    console.log(response);
+    // console.log(response);
 
     return response;
   },
@@ -45,8 +46,8 @@ apiController.interceptors.response.use(
     const { config, data, status } = error.response;
 
     // console.log('status: ' + status);
-    
-  if (status === 401) {
+
+    if (status === 401) {
       // 401 토큰 만료
       localStorage.removeItem('accessToken');
       const reissueConfig = {
@@ -67,7 +68,7 @@ apiController.interceptors.response.use(
     } else if (status === 403) {
       // 토큰 없이 main 진입
       navigate('/login');
-      return ;
+      return;
     }
 
     return Promise.reject(error.response);

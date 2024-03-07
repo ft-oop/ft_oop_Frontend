@@ -26,7 +26,7 @@ export default class UserTable extends Component {
     const config = {
       url: '/users/info',
       params: {
-        userName: 'suhwpark', // 확인하고자 하는 유저 이름으로 수정
+        username: this.props.username, // 확인하고자 하는 유저 이름으로 수정
       },
     };
     const res = await apiController(config);
@@ -44,8 +44,14 @@ export default class UserTable extends Component {
       rightImage = '/arrow-right-disabled.svg';
     }
 
+    let tableID = 'Friend_table';
+
+    if (this.n === tableNumbers.BLOCK) {
+      tableID = 'Block_table';
+    }
+
     return `
-      <table class="MyPage__table">
+      <table class="MyPage__table" id=${tableID}>
         <caption>
           <img src="${leftImage}" class="icon_left" id="icon_left${
       this.n
@@ -72,7 +78,7 @@ export default class UserTable extends Component {
 
     if (this.n === tableNumbers.BLOCK) {
       idName = 'Block_table';
-      users = this.props.blockedUsers;
+      users = this.props.ban_list;
       display = 'display: none';
       type = 'block';
     }
@@ -92,15 +98,15 @@ export default class UserTable extends Component {
             ${/* Avatar */ ''}
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
             ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}  
-              <img src="/image2.jpg" alt="profile" id="${type}_avatar_${
-          user.userName
+              <img src="${user.picture}" alt="profile" id="${type}_avatar_${
+          user.username
         }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
-        <td id="${type}_name_${user.userName}" class="user_name">${
-          user.userName
+        <td id="${type}_name_${user.username}" class="user_name">${
+          user.username
         }</td>
         ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>

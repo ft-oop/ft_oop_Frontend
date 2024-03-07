@@ -7,11 +7,13 @@ import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import apiController from '../../utils/apiController.js';
 
-let prevFileName = '/image1.jpg';
+let prevFileName = '';
 let newFileName = '';
 let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
+  prevFileName = $('#mypage_avatar').getAttribute('src');
+
   /*** 친구, 차단 목록 테이블 전환 ***/
   if (
     button.classList.contains('icon_right') ||
@@ -31,10 +33,9 @@ export default async function handleButtons($target, state, button) {
 
     // 제출
   } else if (button.id === 'edit_submit') {
-    console.log('edit submit');
+    // console.log('edit submit');
+    console.log('submit=======================');
     const data = await handleModalSubmmit($target, state, button);
-
-    console.log(data);
 
     button.closest('#Modal_overlay').remove();
 
@@ -98,7 +99,10 @@ export default async function handleButtons($target, state, button) {
     const { res, flag } = await handleConfirmOK($target, state, button);
     const modal = button.closest('#Modal_overlay');
 
-    if (res.state == 200 && res.data === 'OK') {
+    console.log(flag);
+
+    if (res.state == 200) {
+      console.log('success');
       if (flag == tableNumbers.FRIEND)
         new Confirm(modal, 'friend', state.userName);
       else new Confirm(modal, 'delete', state.userName);
@@ -169,12 +173,15 @@ function uploadImage(e) {
 async function handleModalSubmmit($target, state, button) {
   console.log('edit modal submit');
 
+  const data = await postEditInfo(state, newFileName);
+
   if (newFileName !== '') {
     $('#mypage_avatar').setAttribute('src', newFileName);
     prevFileName = newFileName;
   }
-
-  const data = await postEditInfo(state, newFileName);
+  if ($('#nickname_upload').value !== '') {
+    $('#mypage_name').textContent = $('#nickname_upload').value;
+  }
 
   return data;
 }
@@ -243,13 +250,14 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
   const userName = modalOrigin.querySelector('#mypage_name').textContent;
 
   const config = {
-    method: 'delete',
+    method: 'POST',
     url: '/friend/delete',
     data: {
-      userName: state.userName,
       friendName: userName,
     },
   };
+
+  console.log(config);
 
   const res = await apiController(config);
   return res;
@@ -285,7 +293,6 @@ async function handleUnblockUsefOfUserModal($target, state, button) {
     method: 'POST',
     url: '/friend/ban-list/delete',
     data: {
-      userName: state.userName,
       blockName: userName,
     },
   };
@@ -341,7 +348,6 @@ async function handleConfirmOK($target, state, button) {
         method: 'POST',
         url: '/friend/delete',
         data: {
-          userName: state.userName,
           friendName: friendToDelete,
         },
       };
@@ -352,12 +358,13 @@ async function handleConfirmOK($target, state, button) {
         method: 'POST',
         url: '/friend/ban-list/delete',
         data: {
-          userName: state.userName,
           blockName: friendToDelete,
         },
       };
     }
   }
+
+  console.log(config);
 
   const res = await apiController(config);
 
@@ -365,18 +372,16 @@ async function handleConfirmOK($target, state, button) {
 }
 
 async function postEditInfo(state, newFileName) {
-  const newNick = $('#nickname_upload').value;
+  const newName = $('#nickname_upload').value;
 
-  console.log('userName: ', state.userName);
-  console.log('newNick: ', newNick);
+  console.log('newName: ', newName);
   console.log('newFileName: ', newFileName);
 
   const config = {
     method: 'POST',
     url: '/mypage/editor',
     data: {
-      userName: state.userName,
-      nickName: newNick,
+      newName: newName,
       picture: newFileName,
     },
   };

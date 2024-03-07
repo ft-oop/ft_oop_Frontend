@@ -18,49 +18,49 @@ export default class UserInfo extends Component {
   async setup() {
     this.state = await this.getUserInfo();
 
-    this.state = {
-      userName: this.props,
-      picture: '',
-      totalWinScore: 15,
-      totalLoseScore: 4,
-      matchHistories: [
-        {
-          userName: 'op3',
-          winner: this.props,
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op4',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op4',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op4',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op4',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op4',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-        {
-          userName: 'op4',
-          winner: 'op2',
-          scoreDate: '2024-01-29',
-        },
-      ],
-    };
+    // this.state = {
+    //   userName: this.props,
+    //   picture: '',
+    //   totalWinScore: 15,
+    //   totalLoseScore: 4,
+    //   matchHistories: [
+    //     {
+    //       userName: 'op3',
+    //       winner: this.props,
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op4',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op4',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op4',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op4',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op4',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //     {
+    //       userName: 'op4',
+    //       winner: 'op2',
+    //       scoreDate: '2024-01-29',
+    //     },
+    //   ],
+    // };
 
     this.setEvent();
     this.render();
@@ -76,6 +76,8 @@ export default class UserInfo extends Component {
 
     const res = await apiController(config);
     const { data } = res;
+
+    console.log(data);
 
     return data;
   }
