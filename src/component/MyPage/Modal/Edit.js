@@ -50,6 +50,9 @@ export default class Edit extends Component {
       <div class="input-group mb-3">
         <span class="input-group-text" id="input_nickname">이름 입력</span>
         <input type="text" id="nickname_upload" class="form-control" placeholder="input name" aria-label="NickName" aria-describedby="input_nickname">
+        <input type="text" style="display:none;">${
+          /* submit 시 새로고침 방지 */ ''
+        }
       </div>
     `;
   }
