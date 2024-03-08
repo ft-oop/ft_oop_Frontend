@@ -58,7 +58,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state === 200) {
+    if (res.status === 200) {
       console.log('if문 진입');
       new UserInfo(
         modalOrigin,
@@ -75,7 +75,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state === 200) {
+    if (res.status === 200) {
       console.log('if문 진입');
       new UserInfo(
         modalOrigin,
@@ -102,7 +102,7 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state === 200)
+    if (res.status === 200)
       new UserInfo(
         modalOrigin,
         state.username,
