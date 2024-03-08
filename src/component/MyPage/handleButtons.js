@@ -143,10 +143,10 @@ export default async function handleButtons($target, state, button) {
     button.closest('#Modal_overlay').remove();
 
     const table = $('#Friend_table');
-    console.log('table: ', table);
-    const table2 = $('#Block_table');
-    console.log('table2: ', table2);
+
     if (table) {
+      console.log('table: ', table);
+
       new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
     } else {
       const table = $('#Block_table');
