@@ -295,7 +295,7 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
 
   console.log(config);
 
-  const { res, target } = await apiController(config);
+  const res = await apiController(config);
   return res;
 }
 
