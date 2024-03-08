@@ -69,10 +69,10 @@ export default async function handleButtons($target, state, button) {
       console.log('target: ', target);
       new UserInfo(modalOrigin, target, '/delete_friend.svg', '/block.svg');
 
-      const table = $('#Friend_table');
-      console.log('table: ', table);
+      // const table = $('#Friend_table');
+      // console.log('table: ', table);
 
-      new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
+      // new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
     }
 
     // 친구 삭제
@@ -91,28 +91,30 @@ export default async function handleButtons($target, state, button) {
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
-    const res = await handleBlockUsefOfUserModal($target, state, button);
+    const { res, target } = await handleBlockUsefOfUserModal(
+      $target,
+      state,
+      button,
+    );
     const modalOrigin = button.closest('#Modal_overlay');
 
     console.log('modal: ', modalOrigin);
 
     if (res.status === 200)
-      new UserInfo(modalOrigin, state.username, '', '/unblock.svg');
+      new UserInfo(modalOrigin, target, '', '/unblock.svg');
 
     // 차단 해제
   } else if (button.id === 'icon_unblock') {
-    const res = await handleUnblockUsefOfUserModal($target, state, button);
+    const { res, target } = await handleUnblockUsefOfUserModal(
+      $target,
+      state,
+      button,
+    );
     const modalOrigin = button.closest('#Modal_overlay');
 
-    console.log('modal: ', modalOrigin);
-
-    if (res.status === 200)
-      new UserInfo(
-        modalOrigin,
-        state.username,
-        '/add_friend.svg',
-        '/block.svg',
-      );
+    if (res.status === 200) {
+      new UserInfo(modalOrigin, target, '/add_friend.svg', '/block.svg');
+    }
     // 400 error -> alert 만들어야 할 듯..?
 
     /*** 테이블 내 아이콘 핸들링 ***/
@@ -279,8 +281,7 @@ async function handleAddFriendOfUserModal($target, state, button) {
     method: 'POST',
     url: '/friend/add',
     data: {
-      userName: state.username,
-      friendName: target,
+      friend: target,
     },
   };
 
@@ -324,7 +325,7 @@ async function handleBlockUsefOfUserModal($target, state, button) {
 
   const res = await apiController(config);
 
-  return res;
+  return { res, target };
 }
 
 async function handleUnblockUsefOfUserModal($target, state, button) {
@@ -341,9 +342,9 @@ async function handleUnblockUsefOfUserModal($target, state, button) {
     },
   };
 
-  const res = apiController(config);
+  const res = await apiController(config);
 
-  return res;
+  return { res, target };
 }
 
 function handleDM($target, state, button) {
