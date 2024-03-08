@@ -59,7 +59,7 @@ export default async function handleButtons($target, state, button) {
     console.log('modal: ', modalOrigin);
 
     if (res.state === 200) {
-      console.log('=====success');
+      console.log('if문 진입');
       new UserInfo(
         modalOrigin,
         state.username,
@@ -75,13 +75,15 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state === 200)
+    if (res.state === 200) {
+      console.log('if문 진입');
       new UserInfo(
         modalOrigin,
         state.username,
         '/add_friend.svg',
         '/block.svg',
       );
+    }
 
     // 사용자 차단
   } else if (button.id === 'icon_block') {
