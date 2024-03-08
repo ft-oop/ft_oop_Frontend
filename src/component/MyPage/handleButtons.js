@@ -6,7 +6,6 @@ import { $ } from '../../utils/querySelector.js';
 import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import apiController from '../../utils/apiController.js';
-import UserTable from './Table/UserTable.js';
 
 let prevFileName = '';
 let newFileName = '';
