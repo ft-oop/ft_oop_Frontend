@@ -25,14 +25,14 @@ export default class UserTable extends Component {
   async getUserInfo() {
     const config = {
       url: '/users/info',
-      params: {
-        username: this.props.username,
-      },
+      // params: {
+      //   username: this.props.username,
+      // },
     };
     const res = await apiController(config);
     const { data } = res;
 
-    console.log(data);
+    console.log('data: ', data);
 
     return data;
   }
@@ -85,9 +85,16 @@ export default class UserTable extends Component {
       type = 'block';
     }
 
-    return users
-      .map(
-        (user) => `
+    console.log('users: ', users);
+
+    if (users === undefined) {
+      console.log('users is undefined');
+      // user가 테이블에 없어서..?
+      return ``;
+    } else {
+      return users
+        .map(
+          (user) => `
       <tr id="${idName}">
         <td class="flex ml-[20px]">
           <div class="w-[40px] h-[40px] relative">
@@ -101,22 +108,23 @@ export default class UserTable extends Component {
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
             ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}  
               <img src="${user.picture}" alt="profile" id="${type}_avatar_${
-          user.username
-        }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
+            user.username
+          }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
         <td id="${type}_name_${user.username}" class="user_name">${
-          user.username
-        }</td>
+            user.username
+          }</td>
         ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
         ${/* Delete */ ''}
         <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
-      )
-      .join('');
+        )
+        .join('');
+    }
   }
 }
