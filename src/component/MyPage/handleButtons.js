@@ -6,6 +6,7 @@ import { $ } from '../../utils/querySelector.js';
 import UserTable from './Table/UserTable.js';
 import { tableNumbers } from '../../constant/tableNumbers.js';
 import apiController from '../../utils/apiController.js';
+import UserTable from './Table/UserTable.js';
 
 let prevFileName = '';
 let newFileName = '';
@@ -53,19 +54,22 @@ export default async function handleButtons($target, state, button) {
     // 아이콘 클릭 이벤트 발생 시 상황에 맞는 모달 새로 넣어야 함..
     // 친구 추가
   } else if (button.id === 'icon_add_friend') {
-    const res = await handleAddFriendOfUserModal($target, state, button);
+    const { res, target } = await handleAddFriendOfUserModal(
+      $target,
+      state,
+      button,
+    );
     const modalOrigin = button.closest('#Modal_overlay');
 
     console.log('modal: ', modalOrigin);
 
     if (res.status === 200) {
       console.log('if문 진입');
-      new UserInfo(
-        modalOrigin,
-        state.username,
-        '/delete_friend.svg',
-        '/block.svg',
-      );
+      new UserInfo(modalOrigin, target, '/delete_friend.svg', '/block.svg');
+
+      const table = $('#Friend_table');
+
+      new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
     }
 
     // 친구 삭제
@@ -268,7 +272,7 @@ async function handleAddFriendOfUserModal($target, state, button) {
 
   const res = await apiController(config);
 
-  return res;
+  return { res, target };
 }
 
 async function handleDeleteFriendOfUserModal($target, state, button) {
