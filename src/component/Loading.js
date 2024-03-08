@@ -59,7 +59,7 @@ export default class Loading extends Component {
     let speedRandom = Math.random() * 10 + 3;
     let upSpeed = parseFloat(speedRandom.toFixed(3));
     let shakeSpeed = Math.random() * 9 + 5;
-    const delay = Math.floor(Math.random() * 7);
+    const delay = Math.floor(Math.random() * 4);
 
     // 버블 사이의 간격과 위치 균등하게 설정
     const distanceBetweenBubbles = 5; // 버블 사이의 간격
