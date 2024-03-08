@@ -28,20 +28,24 @@ export default class HistoryTable extends Component {
   generateHistoryTable() {
     const { matchHistories } = this.props;
 
-    return matchHistories
-      .map(
-        (history) => `
+    if (matchHistories === undefined) {
+      return ``;
+    } else {
+      return matchHistories
+        .map(
+          (history) => `
       <tr class="History_table">
         <td class="history_date">${history.scoreDate}</td>
         <td class="history_content">${this.props.userName} vs ${
-          history.userName
-        }</td>
+            history.userName
+          }</td>
         <td class="history_result">${
           history.winner === this.props.userName ? 'Win' : 'Lose'
         }</td>
       </tr>
     `,
-      )
-      .join('');
+        )
+        .join('');
+    }
   }
 }
