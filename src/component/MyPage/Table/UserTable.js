@@ -11,8 +11,8 @@ export default class UserTable extends Component {
     this.title = title;
     this.n = n;
     this.setup();
-    this.setEvent();
-    this.render();
+    // this.setEvent();
+    // this.render();
   }
 
   async setup() {
@@ -24,10 +24,7 @@ export default class UserTable extends Component {
 
   async getUserInfo() {
     const config = {
-      url: '/users/info',
-      params: {
-        username: this.props.username, // 확인하고자 하는 유저 이름으로 수정
-      },
+      url: '/mypage',
     };
     const res = await apiController(config);
     const { data } = res;
@@ -70,7 +67,7 @@ export default class UserTable extends Component {
 
   generateUserTable() {
     let idName = 'Friend_table';
-    let users = this.props.friends;
+    let users = this.state.friends;
     let display = 'display: inline';
     let type = 'friend';
 
@@ -78,7 +75,7 @@ export default class UserTable extends Component {
 
     if (this.n === tableNumbers.BLOCK) {
       idName = 'Block_table';
-      users = this.props.ban_list;
+      users = this.state.ban_list;
       display = 'display: none';
       type = 'block';
     }

@@ -1,6 +1,7 @@
 import Component from '../../core/Component';
 import { navigate } from '../../utils/navigate';
 import apiController from '../../utils/apiController';
+import Loading from '../Loading.js';
 
 export default class Login extends Component {
   template() {
@@ -65,6 +66,8 @@ export default class Login extends Component {
         code,
       },
     };
+
+    new Loading(this.$target, this.state);
 
     const { data, status } = await apiController(config);
 
