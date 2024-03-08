@@ -81,18 +81,9 @@ export default async function handleButtons($target, state, button) {
     );
     const modalOrigin = button.closest('#Modal_overlay');
 
-    console.log('modal: ', modalOrigin);
-    console.log('res: ', res);
-    console.log('target: ', target);
-
     if (res.status === 200) {
       console.log('target: ', target);
       new UserInfo(modalOrigin, target, '/add_friend.svg', '/block.svg');
-
-      const table = $('#Friend_table');
-      console.log('table: ', table);
-
-      new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
     }
 
     // 사용자 차단
@@ -150,6 +141,18 @@ export default async function handleButtons($target, state, button) {
     console.log('modal close');
 
     button.closest('#Modal_overlay').remove();
+
+    const table = $('#Friend_table');
+    if (table) {
+      console.log('table: ', table);
+
+      new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
+    } else {
+      const table = $('#Block_table');
+      console.log('table: ', table);
+
+      new UserTable(table, '차단 목록', tableNumbers.BLOCK, state);
+    }
   }
 }
 
