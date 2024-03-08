@@ -1,6 +1,7 @@
 import Component from '../../core/Component';
 import { navigate } from '../../utils/navigate';
 import apiController from '../../utils/apiController';
+import Loading from '../Loading.js';
 
 export default class Login extends Component {
   template() {
@@ -18,7 +19,7 @@ export default class Login extends Component {
     >
     
         <a
-          href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-e5cd37c35750100ba3e0124e1161a48dc116d003c905db2d268761a44f090c48&redirect_uri=http%3A%2F%2F10.13.6.5%3A5173%2Flogin&response_type=code"
+          href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-80593f2ca92d09f7d42166593b99cc335953a89bc775c0596ac93a9eb3bc4c44&redirect_uri=http%3A%2F%2F10.13.6.7%3A5173%2Flogin&response_type=code"
           class="w-full h-full justify-center hover:text-3xl hover:text-purple-400"
         >
           <span class="w-full h-full rounded-full flex items-center justify-center align-middle">
@@ -65,6 +66,8 @@ export default class Login extends Component {
         code,
       },
     };
+
+    new Loading(this.$target, this.state);
 
     const { data, status } = await apiController(config);
 
