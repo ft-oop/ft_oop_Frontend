@@ -11,8 +11,8 @@ export default class UserTable extends Component {
     this.title = title;
     this.n = n;
     this.setup();
-    this.setEvent();
-    this.render();
+    // this.setEvent();
+    // this.render();
   }
 
   async setup() {
@@ -28,8 +28,6 @@ export default class UserTable extends Component {
     };
     const res = await apiController(config);
     const { data } = res;
-
-    console.log('data: ', data);
 
     return data;
   }
@@ -69,7 +67,7 @@ export default class UserTable extends Component {
 
   generateUserTable() {
     let idName = 'Friend_table';
-    let users = this.props.friends;
+    let users = this.state.friends;
     let display = 'display: inline';
     let type = 'friend';
 
@@ -77,21 +75,14 @@ export default class UserTable extends Component {
 
     if (this.n === tableNumbers.BLOCK) {
       idName = 'Block_table';
-      users = this.props.ban_list;
+      users = this.state.ban_list;
       display = 'display: none';
       type = 'block';
     }
 
-    console.log('users: ', users);
-
-    if (users === undefined) {
-      console.log('users is undefined');
-      // user가 테이블에 없어서..?
-      return ``;
-    } else {
-      return users
-        .map(
-          (user) => `
+    return users
+      .map(
+        (user) => `
       <tr id="${idName}">
         <td class="flex ml-[20px]">
           <div class="w-[40px] h-[40px] relative">
@@ -105,23 +96,22 @@ export default class UserTable extends Component {
             <div class="w-[40px] h-[40px] rounded-full overflow-hidden">
             ${/* 전달받은 이미지로 경로 수정해야 함 */ ''}  
               <img src="${user.picture}" alt="profile" id="${type}_avatar_${
-            user.username
-          }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
+          user.username
+        }" class="user_avatar w-[100%] h-[100%] object-cover cursor-pointer">
             </div>
           </div>
         </td>
         ${/* Name */ ''}
         <td id="${type}_name_${user.username}" class="user_name">${
-            user.username
-          }</td>
+          user.username
+        }</td>
         ${/* DM */ ''}
         <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
         ${/* Delete */ ''}
         <td><img class="user_delete" src="/eva--close-fill.svg"></td>
       </tr>
     `,
-        )
-        .join('');
-    }
+      )
+      .join('');
   }
 }

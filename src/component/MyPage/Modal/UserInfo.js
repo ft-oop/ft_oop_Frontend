@@ -33,8 +33,6 @@ export default class UserInfo extends Component {
     const res = await apiController(config);
     const { data } = res;
 
-    console.log(data);
-
     return data;
   }
 

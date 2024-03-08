@@ -12,7 +12,10 @@ let newFileName = '';
 let friendToDelete = '';
 
 export default async function handleButtons($target, state, button) {
-  prevFileName = $('#mypage_avatar').getAttribute('src');
+  let avatar = $('#userAvatar');
+
+  if (avatar) prevFileName = $('#userAvatar').getAttribute('src');
+  else prevFileName = $('#mypage_avatar').getAttribute('src');
 
   /*** 친구, 차단 목록 테이블 전환 ***/
   if (
@@ -299,8 +302,6 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
     },
   };
 
-  console.log(config);
-
   const res = await apiController(config);
   return { res, target };
 }
@@ -420,9 +421,6 @@ async function handleConfirmOK($target, state, button) {
 
 async function postEditInfo(state, newFileName) {
   const newName = $('#nickname_upload').value;
-
-  console.log('newName: ', newName);
-  console.log('newFileName: ', newFileName);
 
   const config = {
     method: 'POST',
