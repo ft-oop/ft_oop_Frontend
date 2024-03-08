@@ -82,6 +82,8 @@ export default async function handleButtons($target, state, button) {
     const modalOrigin = button.closest('#Modal_overlay');
 
     console.log('modal: ', modalOrigin);
+    console.log('res: ', res);
+    console.log('target: ', target);
 
     if (res.status === 200) {
       console.log('target: ', target);
