@@ -63,10 +63,11 @@ export default async function handleButtons($target, state, button) {
     console.log('modal: ', modalOrigin);
 
     if (res.status === 200) {
-      console.log('if문 진입');
+      console.log('target: ', target);
       new UserInfo(modalOrigin, target, '/delete_friend.svg', '/block.svg');
 
       const table = $('#Friend_table');
+      console.log('table: ', table);
 
       new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
     }
