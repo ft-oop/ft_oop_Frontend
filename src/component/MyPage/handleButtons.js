@@ -58,13 +58,15 @@ export default async function handleButtons($target, state, button) {
 
     console.log('modal: ', modalOrigin);
 
-    if (res.state === 200)
+    if (res.state === 200) {
+      console.log('=====success');
       new UserInfo(
         modalOrigin,
         state.username,
         '/delete_friend.svg',
         '/block.svg',
       );
+    }
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
@@ -105,6 +107,7 @@ export default async function handleButtons($target, state, button) {
         '/add_friend.svg',
         '/block.svg',
       );
+    // 400 error -> alert 만들어야 할 듯..?
 
     /*** 테이블 내 아이콘 핸들링 ***/
     // DM
