@@ -74,19 +74,23 @@ export default async function handleButtons($target, state, button) {
 
     // 친구 삭제
   } else if (button.id === 'icon_delete_friend') {
-    const res = await handleDeleteFriendOfUserModal($target, state, button);
+    const { res, target } = await handleDeleteFriendOfUserModal(
+      $target,
+      state,
+      button,
+    );
     const modalOrigin = button.closest('#Modal_overlay');
 
     console.log('modal: ', modalOrigin);
 
     if (res.status === 200) {
-      console.log('if문 진입');
-      new UserInfo(
-        modalOrigin,
-        state.username,
-        '/add_friend.svg',
-        '/block.svg',
-      );
+      console.log('target: ', target);
+      new UserInfo(modalOrigin, target, '/add_friend.svg', '/block.svg');
+
+      const table = $('#Friend_table');
+      console.log('table: ', table);
+
+      new UserTable(table, '친구 목록', tableNumbers.FRIEND, state);
     }
 
     // 사용자 차단
@@ -291,7 +295,7 @@ async function handleDeleteFriendOfUserModal($target, state, button) {
 
   console.log(config);
 
-  const res = await apiController(config);
+  const { res, target } = await apiController(config);
   return res;
 }
 
