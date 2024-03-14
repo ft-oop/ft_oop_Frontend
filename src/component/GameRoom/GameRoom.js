@@ -1,9 +1,7 @@
 import Component from '../../core/Component';
 import { $ } from '../../utils/querySelector';
 import GameScreen from './GameScreen.js';
-import GameChat from './GameChat.js';
 import '../../style/GameRoom.css';
-import handleButtons from './HandleGameRoomButton.js';
 import { navigate } from '../../utils/navigate.js';
 import PongGame from './PongGame.js';
 
@@ -24,7 +22,6 @@ export default class GameRoom extends Component {
     const startbutton = document.getElementById('ready');
 
     startbutton.addEventListener('click', () => {
-      console.log('click');
       const game = new PongGame();
       game.pong();
       startbutton.disabled = true;
@@ -72,6 +69,6 @@ export default class GameRoom extends Component {
   handleButton(event) {
     const button = event.target;
 
-    handleButtons(this.$target, this.state, button);
+    //handleButtons(this.$target, this.state, button);
   }
 }
