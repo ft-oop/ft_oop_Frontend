@@ -24,8 +24,8 @@ export default class PongGame {
       radius: 5,
       posX: 0,
       posY: 0,
-      dx: 1,
-      dy: -1,
+      dx: 2,
+      dy: -2,
     };
 
     this.VIEW_ANGLE = 70;
@@ -40,6 +40,27 @@ export default class PongGame {
       (this.x_cube = 10),
       (this.y_cube = 50);
     this.plane, this.player_1, this.player_2, this.ball;
+
+    document.addEventListener(
+      'keydown',
+      this.user1_keyDownHandler.bind(this),
+      false,
+    );
+    document.addEventListener(
+      'keyup',
+      this.user1_keyUpHandler.bind(this),
+      false,
+    );
+    document.addEventListener(
+      'keydown',
+      this.user2_keyDownHandler.bind(this),
+      false,
+    );
+    document.addEventListener(
+      'keyup',
+      this.user2_keyUpHandler.bind(this),
+      false,
+    );
   }
 
   setRenderer() {
@@ -93,12 +114,7 @@ export default class PongGame {
     }
   }
 
-  setEventHandler() {
-    document.addEventListener('keydown', this.user1_keyDownHandler, false);
-    document.addEventListener('keyup', this.user1_keyUpHandler, false);
-    document.addEventListener('keydown', this.user2_keyDownHandler, false);
-    document.addEventListener('keyup', this.user2_keyUpHandler, false);
-  }
+  setEventHandler() {}
 
   setCamera() {
     this.camera = new THREE.PerspectiveCamera(
@@ -181,12 +197,12 @@ export default class PongGame {
       this.user1.upPressed &&
       this.player_1.position.y + this.y_cube / 2 + 5 < this.y_plane / 2
     ) {
-      this.player_1.position.y += 3;
+      this.player_1.position.y += 5;
     } else if (
       this.user1.downPressed &&
       this.player_1.position.y - this.y_cube / 2 - 5 > -this.y_plane / 2
     ) {
-      this.player_1.position.y -= 3;
+      this.player_1.position.y -= 5;
     }
     if (this.user1.skill == true) this.user1.skillpower++;
   }
@@ -196,15 +212,16 @@ export default class PongGame {
       this.user2.upPressed &&
       this.player_2.position.y + this.y_cube / 2 + 5 < this.y_plane / 2
     ) {
-      this.player_2.position.y += 3;
+      this.player_2.position.y += 5;
     } else if (
       this.user2.downPressed &&
       this.player_2.position.y - this.y_cube / 2 - 5 > -this.y_plane / 2
     ) {
-      this.player_2.position.y -= 3;
+      this.player_2.position.y -= 5;
     }
     if (this.user2.skill == true) this.user2.skillpower++;
   }
+
   ballMove() {
     this.ball.position.x += this.ball_info.dx;
     this.ball.position.y += this.ball_info.dy;
@@ -224,7 +241,7 @@ export default class PongGame {
       this.ball.position.y <= this.player_2.position.y + this.y_cube / 2 &&
       this.user2.skillpower >= 100
     ) {
-      this.ball_info.dx = -2;
+      this.ball_info.dx = -5;
     } else if (
       this.ball_info.dx >= 0 &&
       this.ball.position.x + this.x_cube / 2 + this.ball_info.radius >=
@@ -232,7 +249,7 @@ export default class PongGame {
       this.ball.position.y >= this.player_2.position.y - this.y_cube / 2 &&
       this.ball.position.y <= this.player_2.position.y + this.y_cube / 2
     ) {
-      this.ball_info.dx = -1;
+      this.ball_info.dx = -2;
     }
     if (
       this.ball_info.dx <= 0 &&
@@ -242,7 +259,7 @@ export default class PongGame {
       this.ball.position.y <= this.player_1.position.y + this.y_cube / 2 &&
       this.user1.skillpower >= 100
     ) {
-      this.ball_info.dx = 2;
+      this.ball_info.dx = 5;
     } else if (
       this.ball_info.dx <= 0 &&
       this.ball.position.x - this.x_cube / 2 - this.ball_info.radius <=
@@ -250,7 +267,7 @@ export default class PongGame {
       this.ball.position.y >= this.player_1.position.y - this.y_cube / 2 &&
       this.ball.position.y <= this.player_1.position.y + this.y_cube / 2
     ) {
-      this.ball_info.dx = 1;
+      this.ball_info.dx = 2;
     }
   }
 
@@ -260,8 +277,8 @@ export default class PongGame {
 
   resetWorld() {
     this.ball.position.x = 0;
-    if (Math.abs(this.ball_info.dx) > 1) {
-      this.ball_info.dx = this.ball_info.dx / 2;
+    if (Math.abs(this.ball_info.dx) > 2) {
+      this.ball_info.dx = (this.ball_info.dx * 2) / 5;
     }
     this.ball.position.y = this.rand(-140, 140);
   }
@@ -303,9 +320,7 @@ export default class PongGame {
     this.player2Move();
     this.ballMove();
     this.winOrLose();
-    //console.log(this.player_1.position);
     this.skill();
-    //console.log(this.ball_info.dx);
     this.renderer.render(this.scene, this.camera);
   }
 
