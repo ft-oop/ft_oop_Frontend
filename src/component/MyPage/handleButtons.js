@@ -67,7 +67,12 @@ export default async function handleButtons($target, state, button) {
 
     if (res.status === 200) {
       console.log('target: ', target);
-      new UserInfo(modalOrigin, target, '/delete_friend.svg', '/block.svg');
+      new UserInfo(
+        modalOrigin,
+        target,
+        '../../../public/delete_friend.svg',
+        '../../../public/block.svg',
+      );
 
       // const table = $('#Friend_table');
       // console.log('table: ', table);
@@ -86,7 +91,12 @@ export default async function handleButtons($target, state, button) {
 
     if (res.status === 200) {
       console.log('target: ', target);
-      new UserInfo(modalOrigin, target, '/add_friend.svg', '/block.svg');
+      new UserInfo(
+        modalOrigin,
+        target,
+        '../../../public/add_friend.svg',
+        '../../../public/block.svg',
+      );
     }
 
     // 사용자 차단
@@ -101,7 +111,7 @@ export default async function handleButtons($target, state, button) {
     console.log('modal: ', modalOrigin);
 
     if (res.status === 200)
-      new UserInfo(modalOrigin, target, '', '/unblock.svg');
+      new UserInfo(modalOrigin, target, '', '../../../public/unblock.svg');
 
     // 차단 해제
   } else if (button.id === 'icon_unblock') {
@@ -113,7 +123,12 @@ export default async function handleButtons($target, state, button) {
     const modalOrigin = button.closest('#Modal_overlay');
 
     if (res.status === 200) {
-      new UserInfo(modalOrigin, target, '/add_friend.svg', '/block.svg');
+      new UserInfo(
+        modalOrigin,
+        target,
+        '../../../public/add_friend.svg',
+        '../../../public/block.svg',
+      );
     }
     // 400 error -> alert 만들어야 할 듯..?
 
@@ -264,10 +279,15 @@ function handleUser($target, button) {
   }
 
   if (document.querySelector('#Friend_table')) {
-    new UserInfo(userInfo, userName, '/delete_friend.svg', '/block.svg');
+    new UserInfo(
+      userInfo,
+      userName,
+      '../../../public/delete_friend.svg',
+      '../../../public/block.svg',
+    );
   }
   if (document.querySelector('#Block_table')) {
-    new UserInfo(userInfo, userName, '', '/unblock.svg');
+    new UserInfo(userInfo, userName, '', '../../../public/unblock.svg');
   }
 }
 

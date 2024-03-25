@@ -35,7 +35,7 @@ export default class MyPage extends Component {
 
     // console.log(this.state);
 
-    new Profile($profile, this.state, '', '/edit.svg');
+    new Profile($profile, this.state, '', '../../../public/edit.svg');
     new HistoryTable($historyTable, this.state);
     new UserTable($friendTable, '친구 목록', tableNumbers.FRIEND, this.state);
   }

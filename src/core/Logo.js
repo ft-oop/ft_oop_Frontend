@@ -11,7 +11,7 @@ export default class Logo {
     const app = $('#app');
     app.appendChild(logoBox);
     logoBox.innerHTML = `
-      <img alt='logo' src='logo.png' class=' absolute h-16 top-2 left-4' /> 
+      <img alt='logo' src='../../public/logo.png' class=' absolute h-16 top-2 left-4' /> 
     `;
   }
 }

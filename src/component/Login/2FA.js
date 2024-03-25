@@ -36,7 +36,7 @@ export default class TwoFA extends Component {
       <div
         id="TwoFA_form__submit"
         class="flex justify-center items-center text-2xl font-semibold hover:text-3xl hover:font-bold text-purple-400 w-[200px] h-[200px] bg-cover cursor-pointer"
-        style="background-image: url(/bubble.png)"
+        style="background-image: url(../../../public/bubble.png)"
       >
         Login
       </div>

@@ -8,7 +8,7 @@ export default class RandomMatch extends Component {
         <div class='text-xl font-bold'>
           <span class='text-4xl mr-2'>🤝</span>1:1 랜덤 매칭
         </div>
-        <img alt='logo' src='logo.png' class=' h-[150px]' /> 
+        <img alt='logo' src='../../../public/logo.png' class=' h-[150px]' /> 
         <div class='animate-pulse text-lg font-semibold text-gray-700'>
           상대를 찾을 때까지 숨참는 중...
         </div>
