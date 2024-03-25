@@ -32,12 +32,12 @@ export default class UserTable extends Component {
   }
 
   template() {
-    let leftImage = '/arrow-left-disabled.svg';
-    let rightImage = '/arrow-right-enabled.svg';
+    let leftImage = '../../../../public/arrow-left-disabled.svg';
+    let rightImage = '../../../../public/arrow-right-enabled.svg';
 
     if (this.n === tableNumbers.BLOCK) {
-      leftImage = '/arrow-left-enabled.svg';
-      rightImage = '/arrow-right-disabled.svg';
+      leftImage = '../../../../public/arrow-left-enabled.svg';
+      rightImage = '../../../../public/arrow-right-disabled.svg';
     }
 
     let tableID = 'Friend_table';
@@ -105,9 +105,9 @@ export default class UserTable extends Component {
           user.username
         }</td>
         ${/* DM */ ''}
-        <td><img class="user_dm" src="/eva--message-circle-fill.svg" style="${display}"></td>
+        <td><img class="user_dm" src="../../../../public/eva--message-circle-fill.svg" style="${display}"></td>
         ${/* Delete */ ''}
-        <td><img class="user_delete" src="/eva--close-fill.svg"></td>
+        <td><img class="user_delete" src="../../../../public/eva--close-fill.svg"></td>
       </tr>
     `,
       )

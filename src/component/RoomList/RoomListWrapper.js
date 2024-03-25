@@ -7,7 +7,7 @@ export default class RoomListWrapper extends Component {
   template() {
     return `
       <div class='w-full h-[80%] flex flex-col justify-start items-center'>
-        <img id='goBack' src="/eva--arrow-back-fill.svg" alt="close" class='h-8 absolute top-6 left-6 rounded-full p-1 hover:shadow-md'/>
+        <img id='goBack' src="../../../public/eva--arrow-back-fill.svg" alt="close" class='h-8 absolute top-6 left-6 rounded-full p-1 hover:shadow-md'/>
         <div class='text-3xl font-bold mb-4'>
           <span class='text-4xl mr-2'>🗒</span>방 목록
         </div>

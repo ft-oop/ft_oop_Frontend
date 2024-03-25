@@ -15,7 +15,7 @@ export default class Category extends Component {
           <div class='text-2xl font-semibold group-hover:font-bold group-hover:text-purple-500'>
             ${this.props.title}
           </div>
-          <img src="/bubble.png" alt="img" class="absolute bottom-2 right-2 pointer-events-none drop-shadow w-[25px] h-[25px]" />
+          <img src="../../../public/bubble.png" alt="img" class="absolute bottom-2 right-2 pointer-events-none drop-shadow w-[25px] h-[25px]" />
         </div>
       </div>
     `;

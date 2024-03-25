@@ -33,7 +33,7 @@ export default class Edit extends Component {
         <div class="absolute w-full h-full bg-white opacity-70">
         <input type="file" id="avatar_upload" name="avatar_upload" style="display:none"
         accept="image/*"/>
-          <img id="avatar_upload_entry" src="/edit.svg" alt="edit icon" class="w-full p-[28px] cursor-pointer">
+          <img id="avatar_upload_entry" src="../../../../public/edit.svg" alt="edit icon" class="w-full p-[28px] cursor-pointer">
         </div>
       </div>
       ${/* Text */ ''}

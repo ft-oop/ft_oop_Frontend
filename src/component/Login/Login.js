@@ -8,7 +8,7 @@ export default class Login extends Component {
     return `
     <div class="flex flex-col justify-center items-center h-full">
     <img
-    src="/logo.png"
+    src="../../../public/logo.png"
     alt="logo"
     class="pointer-events-none w-[500px] h-[500px] animate-bounce"
     />
@@ -29,17 +29,17 @@ export default class Login extends Component {
       </div>
       <div class="-z-10">
         <img
-          src="/bubble.png"
+          src="../../../public/bubble.png"
           alt="img"
           class="pointer-events-none absolute -bottom-40 -left-40 w-[500px] h-[500px]"
         />
         <img
-          src="/bubble.png"
+          src="../../../public/bubble.png"
           alt="img"
           class="pointer-events-none absolute -bottom-28 -right-40 w-[600px] h-[600px]"
         />
         <img
-          src="/bubble.png"
+          src="../../../public/bubble.png"
           alt="img"
           class="pointer-events-none absolute bottom-80 -right-10 w-[200px] h-[200px]"
         />

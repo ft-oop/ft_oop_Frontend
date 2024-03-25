@@ -15,17 +15,17 @@ export default class Profile extends Component {
   }
 
   setIconID() {
-    if (this.icon1 === '/add_friend.svg') {
+    if (this.icon1 === '../../../public/add_friend.svg') {
       this.iconID1 = 'icon_add_friend';
-    } else if (this.icon1 === '/delete_friend.svg') {
+    } else if (this.icon1 === '../../../public/delete_friend.svg') {
       this.iconID1 = 'icon_delete_friend';
     }
 
-    if (this.icon2 === '/edit.svg') {
+    if (this.icon2 === '../../../public/edit.svg') {
       this.iconID2 = 'edit_modal_open';
-    } else if (this.icon2 === '/block.svg') {
+    } else if (this.icon2 === '../../../public/block.svg') {
       this.iconID2 = 'icon_block';
-    } else if (this.icon2 === '/unblock.svg') {
+    } else if (this.icon2 === '../../../public/unblock.svg') {
       this.iconID2 = 'icon_unblock';
     }
   }

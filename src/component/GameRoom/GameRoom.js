@@ -37,7 +37,7 @@ export default class GameRoom extends Component {
 
     $wrapper.innerHTML = `
       <div class="w-full h-full flex">
-      <img id='goBack' src="/eva--arrow-back-fill.svg" alt="close" class='h-8 absolute top-6 left-6 rounded-full p-1 hover:shadow-md'/>
+      <img id='goBack' src="../../../public/eva--arrow-back-fill.svg" alt="close" class='h-8 absolute top-6 left-6 rounded-full p-1 hover:shadow-md'/>
         <div class="w-[1728px] h-[1117px] m-auto">
           <div class="w-full h-[100px] flex">
             <div class="w-[1485px] h-full"></div>

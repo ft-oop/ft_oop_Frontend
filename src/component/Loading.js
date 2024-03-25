@@ -48,7 +48,7 @@ export default class Loading extends Component {
     this.setBubbleStyle(bubble, i);
 
     bubble.innerHTML = `
-      <img src="/bubble.png" alt="bubbles" class="w-full h-full"/>
+      <img src="../../public/bubble.png" alt="bubbles" class="w-full h-full"/>
     `;
   }
 
@@ -115,11 +115,11 @@ export default class Loading extends Component {
         my-[20px]
       "
       >
-      <img src="/bubbles_emoji.png" alt="bubbles"
+      <img src="../../public/bubbles_emoji.png" alt="bubbles"
         class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
       />
       404 Not Found
-      <img src="/bubbles_emoji.png" alt="bubbles"
+      <img src="../../public/bubbles_emoji.png" alt="bubbles"
         class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
       />
     </h1>
@@ -146,11 +146,11 @@ export default class Loading extends Component {
           my-[20px]
         "
       >
-        <img src="/bubbles_emoji.png" alt="bubbles"
+        <img src="../../public/bubbles_emoji.png" alt="bubbles"
           class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
         />
         Loading...
-        <img src="/bubbles_emoji.png" alt="bubbles"
+        <img src="../../public/bubbles_emoji.png" alt="bubbles"
           class="w-20 h-20 my-auto mx-[20px] flex justify-center item-center align-center"
         />
       </h1>
