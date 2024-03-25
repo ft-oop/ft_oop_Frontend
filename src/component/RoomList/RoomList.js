@@ -1,7 +1,7 @@
-import Component from '../../core/Component';
-import Logo from '../../core/Logo';
-import { $ } from '../../utils/querySelector';
-import RoomListWrapper from './RoomListWrapper';
+import Component from '../../core/Component.js';
+import Logo from '../../core/Logo.js';
+import { $ } from '../../utils/querySelector.js';
+import RoomListWrapper from './RoomListWrapper.js';
 
 export default class RoomList extends Component {
   mounted() {

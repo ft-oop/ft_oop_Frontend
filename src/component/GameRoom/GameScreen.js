@@ -1,4 +1,4 @@
-import Component from '../../core/Component';
+import Component from '../../core/Component.js';
 
 export default class GameScreen extends Component {
   constructor($target, props, picture1, picture2, score1, score2) {

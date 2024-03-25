@@ -1,7 +1,7 @@
-import Component from '../../../core/Component';
-import apiController from '../../../utils/apiController';
-import Profile from '../Profile';
-import HistoryTable from '../Table/HistoryTable';
+import Component from '../../../core/Component.js';
+import apiController from '../../../utils/apiController.js';
+import Profile from '../Profile.js';
+import HistoryTable from '../Table/HistoryTable.js';
 
 export default class UserInfo extends Component {
   constructor($target, props, icon1, icon2) {

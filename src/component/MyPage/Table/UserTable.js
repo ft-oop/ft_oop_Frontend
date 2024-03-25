@@ -1,5 +1,4 @@
 import Component from '../../../core/Component.js';
-import '../../../style/Table.css';
 import { tableNumbers } from '../../../constant/tableNumbers.js';
 import apiController from '../../../utils/apiController.js';
 

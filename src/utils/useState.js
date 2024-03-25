@@ -1,4 +1,4 @@
-import { debounceFrame } from './debounceFrame';
+import { debounceFrame } from './debounceFrame.js';
 function MyReact() {
   const options = {
     currentStateKey: 0,

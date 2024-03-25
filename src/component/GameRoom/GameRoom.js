@@ -1,9 +1,9 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
+import Component from '../../core/Component.js';
+import { $ } from '../../utils/querySelector.js';
 import GameScreen from './GameScreen.js';
-import '../../style/GameRoom.css';
 import { navigate } from '../../utils/navigate.js';
 import PongGame from './PongGame.js';
+import { initWebSocket, socket } from '../../utils/socket.js';
 
 export default class GameRoom extends Component {
   constructor($target, props) {

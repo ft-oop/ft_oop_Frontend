@@ -1,5 +1,4 @@
-import Component from '../../core/Component';
-import '../../style/myPage.css';
+import Component from '../../core/Component.js';
 
 export default class Profile extends Component {
   constructor($target, props, icon1, icon2) {

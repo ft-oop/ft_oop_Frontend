@@ -1,5 +1,4 @@
 import Component from '../../../core/Component.js';
-import '../../../style/Table.css';
 import { $ } from '../../../utils/querySelector.js';
 
 export default class HistoryTable extends Component {

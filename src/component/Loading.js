@@ -1,4 +1,3 @@
-import '../style/Loading.css';
 import Component from '../core/Component.js';
 import { $ } from '../utils/querySelector.js';
 

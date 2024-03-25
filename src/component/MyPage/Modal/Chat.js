@@ -1,6 +1,5 @@
-import Component from '../../../core/Component';
-import '../../../style/myPage.css';
-import { $ } from '../../../utils/querySelector';
+import Component from '../../../core/Component.js';
+import { $ } from '../../../utils/querySelector.js';
 
 export default class Chat extends Component {
   template() {

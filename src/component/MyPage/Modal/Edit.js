@@ -1,6 +1,5 @@
-import Component from '../../../core/Component';
-import '../../../style/Edit.css';
-import { $ } from '../../../utils/querySelector';
+import Component from '../../../core/Component.js';
+import { $ } from '../../../utils/querySelector.js';
 
 export default class Edit extends Component {
   // this.props에 userName

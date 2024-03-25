@@ -1,7 +1,7 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
-import RoomListDetail from './RoomListDetail';
-import { navigate } from '../../utils/navigate';
+import Component from '../../core/Component.js';
+import { $ } from '../../utils/querySelector.js';
+import RoomListDetail from './RoomListDetail.js';
+import { navigate } from '../../utils/navigate.js';
 
 export default class RoomListWrapper extends Component {
   template() {

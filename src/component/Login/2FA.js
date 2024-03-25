@@ -1,5 +1,5 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
+import Component from '../../core/Component.js';
+import { $ } from '../../utils/querySelector.js';
 import apiController from '../../utils/apiController.js';
 import { navigate } from '../../utils/navigate.js';
 

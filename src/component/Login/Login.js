@@ -1,6 +1,6 @@
-import Component from '../../core/Component';
-import { navigate } from '../../utils/navigate';
-import apiController from '../../utils/apiController';
+import Component from '../../core/Component.js';
+import { navigate } from '../../utils/navigate.js';
+import apiController from '../../utils/apiController.js';
 import Loading from '../Loading.js';
 
 export default class Login extends Component {

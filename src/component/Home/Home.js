@@ -1,7 +1,7 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
-import Logo from '../../core/Logo';
-import Category from './Category';
+import Component from '../../core/Component.js';
+import { $ } from '../../utils/querySelector.js';
+import Logo from '../../core/Logo.js';
+import Category from './Category.js';
 import { navigate } from '../../utils/navigate.js';
 import MakeRoom from '../MakeRoom/MakeRoom.js';
 import RandomMatch from '../RandomMatch/RandomMatch.js';

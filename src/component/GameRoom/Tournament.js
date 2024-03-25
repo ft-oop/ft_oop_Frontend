@@ -1,6 +1,4 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
-import '../../style/GameRoom.css';
+import Component from '../../core/Component.js';
 import { navigate } from '../../utils/navigate.js';
 
 export default class Tournament extends Component {

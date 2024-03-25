@@ -1,6 +1,5 @@
-import Component from '../../core/Component';
-import { bootstrapInput } from '../../utils/bootstrap';
-import { $ } from '../../utils/querySelector';
+import Component from '../../core/Component.js';
+import { $ } from '../../utils/querySelector.js';
 
 export default class MakeRoom extends Component {
   template() {
