@@ -1,4 +1,4 @@
-import { routes } from './constant/routeInfo';
+import { routes } from './constant/routeInfo.js';
 import NotFound from './component/notfound.js';
 
 function Router($container) {

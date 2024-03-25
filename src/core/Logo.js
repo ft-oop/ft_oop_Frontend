@@ -1,4 +1,4 @@
-import { $ } from '../utils/querySelector';
+import { $ } from '../utils/querySelector.js';
 
 export default class Logo {
   constructor($target) {
