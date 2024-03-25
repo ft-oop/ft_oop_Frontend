@@ -26,8 +26,8 @@ export default class GameScreen extends Component {
         </div>
       </div>
 
-      <div id="pongScene" class="w-full h-4/5 bg-black">
-        <canvas id="myCanvas" class="w-full h-full"></canvas>
+      <div id="pongScene" class="w-full h-4/5">
+        <canvas id="myCanvas" class="w-full h-full bg-gray-400">준비버튼을 눌러주세요</canvas>
       </div>
     `;
   }

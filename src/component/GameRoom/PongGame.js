@@ -1,186 +1,344 @@
-import Component from '../../core/Component';
-import { $ } from '../../utils/querySelector';
+import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 
-export default class PongGame extends Component {
-  constructor($target, props) {
-    super($target, props);
-    this.$target = $target;
-    this.props = this.props;
-    this.pong();
-    this.render();
+export default class PongGame {
+  constructor() {
+    this.user1 = {
+      posY: 0,
+      upPressed: false,
+      downPressed: false,
+      skill: false,
+      skillpower: 0,
+      score: 0,
+    };
+
+    this.user2 = {
+      posY: 0,
+      upPressed: false,
+      downPressed: false,
+      skill: false,
+      skillpower: 0,
+      score: 0,
+    };
+
+    this.ball_info = {
+      radius: 5,
+      posX: 0,
+      posY: 0,
+      dx: 2,
+      dy: -2,
+    };
+
+    this.VIEW_ANGLE = 70;
+    this.WIDTH = 1668;
+    this.HEIGTH = 733.59;
+    this.ASPECT = this.WIDTH / this.HEIGTH;
+    this.NEAR = 0.1;
+    this.FAR = 10000;
+    this.container, this.renderer, this.camera, this.scene;
+    (this.x_plane = 500),
+      (this.y_plane = 300),
+      (this.x_cube = 10),
+      (this.y_cube = 50);
+    this.plane, this.player_1, this.player_2, this.ball;
+
+    document.addEventListener(
+      'keydown',
+      this.user1_keyDownHandler.bind(this),
+      false,
+    );
+    document.addEventListener(
+      'keyup',
+      this.user1_keyUpHandler.bind(this),
+      false,
+    );
+    document.addEventListener(
+      'keydown',
+      this.user2_keyDownHandler.bind(this),
+      false,
+    );
+    document.addEventListener(
+      'keyup',
+      this.user2_keyUpHandler.bind(this),
+      false,
+    );
+  }
+
+  setRenderer() {
+    console.log(this.user1.upPressed);
+    this.container = document.getElementById('myCanvas');
+
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.container });
+    this.renderer.setSize(this.WIDTH, this.HEIGTH);
+    this.renderer.setClearColor('#9ca3af');
+  }
+
+  user1_keyDownHandler(e, user1) {
+    if (e.keyCode == 83) {
+      this.user1.downPressed = true;
+    } else if (e.keyCode == 87) {
+      this.user1.upPressed = true;
+    } else if (e.keyCode == 32) {
+      this.user1.skill = true;
+    }
+  }
+
+  user1_keyUpHandler(e) {
+    if (e.keyCode == 83) {
+      this.user1.downPressed = false;
+    } else if (e.keyCode == 87) {
+      this.user1.upPressed = false;
+    } else if (e.keyCode == 32) {
+      this.user1.skill = false;
+      this.user1.skillpower = 0;
+    }
+  }
+
+  user2_keyDownHandler(e) {
+    if (e.keyCode == 40) {
+      this.user2.downPressed = true;
+    } else if (e.keyCode == 38) {
+      this.user2.upPressed = true;
+    } else if (e.keyCode == 13) {
+      this.user2.skill = true;
+    }
+  }
+
+  user2_keyUpHandler(e) {
+    if (e.keyCode == 40) {
+      this.user2.downPressed = false;
+    } else if (e.keyCode == 38) {
+      this.user2.upPressed = false;
+    } else if (e.keyCode == 13) {
+      this.user2.skill = false;
+      this.user2.skillpower = 0;
+    }
+  }
+
+  setEventHandler() {}
+
+  setCamera() {
+    this.camera = new THREE.PerspectiveCamera(
+      this.VIEW_ANGLE,
+      this.ASPECT,
+      this.NEAR,
+      this.FAR,
+    );
+    this.camera.position.set(0, 0, 300);
+  }
+
+  setScene() {
+    this.scene = new THREE.Scene();
+  }
+
+  setLights() {
+    let light = new THREE.AmbientLight(0xffffff);
+    this.scene.add(light);
+  }
+
+  setWorld() {
+    // 필드
+    var geometry = new THREE.BoxGeometry(this.x_plane, this.y_plane, 0.01);
+    var material = new THREE.MeshPhongMaterial({ color: 0x2222ff });
+    this.plane = new THREE.Mesh(geometry, material);
+    this.scene.add(this.plane);
+
+    // 중앙분리
+    var geometry = new THREE.BoxGeometry(5, this.y_plane, 1);
+    var material = new THREE.MeshBasicMaterial({ color: 0x888888 });
+    var centerbar = new THREE.Mesh(geometry, material);
+    this.scene.add(centerbar);
+
+    // 데코 1
+    var geometry = new THREE.BoxGeometry(this.x_plane + 10, 5, 5);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xcccccc,
+      side: THREE.DoubleSide,
+    });
+    var dec2 = new THREE.Mesh(geometry, material);
+    dec2.position.y = this.y_plane / 2 + 0.025;
+    this.scene.add(dec2);
+
+    // 데코 2
+    var geometry = new THREE.BoxGeometry(this.x_plane + 10, 5, 5);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xcccccc,
+      side: THREE.DoubleSide,
+    });
+    var dec3 = new THREE.Mesh(geometry, material);
+    dec3.position.y = -this.y_plane / 2 - 0.025;
+    this.scene.add(dec3);
+
+    // player_1
+    var geometry = new THREE.BoxGeometry(this.x_cube, this.y_cube, 10);
+    var material = new THREE.MeshPhongMaterial({ color: 0x005000 });
+    this.player_1 = new THREE.Mesh(geometry, material);
+    this.player_1.position.x = -this.x_plane / 2;
+    this.player_1.position.y = this.user1.posY;
+    this.scene.add(this.player_1);
+
+    // player_2
+    var geometry = new THREE.BoxGeometry(this.x_cube, this.y_cube, 10);
+    var material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+    this.player_2 = new THREE.Mesh(geometry, material);
+    this.player_2.position.y = this.user1.posY;
+    this.player_2.position.x = this.x_plane / 2;
+    this.scene.add(this.player_2);
+
+    // 공
+    var geometry = new THREE.SphereGeometry(this.ball_info.radius, 32, 32);
+    var material = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    this.ball = new THREE.Mesh(geometry, material);
+    this.ball.position.z = 0.05;
+    this.scene.add(this.ball);
+  }
+
+  player1Move() {
+    if (
+      this.user1.upPressed &&
+      this.player_1.position.y + this.y_cube / 2 + 5 < this.y_plane / 2
+    ) {
+      this.player_1.position.y += 5;
+    } else if (
+      this.user1.downPressed &&
+      this.player_1.position.y - this.y_cube / 2 - 5 > -this.y_plane / 2
+    ) {
+      this.player_1.position.y -= 5;
+    }
+    if (this.user1.skill == true) this.user1.skillpower++;
+  }
+
+  player2Move() {
+    if (
+      this.user2.upPressed &&
+      this.player_2.position.y + this.y_cube / 2 + 5 < this.y_plane / 2
+    ) {
+      this.player_2.position.y += 5;
+    } else if (
+      this.user2.downPressed &&
+      this.player_2.position.y - this.y_cube / 2 - 5 > -this.y_plane / 2
+    ) {
+      this.player_2.position.y -= 5;
+    }
+    if (this.user2.skill == true) this.user2.skillpower++;
+  }
+
+  ballMove() {
+    this.ball.position.x += this.ball_info.dx;
+    this.ball.position.y += this.ball_info.dy;
+    if (this.ball.position.y <= -this.y_plane / 2 + this.ball_info.radius) {
+      this.ball_info.dy = -this.ball_info.dy;
+    } else if (
+      this.ball.position.y >=
+      this.y_plane / 2 - this.ball_info.radius
+    ) {
+      this.ball_info.dy = -this.ball_info.dy;
+    }
+    if (
+      this.ball_info.dx >= 0 &&
+      this.ball.position.x + this.x_cube / 2 + this.ball_info.radius >=
+        this.player_2.position.x &&
+      this.ball.position.y >= this.player_2.position.y - this.y_cube / 2 &&
+      this.ball.position.y <= this.player_2.position.y + this.y_cube / 2 &&
+      this.user2.skillpower >= 100
+    ) {
+      this.ball_info.dx = -5;
+    } else if (
+      this.ball_info.dx >= 0 &&
+      this.ball.position.x + this.x_cube / 2 + this.ball_info.radius >=
+        this.player_2.position.x &&
+      this.ball.position.y >= this.player_2.position.y - this.y_cube / 2 &&
+      this.ball.position.y <= this.player_2.position.y + this.y_cube / 2
+    ) {
+      this.ball_info.dx = -2;
+    }
+    if (
+      this.ball_info.dx <= 0 &&
+      this.ball.position.x - this.x_cube / 2 - this.ball_info.radius <=
+        this.player_1.position.x &&
+      this.ball.position.y >= this.player_1.position.y - this.y_cube / 2 &&
+      this.ball.position.y <= this.player_1.position.y + this.y_cube / 2 &&
+      this.user1.skillpower >= 100
+    ) {
+      this.ball_info.dx = 5;
+    } else if (
+      this.ball_info.dx <= 0 &&
+      this.ball.position.x - this.x_cube / 2 - this.ball_info.radius <=
+        this.player_1.position.x &&
+      this.ball.position.y >= this.player_1.position.y - this.y_cube / 2 &&
+      this.ball.position.y <= this.player_1.position.y + this.y_cube / 2
+    ) {
+      this.ball_info.dx = 2;
+    }
+  }
+
+  rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  resetWorld() {
+    this.ball.position.x = 0;
+    if (Math.abs(this.ball_info.dx) > 2) {
+      this.ball_info.dx = (this.ball_info.dx * 2) / 5;
+    }
+    this.ball.position.y = this.rand(-140, 140);
+  }
+
+  winOrLose() {
+    if (this.ball.position.x + this.ball_info.radius >= this.x_plane / 2) {
+      this.resetWorld();
+    }
+    if (this.ball.position.x - this.ball_info.radius <= -this.x_plane / 2) {
+      this.resetWorld();
+    }
+  }
+
+  start() {
+    this.setRenderer();
+    this.setCamera();
+    this.setEventHandler();
+    this.setScene();
+    this.setLights();
+    this.setWorld();
+  }
+
+  skill() {
+    if (this.user1.skillpower >= 100) {
+      this.player_1.material.color.setHex(0x000000);
+    } else {
+      this.player_1.material.color.setHex(0x005000);
+    }
+    if (this.user2.skillpower >= 100) {
+      this.player_2.material.color.setHex(0x000000);
+    } else {
+      this.player_2.material.color.setHex(0xff0000);
+    }
+  }
+
+  animate() {
+    requestAnimationFrame(this.animate.bind(this));
+    this.player1Move();
+    this.player2Move();
+    this.ballMove();
+    this.winOrLose();
+    this.skill();
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  init() {
+    this.container = document.getElementById('myCanvas');
+
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.container });
+    this.renderer.setSize(this.WIDTH, this.HEIGTH);
+    this.renderer.setClearColor(0x808080);
+    this.setScene();
+    this.setCamera();
+    this.setLights();
+    this.renderer.render(this.scene, this.camera);
   }
 
   pong() {
-    const canvas = $('#myCanvas');
-    const ctx = canvas.getContext('2d');
-
-    //ball position
-    let x = canvas.width / 2;
-    let y = canvas.height / 2;
-    const ballRadius = 2;
-
-    //centerbar info
-    let centerbarWidth = 3;
-    let centerbarHeight = 10;
-    let centerBardy = 0;
-    let paddleHeight = 30;
-    let paddleWidth = 5;
-
-    //user1 info
-    let user1_dx = 3;
-    let user1_dy = -3;
-    let user1_paddleY = (canvas.height - paddleHeight) / 2;
-    let user1_upPressed = false;
-    let user1_downPressed = false;
-
-    //user2 info
-    let dx = 0.8;
-    let dy = -0.8;
-    let user2_paddleY = (canvas.height - paddleHeight) / 2;
-    let user2_upPressed = false;
-    let user2_downPressed = false;
-
-    //key event
-    document.addEventListener('keydown', user1_keyDownHandler, false);
-    document.addEventListener('keyup', user1_keyUpHandler, false);
-    document.addEventListener('keydown', user2_keyDownHandler, false);
-    document.addEventListener('keyup', user2_keyUpHandler, false);
-
-    function drawCenterbar() {
-      ctx.beginPath();
-      while (centerBardy < 720) {
-        ctx.rect(
-          (canvas.width - centerbarWidth) / 2,
-          centerBardy,
-          centerbarWidth,
-          centerbarHeight,
-        );
-        ctx.fillStyle = 'white';
-        ctx.fill();
-        centerBardy += 20;
-      }
-      centerBardy = 0;
-      ctx.closePath();
-    }
-
-    function drawBall() {
-      ctx.beginPath();
-      ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-      ctx.fillStyle = 'white';
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    function User1_drawPaddle() {
-      ctx.beginPath();
-      ctx.rect(paddleWidth + 10, user1_paddleY, paddleWidth, paddleHeight);
-      ctx.fillStyle = 'white';
-      ctx.fill();
-      ctx.closePath();
-      if (user1_upPressed && user1_paddleY < canvas.height - paddleHeight) {
-        user1_paddleY += 3;
-      } else if (user1_downPressed && user1_paddleY > 0) {
-        user1_paddleY -= 3;
-      }
-    }
-
-    function User2_drawPaddle() {
-      ctx.beginPath();
-      ctx.rect(
-        canvas.width - paddleWidth - 10,
-        user2_paddleY,
-        paddleWidth,
-        paddleHeight,
-      );
-      ctx.fillStyle = 'white';
-      ctx.fill();
-      ctx.closePath();
-      if (user2_upPressed && user2_paddleY < canvas.height - paddleHeight) {
-        user2_paddleY += 3;
-      } else if (user2_downPressed && user2_paddleY > 0) {
-        user2_paddleY -= 3;
-      }
-    }
-
-    function User1_gameover() {
-      if (x + dx < ballRadius) {
-        alert('USER2 WIN');
-        clearInterval(interval);
-        document.location.reload();
-      } else if (x + dx > canvas.width - ballRadius - 15) {
-        if (
-          y > user2_paddleY &&
-          y < user2_paddleY + paddleHeight &&
-          x < canvas.width - ballRadius - 5
-        )
-          dx = -dx;
-      }
-    }
-
-    function User2_gameover() {
-      if (x + dx > canvas.width - ballRadius) {
-        alert('USER1 WIN');
-        clearInterval(interval);
-        document.location.reload();
-      } else if (x + dx < ballRadius + paddleWidth + 15) {
-        if (
-          y > user1_paddleY &&
-          y < user1_paddleY + paddleHeight &&
-          x > ballRadius + 5
-        )
-          dx = -dx;
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawBall();
-      drawCenterbar();
-      User1_drawPaddle();
-      User2_drawPaddle();
-      x += dx;
-      y += dy;
-      User1_gameover();
-      User2_gameover();
-      if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-        dy = -dy;
-      }
-    }
-
-    function user1_keyDownHandler(e) {
-      if (e.keyCode == 83) {
-        user1_upPressed = true;
-      } else if (e.keyCode == 87) {
-        user1_downPressed = true;
-      }
-    }
-
-    function user1_keyUpHandler(e) {
-      if (e.keyCode == 83) {
-        user1_upPressed = false;
-      } else if (e.keyCode == 87) {
-        user1_downPressed = false;
-      }
-    }
-
-    function user2_keyDownHandler(e) {
-      if (e.keyCode == 40) {
-        user2_upPressed = true;
-      } else if (e.keyCode == 38) {
-        user2_downPressed = true;
-      }
-    }
-
-    function user2_keyUpHandler(e) {
-      if (e.keyCode == 40) {
-        user2_upPressed = false;
-      } else if (e.keyCode == 38) {
-        user2_downPressed = false;
-      }
-    }
-
-    let interval = setInterval(draw, 10);
+    this.init();
+    this.start();
+    this.animate();
   }
-
-  render() {}
 }
