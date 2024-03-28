@@ -2,7 +2,7 @@ let socket = null;
 
 function initWebSocket() {
   if (!socket || socket.readyState !== WebSocket.OPEN) {
-    socket = new WebSocket('ws://localhost:3000');
+    socket = new WebSocket('ws://localhost:8000/ws/main');
   }
 
   socket.onopen = () => {
